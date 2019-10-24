@@ -17,7 +17,7 @@ const con = mysql.createConnection({
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  //change this
+  // create pets table
   let sql =
     "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, PRIMARY KEY (petID));";
   con.query(sql, function(err, result) {
@@ -34,13 +34,21 @@ con.connect(function(err) {
     console.log("Dummy data added to pets table");
   });
 
-  let sql =
+  // create events table
+  sql =
     "DROP TABLE if exists events; CREATE TABLE events(eventID INT NOT NULL AUTO_INCREMENT, petID INT, activity VARCHAR(255), PRIMARY KEY(eventID));";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `events` was successful!");
 
     console.log("Closing...");
+  });
+
+  // create dummy data for events table
+  sql = "INSERT INTO `events` (petID, activity) VALUES (1, 'lastFed')";
+  con.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log("Dummy data added to events table");
   });
 
   con.end();
