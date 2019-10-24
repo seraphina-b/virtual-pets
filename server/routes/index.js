@@ -3,11 +3,19 @@ var router = express.Router();
 var bodyParser = require("body-parser");
 var db = require("../model/helper");
 
+<<<<<<< HEAD
 //a comment
 
 /* GET home page. */
 function sendItems(req, res) {
   db("SELECT * FROM pets").then(results => {
+=======
+
+
+/* GET home page. */
+function sendItems(req, res) {
+  db("SELECT * FROM items ORDER BY id ASC;").then(results => {
+>>>>>>> added post request function???
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -30,6 +38,7 @@ router.get("/", (req, res) => {
 //then add the INSERT thing into the put request
 
 //use postman to test post
+<<<<<<< HEAD
 //does not work
 router.post("/", (req, res) => {
   //will change the "Blob" to whatever is on the frontend
@@ -43,6 +52,10 @@ router.post("/", (req, res) => {
       sendItems(req, res);
     }
   );
+=======
+router.post("/", (req, res) => {
+  db(`INSERT INTO pets (name, dateCreated) VALUES ("Blob", NOW());`)
+>>>>>>> added post request function???
 }
 
 
