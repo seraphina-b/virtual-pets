@@ -19,10 +19,10 @@ con.connect(function(err) {
   console.log("Connected!");
   //change this
   let sql =
-    "DROP TABLE if exists favorites; CREATE TABLE favorites(id INT NOT NULL AUTO_INCREMENT, url TEXT not null, PRIMARY KEY (id));";
+    "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, PRIMARY KEY (petID));";
   con.query(sql, function(err, result) {
     if (err) throw err;
-    console.log("Table creation `favorites` was successful!");
+    console.log("Table creation `pets` was successful!");
 
     console.log("Closing...");
   });
