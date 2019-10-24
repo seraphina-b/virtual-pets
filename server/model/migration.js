@@ -27,5 +27,12 @@ con.connect(function(err) {
     console.log("Closing...");
   });
 
+  // create dummy data for pets table
+  sql = "INSERT INTO `pets` (name, dateCreated) VALUES ('Blob', NOW())";
+  con.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log("Dummy data added to pets table");
+  });
+
   con.end();
 });
