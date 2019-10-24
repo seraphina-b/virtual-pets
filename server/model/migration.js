@@ -7,24 +7,25 @@ const DB_PASS = process.env.DB_PASS;
 const DB_NAME = process.env.DB_NAME;
 
 const con = mysql.createConnection({
-    host: DB_HOST || "127.0.0.1",
-    user: DB_USER || "root",
-    password: DB_PASS || "root",
-    database: DB_NAME || "virtualPet",
-    multipleStatements: true
+  host: DB_HOST || "127.0.0.1",
+  user: DB_USER || "root",
+  password: DB_PASS || "",
+  database: DB_NAME || "virtualPet",
+  multipleStatements: true
 });
 
-con.connect(function (err) {
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  //change this
+  let sql =
+    "DROP TABLE if exists favorites; CREATE TABLE favorites(id INT NOT NULL AUTO_INCREMENT, url TEXT not null, PRIMARY KEY (id));";
+  con.query(sql, function(err, result) {
     if (err) throw err;
-    console.log("Connected!");
-    //change this
-    let sql = "DROP TABLE if exists favorites; CREATE TABLE favorites(id INT NOT NULL AUTO_INCREMENT, url TEXT not null, PRIMARY KEY (id));";
-    con.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("Table creation `favorites` was successful!");
+    console.log("Table creation `favorites` was successful!");
 
-        console.log("Closing...");
-    });
+    console.log("Closing...");
+  });
 
-    con.end();
+  con.end();
 });
