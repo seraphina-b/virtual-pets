@@ -14,8 +14,12 @@ function sendItems(req, res) {
 
 /* GET home page. */
 function sendItems(req, res) {
+<<<<<<< HEAD
   db("SELECT * FROM items ORDER BY id ASC;").then(results => {
 >>>>>>> added post request function???
+=======
+  db("SELECT * FROM pets").then(results => {
+>>>>>>> fixed the post statement, but 'blob' needs to be replaced with frontend set data
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -39,6 +43,7 @@ router.get("/", (req, res) => {
 
 //use postman to test post
 <<<<<<< HEAD
+<<<<<<< HEAD
 //does not work
 router.post("/", (req, res) => {
   //will change the "Blob" to whatever is on the frontend
@@ -56,6 +61,21 @@ router.post("/", (req, res) => {
 router.post("/", (req, res) => {
   db(`INSERT INTO pets (name, dateCreated) VALUES ("Blob", NOW());`)
 >>>>>>> added post request function???
+=======
+//does not work
+router.post("/", (req, res) => {
+  //will change the "Blob" to whatever is on the frontend
+  db(`INSERT INTO pets (name, dateCreated) VALUES ("Blob", NOW());`).then(
+    //not pushing because we're using SQL, bitch.
+    //the SQL code is basically inserting the values into the table like we would type something into an Excel sheet wow
+    results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+      sendItems(req, res);
+    }
+  );
+>>>>>>> fixed the post statement, but 'blob' needs to be replaced with frontend set data
 }
 
 
