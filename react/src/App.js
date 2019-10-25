@@ -4,15 +4,19 @@ import Header from './components/Header.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
+   
   }
+
+  
 
   render() {
     return (
       <div>
-        <h1>Virtual Pet</h1> 
+        <h1>Virtual Pet</h1>
+        
         <button>Create New Pet</button>
         <Header></Header>
-      </div> 
+      </div>
     )
   }
 }
