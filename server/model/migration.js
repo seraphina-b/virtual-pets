@@ -17,11 +17,16 @@ const con = mysql.createConnection({
 con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
+<<<<<<< HEAD
     // create pets table
+=======
+    //change this
+>>>>>>> fixed the post statement, but 'blob' needs to be replaced with frontend set data
     let sql =
         "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, PRIMARY KEY (petID));";
     con.query(sql, function (err, result) {
         if (err) throw err;
+<<<<<<< HEAD
         console.log("Table creation `pets` was successful!");
 
         console.log("Closing...");
@@ -40,10 +45,53 @@ con.connect(function (err) {
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table creation `events` was successful!");
+=======
+<<<<<<< HEAD
+        console.log("Connected!");
+        //change this
+        let sql =
+            "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, PRIMARY KEY (petID));";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Table creation `pets` was successful!");
+
+            console.log("Closing...");
+        });
+
+        // create dummy data for pets table
+        sql = "INSERT INTO `pets` (name, dateCreated) VALUES ('Blob', NOW())";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Dummy data added to pets table");
+        });
+
+        // create events table
+        sql =
+            "DROP TABLE if exists events; CREATE TABLE events(eventID INT NOT NULL AUTO_INCREMENT, petID INT, activity VARCHAR(255), PRIMARY KEY(eventID));";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Table creation `events` was successful!");
+
+            console.log("Closing...");
+        });
+
+        // create dummy data for events table
+        sql = "INSERT INTO `events` (petID, activity) VALUES (1, 'lastFed')";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Dummy data added to events table");
+        });
+
+        con.end();
+    });
+=======
+        console.log("Table creation `pets` was successful!");
+>>>>>>> nicole merge fixes
 
         console.log("Closing...");
     });
 
+<<<<<<< HEAD
     // create dummy data for events table
     sql = "INSERT INTO `events` (petID, activity) VALUES (1, 'lastFed')";
     con.query(sql, function (err, result) {
@@ -53,3 +101,8 @@ con.connect(function (err) {
 
     con.end();
 });
+=======
+    con.end();
+});
+>>>>>>> fixed the post statement, but 'blob' needs to be replaced with frontend set data
+>>>>>>> nicole merge fixes
