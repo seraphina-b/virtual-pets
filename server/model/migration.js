@@ -34,17 +34,8 @@ con.connect(function(err) {
     console.log("Dummy data added to pets table");
   });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   // create events table
   sql =
-=======
-  let sql =
->>>>>>> added events table to migration file
-=======
-  // create events table
-  sql =
->>>>>>> added dummy data for events in migration file
     "DROP TABLE if exists events; CREATE TABLE events(eventID INT NOT NULL AUTO_INCREMENT, petID INT, activity VARCHAR(255), PRIMARY KEY(eventID));";
   con.query(sql, function(err, result) {
     if (err) throw err;
@@ -53,10 +44,6 @@ con.connect(function(err) {
     console.log("Closing...");
   });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> added dummy data for events in migration file
   // create dummy data for events table
   sql = "INSERT INTO `events` (petID, activity) VALUES (1, 'lastFed')";
   con.query(sql, function(err, result) {
@@ -64,10 +51,5 @@ con.connect(function(err) {
     console.log("Dummy data added to events table");
   });
 
-<<<<<<< HEAD
-=======
->>>>>>> added events table to migration file
-=======
->>>>>>> added dummy data for events in migration file
   con.end();
 });
