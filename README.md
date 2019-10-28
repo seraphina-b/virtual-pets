@@ -13,7 +13,7 @@ To create a virtual pet application that allows you to create and care for your 
 ### Things to (eventually) include in Readme..
 
 - Table of contents
-- User flow diagram
+
 - Database schema
 - API route plan
 - Full stack architecture drawing
@@ -50,7 +50,9 @@ To create a virtual pet application that allows you to create and care for your 
 - Click **Confirm merge**
 - Purple is good!
 
-## Development Setup
+## User flow diagram
+
+![user flow-main screen](./userflow-mainscreen.png)
 
 ### Methodology Github
 
