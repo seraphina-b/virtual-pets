@@ -56,16 +56,22 @@ To create a virtual pet application that allows you to create and care for your 
 
 ## API Routes
 
-| URI      | HTTP Method | Description   | Request Object | Response Object |
-|----------|:-----------:|:-------------:|:--------------:|----------------:|
-|/api/pets | GET         | gets all pets | n/a | {
-   id: integer
-   name: string
-   age: integer
-   lastFed: integer
-}
-
+| URI| HTTP Method | Description   | Request Object | Response Object |
+|----------|-----------:|:-------------:|:--------------:|----------------:|
+|/api/pets | GET         | gets all pets | n/a | { id: integer    name: string   age: integer    lastFed: integer}|
 |/         | POST        | Inserts pet name and dateCreated
+
+## Frontend Routes
+| URL      | Description |
+|----------|-------------|
+|/         |             |
+|/create   |             |
+|/pets     |             |
+|/pets/:id |             |
+|/new      |             |
+|/login    |             |
+|/register |             |
+|/logout   |             |
 
 ### Methodology Github
 
