@@ -3,16 +3,6 @@ var router = express.Router();
 var bodyParser = require("body-parser");
 var db = require("../model/helper");
 
-/* GET home page. */
-function sendItems(req, res) {
-  db("SELECT * FROM pets").then(results => {
-    if (results.error) {
-      res.status(500).send(results.error);
-    }
-    res.send(results.data);
-  });
-}
-
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
@@ -21,9 +11,17 @@ router.get("/", (req, res) => {
 
 // lists all pets
 router.get("/pets", (req, res) => {
-  sendItems(req, res);
+  db("SELECT * FROM pets").then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    res.send(results.data);
 });
 
+// lists pet by id
+router.get("/pets/:id", (req, res) => {
+  sendItems(req, res);
+});
 // do we need get for /pets/id? or /pets/name? or /pets/dateCreated?
 
 //use postman to test post
