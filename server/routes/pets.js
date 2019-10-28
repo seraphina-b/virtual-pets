@@ -20,7 +20,7 @@ router.get("/pets", (req, res) => {
 });
 
 // lists pet by id
-router.get("/pets/:id", (req, res) => {
+router.get("/pets/:petID", (req, res) => {
   db(`SELECT * FROM pets WHERE petID=${req.params.petID};`).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
