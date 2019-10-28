@@ -32,8 +32,8 @@ router.get("/", (req, res) => {
 //use postman to test post
 //does not work
 router.post("/", (req, res) => {
-  //will change the "Blob" to whatever is on the frontend
-  db(`INSERT INTO pets (name, dateCreated) VALUES ("Blob", NOW());`).then(
+  //frontend worker will edit the template literal to whatever is on the frontend
+  db(`INSERT INTO pets (name, dateCreated) VALUES ("${req.body.name}", NOW());`).then(
     //not pushing because we're using SQL, bitch.
     //the SQL code is basically inserting the values into the table like we would type something into an Excel sheet wow
     results => {
