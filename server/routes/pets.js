@@ -16,11 +16,17 @@ router.get("/pets", (req, res) => {
       res.status(500).send(results.error);
     }
     res.send(results.data);
+  });
 });
 
 // lists pet by id
 router.get("/pets/:id", (req, res) => {
-  sendItems(req, res);
+  db(`SELECT * FROM pets WHERE petID=${req.params.petID};`).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    res.send(results.data);
+  });
 });
 // do we need get for /pets/id? or /pets/name? or /pets/dateCreated?
 
