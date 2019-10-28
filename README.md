@@ -54,6 +54,19 @@ To create a virtual pet application that allows you to create and care for your 
 
 ![user flow-main screen](./userflow-mainscreen.png)
 
+## API Routes
+
+| URI      | HTTP Method | Description   | Request Object | Response Object |
+|----------|:-----------:|:-------------:|:--------------:|----------------:|
+|/api/pets | GET         | gets all pets | n/a | {
+   id: integer
+   name: string
+   age: integer
+   lastFed: integer
+}
+
+|/         | POST        | Inserts pet name and dateCreated
+
 ### Methodology Github
 
 #### Step 1
