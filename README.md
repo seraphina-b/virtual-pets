@@ -150,9 +150,19 @@ Option 1:
 ### Notes
 
 ## Evolutions of types of Tamagotchi
+
+## egg
+
+After wakes up the Tamagotchi, it shows up as an egg and starts pulsating. It hatches in 5 min
+
+
+
+
 All Tamagotchis naturally evolve over time as they age, starting from the egg to the baby, child, teen, and adult stages. On some occasions, it can evolve into a Senior stage. The majority of Tamagotchi characters have a variety of different forms they can evolve into, but what they become depends predominantly on how they were cared for in their current stage. For example, on the original Tamagotchi, if Marutchi is well cared for, it will evolve into Tamatchi. However, if it is neglected, it will evolve into Kuchitamatchi.
 
 ## Hunger 
+Tamagotchi starts beeping immediately after its born to notify that it needs food. 
+
 A Tamagotchi can be fed a rice bowl. When a Tamagotchi is fed a rice bowl, it fills five hearts. It
 
 When does the Tamagotchi get hungry again? When does it alert?
