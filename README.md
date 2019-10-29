@@ -60,6 +60,8 @@ To create a virtual pet application that allows you to create and care for your 
 |----------|-----------:|:-------------:|:--------------:|----------------:|
 |/api/pets | GET         | gets all pets | n/a | { id: integer    name: string   age: integer    lastFed: integer}|
 |/         | POST        | Inserts pet name and dateCreated
+|/events |             | | | |
+
 
 ## Frontend Routes
 | URL      | Description |
@@ -72,6 +74,8 @@ To create a virtual pet application that allows you to create and care for your 
 |/login    |             |
 |/register |             |
 |/logout   |             |
+|/events |             |
+|events/fed      |             |
 
 ### Methodology Github
 
