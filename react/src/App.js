@@ -2,10 +2,7 @@ import React from "react";
 import Header from "./views/Pet/Header.js";
 import Footer from "./views/Pet/Footer.js";
 import LogIn from "./views/LogIn.js";
-<<<<<<< HEAD
-=======
 import eggStage from "./images/lifeStages/eggStage.png";
->>>>>>> bug fixes
 import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends React.Component {
