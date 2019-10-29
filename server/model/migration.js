@@ -42,7 +42,8 @@ con.connect(function(err) {
   });
 
   // create dummy data for events table
-  sql = "INSERT INTO `events` (petID, activity) VALUES (1, 'lastFed')";
+  sql =
+    "INSERT INTO `events` (petID, activity, timeActioned) VALUES (1, 'lastFed', NOW())";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Dummy data added to events table");
