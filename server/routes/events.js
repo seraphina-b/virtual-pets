@@ -26,4 +26,18 @@ router.get("/events/timeActioned", (req, res) => {
   });
 });
 
+// not sure what this post is doing, but it works!
+router.get("/event/fed", (req, res) => {
+  db(`SELECT p.name, e.activity, e.timeActioned
+FROM events AS e
+LEFT JOIN pets AS p
+ON e.petID = p.petID
+WHERE p.petID = 1`).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    res.send(results.data);
+  });
+});
+
 module.exports = router;
