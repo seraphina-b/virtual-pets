@@ -35,14 +35,15 @@ con.connect(function(err) {
 
   // create events table
   sql =
-    "DROP TABLE if exists events; CREATE TABLE events(eventID INT NOT NULL AUTO_INCREMENT, petID INT, activity VARCHAR(255), PRIMARY KEY(eventID));";
+    "DROP TABLE if exists events; CREATE TABLE events(eventID INT NOT NULL AUTO_INCREMENT, petID INT, activity VARCHAR(255), timeActioned DATETIME, PRIMARY KEY(eventID));";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `events` was successful!");
   });
 
   // create dummy data for events table
-  sql = "INSERT INTO `events` (petID, activity) VALUES (1, 'lastFed')";
+  sql =
+    "INSERT INTO `events` (petID, activity, timeActioned) VALUES (1, 'lastFed', NOW())";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Dummy data added to events table");
