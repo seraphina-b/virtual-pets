@@ -148,3 +148,18 @@ Option 1:
 - if you want just to build the client locally, you can execute `yarn build:client
 
 ### Notes
+
+## Evolutions of types of Tamagotchi
+All Tamagotchis naturally evolve over time as they age, starting from the egg to the baby, child, teen, and adult stages. On some occasions, it can evolve into a Senior stage. The majority of Tamagotchi characters have a variety of different forms they can evolve into, but what they become depends predominantly on how they were cared for in their current stage. For example, on the original Tamagotchi, if Marutchi is well cared for, it will evolve into Tamatchi. However, if it is neglected, it will evolve into Kuchitamatchi.
+
+## Hunger 
+A Tamagotchi can be fed a rice bowl. When a Tamagotchi is fed a rice bowl, it fills five hearts. It
+
+When does the Tamagotchi get hungry again? When does it alert?
+In the FamiTama and Version 5, as adults, missing three consecutive calls for empty hungry hearts will result in an evolution to Puchiputchi.
+
+Overfeeding on three occasions by filling up seven hearts will result in an evolution to Osumotchi. Likewise, In the Royal FamiTama and Version 5 Celebrity, as adults, missing three consecutive calls for empty hungry hearts will result in an evolution to Modeltchi, missing three consecutive calls for empty happiness hearts will result in evolutions to Paparatchi, and overfeeding them on three occasions by filling up seven hearts will result in an evolution to Puddingtchi.
+
+for more information: https://tamagotchi.fandom.com/wiki/Care
+
+## Feeding too much
