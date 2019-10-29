@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
       if (results.error) {
         res.status(500).send(results.error);
       }
-      sendItems(req, res);
+      res.send(results.data);
     }
   );
 });
