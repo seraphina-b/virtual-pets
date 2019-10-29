@@ -35,7 +35,7 @@ con.connect(function(err) {
 
   // create events table
   sql =
-    "DROP TABLE if exists events; CREATE TABLE events(eventID INT NOT NULL AUTO_INCREMENT, petID INT, activity VARCHAR(255), PRIMARY KEY(eventID));";
+    "DROP TABLE if exists events; CREATE TABLE events(eventID INT NOT NULL AUTO_INCREMENT, petID INT, activity VARCHAR(255), timeActioned DATETIME, PRIMARY KEY(eventID));";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `events` was successful!");
