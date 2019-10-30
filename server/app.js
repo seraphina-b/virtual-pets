@@ -8,7 +8,7 @@ var petsRouter = require("./routes/pets");
 var eventsRouter = require("./routes/events");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
-var jobRouter = require("./jobs/jobs");
+var jobRouter = require("./jobs/cron");
 
 var app = express();
 
