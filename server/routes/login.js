@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-var secret = "Big ballin' is my hobby"
+//it's .. because it's going one file back 
+var userShouldBeLoggedIn = require("../guards/usershouldBeLoggedIn");
+var secret = "Big ballin' is my hobby";
 
 /* goes to login page */
 //post request because the user will attempt a new login
@@ -18,7 +20,7 @@ router.post("/", function (req, res, next) {
     if (user.username === inputUsername && user.pass == inputPassword) {
         //if user and pass match the req.body, generate a new token 
         var token = jwt.sign({ userID: 1, username: user.username }, secret);
-        res.send({ message: "...logging in" })
+        res.send({ message: "This is your virtualpet owner token", token })
     }
 
     //otherwise error
@@ -28,6 +30,9 @@ router.post("/", function (req, res, next) {
     res.send({ title: 'this is the login page' });
 });
 
-
+//a protected route
+router.get("/account", userShouldBeLoggedIn, function (req, res, next) {
+    res.send({ message: "Here is your data!", data: [1, 2, 3] });
+});
 
 module.exports = router;
