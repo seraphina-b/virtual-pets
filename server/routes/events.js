@@ -36,7 +36,7 @@ router.post("/pets/:petID/events", (req, res) => {
     if (results.error) {
       res.status(500).send(results.error);
     }
-    res.send(results.data);
+    res.send({ message: "baby was fed!" });
   });
 });
 
