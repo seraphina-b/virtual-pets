@@ -8,7 +8,8 @@ class Header extends React.Component {
     render() {
         return (
             <div>
-                <button>Feed Me!</button>
+                <button className="nes-btn">Feed Me!</button>
+                <progress className="nes-progress" max="10" value="5"/>
             </div>
         )
     }
