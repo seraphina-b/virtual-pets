@@ -10,7 +10,9 @@ function userShouldBeLoggedIn(req, res, next) {
         // err
         if (err) res.status(401).send({ message: err.message });
         // decoded undefined
-        res.send({ message: "good to go" });
+        //res.send({ message: "good to go", decoded });
+        req.userID = decoded.userID;
+        next();
     });
     //at this point, there is a token but it nneeds to be verified
     res.status(401).send({ message: "You're not authorized!" });
