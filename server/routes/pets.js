@@ -30,7 +30,7 @@ router.get("/pets/:petID", (req, res) => {
 });
 
 // not sure what this post is doing, but it works!
-router.post("/", (req, res) => {
+router.post("/pets", (req, res) => {
   db(
     `INSERT INTO pets (name, dateCreated) VALUES ("${req.body.name}", NOW());`
   ).then(results => {
