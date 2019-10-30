@@ -32,7 +32,10 @@ router.post("/", function (req, res, next) {
 
 //a protected route
 router.get("/account", userShouldBeLoggedIn, function (req, res, next) {
-    res.send({ message: "Here is your data!", data: [1, 2, 3] });
+    //do your DB query stuff with req.userID
+    //we haven't made a user table but i guess i could do that
+    sql = "SELECT *FROM "
+    res.send({ message: "Here is your data!", userID: req.userID });
 });
 
 module.exports = router;
