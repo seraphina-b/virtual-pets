@@ -2,10 +2,7 @@ import React from "react";
 import Header from "./views/Pet/Header.js";
 import Footer from "./views/Pet/Footer.js";
 import LogIn from "./views/LogIn.js";
-<<<<<<< HEAD
-=======
 import eggStage from "./images/lifeStages/eggStage.png";
->>>>>>> bug fixes
 import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends React.Component {
@@ -18,7 +15,7 @@ class App extends React.Component {
         <div>
           <Header></Header>
           <h1>Virtual Pet</h1>
-          <button>Create New Pet</button>
+          <button className="btn btn-primary">Create New Pet</button>
           <img src={eggStage} alt="Egg tamagotchi"></img>
           <Footer></Footer>
           <Route path="/LogIn" component={LogIn} />

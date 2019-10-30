@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/littlepawcoding/fs4-final-project-2/issues"
   },
-  "homepage": "https://github.com/littlepawcoding/fs4-final-project-2#readme",
-  "dependencies": {
-    "react-router-dom": "^5.1.2"
-  }
+  "homepage": "https://github.com/littlepawcoding/fs4-final-project-2#readme"
 }
