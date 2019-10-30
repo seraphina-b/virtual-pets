@@ -62,7 +62,8 @@ To create a virtual pet application that allows you to create and care for your 
 |/pets         | POST        | Creates one pet |
 |/pets/:petID | GET             | Gets one pet| | |
 |/pets/:petID/events | GET|gets all events for one pet
-|/pet/:petID/events |POST| feeds one pet
+|/pet/:petID/events |POST| feeds one pet| ||
+|/login|
 
 
 ## Frontend Routes
