@@ -151,25 +151,33 @@ Option 1:
 
 ## Evolutions of types of Tamagotchi
 
-## egg
+## Life stages
 
-After wakes up the Tamagotchi, it shows up as an egg and starts pulsating. It hatches in 5 min
-
-
+After wakes up the Tamagotchi, it shows up as an egg and starts pulsating. It hatches in 5 min and immediately gets hungry.
 
 
 All Tamagotchis naturally evolve over time as they age, starting from the egg to the baby, child, teen, and adult stages. On some occasions, it can evolve into a Senior stage. The majority of Tamagotchi characters have a variety of different forms they can evolve into, but what they become depends predominantly on how they were cared for in their current stage. For example, on the original Tamagotchi, if Marutchi is well cared for, it will evolve into Tamatchi. However, if it is neglected, it will evolve into Kuchitamatchi.
 
-## Hunger 
+## Hunger
 Tamagotchi starts beeping immediately after its born to notify that it needs food. 
 
-A Tamagotchi can be fed a rice bowl. When a Tamagotchi is fed a rice bowl, it fills five hearts. It
+A Tamagotchi can be fed a rice bowl or bread in some versions (you choose). When a Tamagotchi is fed, it fills one heart and can fill up to five hearts, with 2 hidden hearts--7 hearts results in an overfeeding status.
 
-When does the Tamagotchi get hungry again? When does it alert?
-In the FamiTama and Version 5, as adults, missing three consecutive calls for empty hungry hearts will result in an evolution to Puchiputchi.
+https://www.makeuseof.com/tag/tamagotchi-keep-alive/
 
-Overfeeding on three occasions by filling up seven hearts will result in an evolution to Osumotchi. Likewise, In the Royal FamiTama and Version 5 Celebrity, as adults, missing three consecutive calls for empty hungry hearts will result in an evolution to Modeltchi, missing three consecutive calls for empty happiness hearts will result in evolutions to Paparatchi, and overfeeding them on three occasions by filling up seven hearts will result in an evolution to Puddingtchi.
+A heart drops every 15-30 min. If the hearts are empty, this affects its health status.
+
+Missing three consecutive calls for empty hungry hearts will result in an evolution to Puchiputchi.
+
+http://www.mimitchi.com/html/tamatip.htm
+
+
+Missing three consecutive calls for empty hungry hearts will result in an evolution to Puchiputchi. Missing three consecutive calls for empty happiness hearts will result in evolutions to Paparatchi, and overfeeding them on three occasions by filling up seven hearts will result in an evolution to Puddingtchi.
+
+## Pooping
+
+The tamagotchi poops about one hour after the user feeds it and the user has to clean up after it eats and will show signs of discomfort or wiggle on screen when it needs to. The faster the user cleans up after the better.  Otherwise the Tamagotchi can get sick.
 
 for more information: https://tamagotchi.fandom.com/wiki/Care
 
-## Feeding too much
+## Care mistakes
