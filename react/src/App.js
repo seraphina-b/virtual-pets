@@ -15,7 +15,7 @@ class App extends React.Component {
         <div>
           <Header></Header>
           <h1>Virtual Pet</h1>
-          <button className="btn btn-primary">Create New Pet</button>
+          <button className="btn-primary">Create New Pet</button>
           <img src={eggStage} alt="Egg tamagotchi"></img>
           <Footer></Footer>
           <Route path="/LogIn" component={LogIn} />
