@@ -58,9 +58,11 @@ To create a virtual pet application that allows you to create and care for your 
 
 | URI| HTTP Method | Description   | Request Object | Response Object |
 |----------|-----------:|:-------------:|:--------------:|----------------:|
-|/api/pets | GET         | gets all pets | n/a | { id: integer    name: string   age: integer    lastFed: integer}|
-|/         | POST        | Inserts pet name and dateCreated
-|/events |             | | | |
+|/pets | GET         | gets all pets | n/a | { id: integer    name: string   age: integer    lastFed: integer}|
+|/pets         | POST        | Creates one pet |
+|/pets/:petID | GET             | Gets one pet| | |
+|/pets/:petID/events | GET|gets all events for one pet
+|/pet/:petID/events |POST| feeds one pet
 
 
 ## Frontend Routes
