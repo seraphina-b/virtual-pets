@@ -63,7 +63,7 @@ To create a virtual pet application that allows you to create and care for your 
 |/pets/:petID | GET             | Gets one pet| | |
 |/pets/:petID/events | GET|gets all events for one pet
 |/pet/:petID/events |POST| feeds one pet| ||
-|/login|
+|/login| POST | should generate a new tocken if user and password are valid|
 
 
 ## Frontend Routes
