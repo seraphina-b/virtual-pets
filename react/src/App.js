@@ -5,22 +5,24 @@ import LogIn from "./views/LogIn.js";
 import eggStage from "./images/lifeStages/eggStage.png";
 import { BrowserRouter, Route } from "react-router-dom";
 import "nes.css/css/nes.min.css";
+import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Header></Header>
+        <body>
           <h1>Virtual Pet</h1>
-          <button type="button" className="nes-btn is-primary">Create New Pet</button>
+          <Header></Header>
+    {/* <button type="button" className="nes-btn is-primary">Create New Pet</button> */}
           <img src={eggStage} alt="Egg tamagotchi"></img>
           <Footer></Footer>
           <Route path="/LogIn" component={LogIn} />
-        </div>
+        </body>
       </BrowserRouter>
     );
   }
