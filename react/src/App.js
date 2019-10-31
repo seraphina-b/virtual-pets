@@ -1,9 +1,8 @@
 import React from "react";
-import Header from "./views/Pet/Header.js";
-import Footer from "./views/Pet/Footer.js";
+import Pet from "./views/Pet/Pet.js";
 import LogIn from "./views/LogIn.js";
-import eggStage from "./images/lifeStages/eggStage.png";
-import { BrowserRouter, Route } from "react-router-dom";
+import Create from "./views/Create.js"
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import "./App.css";
 
@@ -12,18 +11,20 @@ class App extends React.Component {
     super(props);
   }
 
-  render() {
+  render() {  
     return (
       <BrowserRouter>
-        <body>
-          <progress className="nes-progress is-success" max="10" value="7"/> 
-          <h1>Virtual Pet</h1>
-          <Header></Header>
-    {/* <button type="button" className="nes-btn is-primary">Create New Pet</button> */}
-          <img src={eggStage} alt="Egg tamagotchi"></img>
-          <Footer></Footer>
-          <Route path="/LogIn" component={LogIn} />
-        </body>
+          <Switch>
+            <Route path="/login">
+               <LogIn/>
+            </Route>
+            <Route path="/pet">
+              <Pet/>
+            </Route>
+            <Route path="/">
+               <Create/>
+            </Route>
+          </Switch>
       </BrowserRouter>
     );
   }
