@@ -24,7 +24,7 @@ app.use("/", eventsRouter);
 app.use("/", usersRouter);
 app.use("/login", loginRouter);
 app.use("/", jobRouter);
-app.use("/", sendNotificationRouter);
+// app.use("/", sendNotificationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
