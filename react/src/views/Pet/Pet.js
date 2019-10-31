@@ -12,22 +12,19 @@ class Pet extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-
-
-  }
+  componentDidMount = () => {};
   //just writing a note so i'll understand
   // i tag is an icon tag. didn't know that before
-  render() {
-    return (
-      <body>
-        <h3>Hunger</h3>
-        <progress className="nes-progress is-success" max="15" value={this.state.satiety} />
-        <h1>Virtual Pet</h1>
-        <Header></Header>
+  // render() {
+  //   return (
+  //     <body>
+  //       <h3>Hunger</h3>
+  //       <progress className="nes-progress is-success" max="15" value={this.state.satiety} />
+  //       <h1>Virtual Pet</h1>
+  //       <Header></Header>
 
-    this.updateSatiety();
-  };
+  //   this.updateSatiety();
+  // };
 
   updateSatiety = () => {
     fetch("/pets/1")
@@ -78,16 +75,6 @@ class Pet extends React.Component {
           <i className="nes-icon heart is-large"></i>
           <i className="nes-icon heart is-large"></i>
 
-          <img src={eggStage} alt="Egg tamagotchi"></img>
-        </section>
-
-
-      </body>
-    )
-  }
-}
-export default Pet;
-=======
           <img src={baby} alt="Egg tamagotchi"></img>
         </section>
       </body>
@@ -95,4 +82,3 @@ export default Pet;
   }
 }
 export default Pet;
-
