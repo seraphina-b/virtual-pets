@@ -9,7 +9,11 @@ router.use(bodyParser.json());
 
 cron.schedule("* * * * *", function() {
   console.log("running a task every minute");
+<<<<<<< HEAD
   // sendNotification();
+=======
+  //sendNotification();
+>>>>>>> most updated version so far
 });
 
 module.exports = router;

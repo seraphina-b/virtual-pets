@@ -8,28 +8,65 @@ class Pet extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            satiety: 11
+            satiety: 0
         };
     }
 
     componentDidMount = () => {
-        
+        this.updateSatiety();
+    }
+
+    updateSatiety = () => {
+        fetch("/pets/1")
+         .then(res => res.json())
+         .then(data => {
+            this.setState({
+                satiety: data[0].satiety
+        });
+      })
+        .catch(error => {
+         console.log(error);
+            });
+    }
+
+    handleFeeding = () => {
+        fetch(`/pets/1  `, {
+            method: "PUT",
+          })
+          .then(res => res.json())
+          .then(data => {
+            this.setState({ 
+              satiety: data,
+            });
+          })
+          .then(this.updateSatiety())
+          .catch(error => {
+            console.log(error);
+          });
+       console.log(this.state.satiety);
     }
 
     render() {
+        let howFull = 'nes-progress';
+            if (this.state.satiety < 6) 
+                howFull += ' is-error';
+            else if (this.state.satiety < 11)
+                howFull += " is-warning";
+            else 
+            howFull += " is-success";
         return (
         <body>
           <h3>Hunger</h3>
-          <progress className="nes-progress is-success" max="15" value={this.state.satiety}/> 
+          <progress className={howFull} max="15" value={this.state.satiety}/> 
           <h1>Virtual Pet</h1>
-          <Header></Header>
+          <Header handleFoodClick={this.handleFeeding}></Header>
           <br></br>
           <section className="nes-container with-title"> 
             <h3 className="title">Your Pet</h3>
             <i className="nes-icon heart is-large"></i>
             <i className="nes-icon heart is-large"></i>
             <i className="nes-icon heart is-large"></i> 
-            <img src={eggStage} alt="Egg tamagotchi"></img>
+            <img src={baby} alt="Egg tamagotchi"></img>
           </section>
           
           
