@@ -10,9 +10,8 @@ class Header extends React.Component {
         return (
             <div>
                 <section className="nes-container with-title">
-                  <h3 className="title">Hunger</h3>
-                  <button className="nes-btn"> <img src={bread} alt="Bread icon"/></button>
-                  <progress className="nes-progress is-success" max="10" value="7"/>
+                  <h3 className="title">Actions</h3>
+                  <button className="nes-btn"> <img src={bread} alt="Bread icon"/></button> 
                 </section>
             </div>
         )

@@ -10,7 +10,14 @@ class LogIn extends React.Component {
 
     render() {
         return (
-            <div> This is the LogIn Page! </div>
+            <body>
+                <section className="nes-container with-title">
+                    <h3 className="title">Log In</h3>
+                    <input className="nes-input"></input>
+                    <input className="nes-input"></input>
+                    
+                </section>
+            </body>
         )
     }
 }
