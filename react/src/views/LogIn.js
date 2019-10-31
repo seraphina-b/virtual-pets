@@ -10,14 +10,18 @@ class LogIn extends React.Component {
 
     render() {
         return (
-            <body>
+            <div>
                 <section className="nes-container with-title">
                     <h3 className="title">Log In</h3>
+                    <h4>Email</h4>
                     <input className="nes-input"></input>
+                    <h4>Password</h4>
                     <input className="nes-input"></input>
+                    <button className="nes-btn is-primary">Log In</button>
+                    <button className="nes-btn is-primary">Sign Up</button>
                     
                 </section>
-            </body>
+            </div>
         )
     }
 }
