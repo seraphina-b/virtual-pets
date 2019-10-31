@@ -57,6 +57,15 @@ WHERE p.petID=${req.params.petID}`).then(results => {
     res.send(results.data);
   });
 });
+//gets the age
+router.get("/:petID/age", (req, res) => {
+  db(`SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    res.send(results.data);
+  });
+});
 
 //POST feeds a pet
 router.post("/pets/:petID/events", (req, res) => {
