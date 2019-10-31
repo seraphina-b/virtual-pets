@@ -36,6 +36,11 @@ router.post("/pets/:petID/events", (req, res) => {
     if (results.error) {
       res.status(500).send(results.error);
     }
+    db(`UPDATE pets SET satiety = satiety+2 WHERE petID = 1;`).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+    });
     res.send({ message: "baby was fed!" });
   });
 });
