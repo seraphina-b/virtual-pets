@@ -6,12 +6,17 @@ class Header extends React.Component {
         super(props);
         this.state = {}
     }
+
+    handleFeeding = () => {
+        //fetch(/api)
+    }
+
     render() {
         return (
             <div>
                 <section className="nes-container with-title">
                   <h3 className="title">Actions</h3>
-                  <button className="nes-btn"> <img src={bread} alt="Bread icon"/></button> 
+                  <button onClick={this.handleFeeding} className="nes-btn"> <img src={bread} alt="Bread icon"/></button> 
                 </section>
             </div>
         )
