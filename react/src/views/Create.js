@@ -9,7 +9,8 @@ class Create extends React.Component {
         this.state = {
             isNewPet: false
         };
-}
+    }
+
 
     handleClick = () => {
         this.setState(prevState => ({
@@ -17,6 +18,7 @@ class Create extends React.Component {
         }));
             console.log(this.state.isNewPet);
     }
+
   
     render() {
         return (

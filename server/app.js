@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", petsRouter);
+app.use("/pets", petsRouter);
 app.use("/", eventsRouter);
 app.use("/", usersRouter);
 app.use("/login", loginRouter);
