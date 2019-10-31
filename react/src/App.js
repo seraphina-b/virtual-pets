@@ -16,6 +16,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <body>
+          <progress className="nes-progress is-success" max="10" value="7"/> 
           <h1>Virtual Pet</h1>
           <Header></Header>
     {/* <button type="button" className="nes-btn is-primary">Create New Pet</button> */}
