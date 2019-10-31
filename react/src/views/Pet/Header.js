@@ -11,8 +11,7 @@ class Header extends React.Component {
             <div>
                 <section className="nes-container with-title">
                   <h3 className="title">Actions</h3>
-                  <button className="nes-btn"> <img src={bread} alt="Bread icon"/></button>
-                  
+                  <button className="nes-btn"> <img src={bread} alt="Bread icon"/></button> 
                 </section>
             </div>
         )
