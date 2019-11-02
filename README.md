@@ -129,7 +129,11 @@ Work in your fork and commit the changes in your local. When having something en
 ## Data Migration
 Option 1:
 - In terminal, cd to server
-- Run node `model\migration.js` to run DB migrations. This will **DELETE** all your tables and data, and will re-create all tables with some dummy data.
+- Run `node model\migration.js` to run DB migrations. This will **DELETE** all your tables and data, and will re-create all tables with some dummy data.
+
+Option 2: 
+- In terminal, cd to server
+- Run `yarn migrate` to run DB migrations
 
 ### Dependencies
 

@@ -18,8 +18,7 @@ con.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 
-  let sql =
-    "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, PRIMARY KEY (petID));";
+  let sql = "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, PRIMARY KEY (petID));";
   con.query(sql, function (err, result) {
     if (err) throw err;
 
@@ -27,7 +26,7 @@ con.connect(function (err) {
   });
 
   // create dummy data for pets table
-  sql = "INSERT INTO `pets` (name, dateCreated) VALUES ('Blob', NOW())";
+  sql = "INSERT INTO `pets` (name, dateCreated) VALUES ('Blob', NOW());";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Dummy data added to pets table");
@@ -43,13 +42,13 @@ con.connect(function (err) {
 
   // create dummy data for events table
   sql =
-    "INSERT INTO `events` (petID, activity, timeActioned) VALUES (1, 'lastFed', NOW()), (2, 'lastFed', NOW())";
+    "INSERT INTO `events` (petID, activity, timeActioned) VALUES (1, 'lastFed', NOW()), (2, 'lastFed', NOW());";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Dummy data added to events table");
   });
-  console.log("Closing...");
-  con.end();
+
+
 });
 
 // create users table
@@ -61,12 +60,10 @@ con.query(sql, function (err, result) {
 });
 
 // create dummy data for users table
-// sql =
-//   //not currently working, sorry. will fix later
-//   "INSERT INTO `users` (userName, firstName, lastName, emailAddress, password), VALUES ('rihanna1', 'rihanna', 'fenty', 'rihanna.fenty@gmail.com', 'codeop');";
-// con.query(sql, function (err, result) {
-//   if (err) throw err;
-//   console.log("Dummy data added to events table");
-// });
+sql = "INSERT INTO users (userName, firstName, lastName, emailAddress, password) VALUES ('rihanna1', 'rihanna', 'fenty', 'rihanna.fenty@gmail.com', 'codeop');";
+con.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log("Dummy data added to user table");
+});
 console.log("Closing...");
 con.end();
