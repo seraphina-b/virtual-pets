@@ -7,9 +7,9 @@ const cron = require("node-cron");
 
 router.use(bodyParser.json());
 
-cron.schedule("* * * * *", function() {
-  console.log("running a task every minute");
-  //sendNotification();
-});
+// cron.schedule("* * * * *", function() {
+//   console.log("running a task every minute");
+//   //sendNotification();
+// });
 
 module.exports = router;
