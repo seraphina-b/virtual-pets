@@ -8,11 +8,12 @@ class Pet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      satiety: 0
+      satiety: 0,
+      age: 0
     };
   }
 
-  componentDidMount = () => {};
+  componentDidMount = () => { };
   //just writing a note so i'll understand
   // i tag is an icon tag. didn't know that before
   // render() {
@@ -40,6 +41,7 @@ class Pet extends React.Component {
   };
 
   handleFeeding = () => {
+    //sorry wouldn't this have a template literal?
     fetch(`/pets/1/events`, {
       method: "POST"
     })
@@ -54,6 +56,22 @@ class Pet extends React.Component {
         console.log(error);
       });
     console.log(this.state.satiety);
+  };
+
+  getOlder = () => {
+    fetch("/pets/:petID/age", {
+      method: "GET"
+    })
+
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          age: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -75,6 +93,8 @@ class Pet extends React.Component {
           <i className="nes-icon heart is-large"></i>
           <i className="nes-icon heart is-large"></i>
 
+          <h3>Age</h3>
+          <progress max="15" value={this.state.age} />
           <img src={baby} alt="Egg tamagotchi"></img>
         </section>
       </body>

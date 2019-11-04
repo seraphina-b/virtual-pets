@@ -49,21 +49,23 @@ con.connect(function (err) {
   });
 
 
-});
 
-// create users table
-sql =
-  "DROP TABLE if exists users; CREATE TABLE users(userID INT NOT NULL AUTO_INCREMENT, userName VARCHAR(30), firstName VARCHAR(30), lastName VARCHAR(30), emailAddress VARCHAR(30), password VARCHAR(30), PRIMARY KEY(userID));";
-con.query(sql, function (err, result) {
-  if (err) throw err;
-  console.log("Table creation `users` was successful!");
-});
 
-// create dummy data for users table
-sql = "INSERT INTO users (userName, firstName, lastName, emailAddress, password) VALUES ('rihanna1', 'rihanna', 'fenty', 'rihanna.fenty@gmail.com', 'codeop');";
-con.query(sql, function (err, result) {
-  if (err) throw err;
-  console.log("Dummy data added to user table");
+  // create users table
+  sql =
+    "DROP TABLE if exists users; CREATE TABLE users(userID INT NOT NULL AUTO_INCREMENT, userName VARCHAR(30), firstName VARCHAR(30), lastName VARCHAR(30), emailAddress VARCHAR(30), password VARCHAR(30), PRIMARY KEY(userID));";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `users` was successful!");
+  });
+
+  // create dummy data for users table
+  sql = "INSERT INTO users (userName, firstName, lastName, emailAddress, password) VALUES ('rihanna1', 'rihanna', 'fenty', 'rihanna.fenty@gmail.com', 'codeop');";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Dummy data added to user table");
+  });
+  console.log("Closing...");
+
+  con.end();
 });
-console.log("Closing...");
-con.end();

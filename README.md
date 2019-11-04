@@ -73,7 +73,7 @@ To create a virtual pet application that allows you to create and care for your 
 |/         |             |
 |/create   |             |
 |/pets     |             |
-|/pets/:id |             |
+|/pets/:petID |             |
 |/new      |             |
 |/login    |             |
 |/register |             |
