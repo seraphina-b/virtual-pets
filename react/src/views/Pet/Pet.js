@@ -82,7 +82,7 @@ class Pet extends React.Component {
           <i className="nes-icon heart is-large"></i>
 
           <h3>Age</h3>
-          <progress max="15" value={this.state.age} />
+          {/* <progress max="15" value={this.state.age} /> */}
           <img src={baby} alt="Egg tamagotchi"></img>
         </section>
       </div>

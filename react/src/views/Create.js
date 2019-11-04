@@ -38,9 +38,7 @@ class Create extends React.Component {
       // Continue fetch request here
       .then(res => res.json())
       .then(data => {
-        this.setState({
-
-        });
+        this.setState({});
       })
       .catch(error => {
         console.log(error);
