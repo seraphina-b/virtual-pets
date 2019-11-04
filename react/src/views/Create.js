@@ -32,11 +32,8 @@ class Create extends React.Component {
 
   getAge() {
     fetch("/:petID/age", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ input: this.state.input })
+      method: "GET"
+
     })
       // Continue fetch request here
       .then(res => res.json())
@@ -54,6 +51,7 @@ class Create extends React.Component {
   render() {
     return (
       <div>
+
         <button
           type="button"
           onClick={this.handleClick}
@@ -61,8 +59,10 @@ class Create extends React.Component {
         >
           Create New Pet
         </button>
+
         {this.state.isNewPet ? <NewPet {...this.props} /> : null}
         {/* Note: I'm trying to make it so that when the submit button is clicked it will display the age of the pet using the get request made in pets.js, but it ain't working. *shrugs* */}
+
         <div>
           {this.state.getAge.map(age => {
             return { age };
