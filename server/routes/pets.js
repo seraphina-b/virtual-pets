@@ -17,7 +17,9 @@ router.get("/", (req, res) => {
 
 // lists pet by id
 router.get("/:petID", (req, res) => {
-  db(`SELECT * FROM pets WHERE petID=${req.params.petID};`).then(results => {
+  db(
+    `SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID=${req.params.petID};`
+  ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -51,7 +53,6 @@ router.get("/:petID/events", (req, res) => {
 LEFT JOIN pets AS p
 ON e.petID = p.petID
 WHERE p.petID=${req.params.petID}`).then(results => {
-
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -74,7 +75,7 @@ WHERE p.petID=${req.params.petID}`).then(results => {
 // router.get("/", getAge);
 
 // //gets the age
-router.get("pets/:petID/age", (req, res) => {
+router.get("/:petID/age", (req, res) => {
   db(
     `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
   ).then(results => {
@@ -86,7 +87,7 @@ router.get("pets/:petID/age", (req, res) => {
 });
 
 //POST feeds a pet
-router.post("/pets/:petID/events", (req, res) => {
+router.post("/:petID/events", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastfed', NOW());`
   ).then(results => {
