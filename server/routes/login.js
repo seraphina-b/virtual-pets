@@ -34,7 +34,7 @@ router.post("/", function (req, res, next) {
 router.get("/account", userShouldBeLoggedIn, function (req, res, next) {
     //do your DB query stuff with req.userID
     //code below would be used once there is a user table
-    //sql = "SELECT *FROM users WHERE userID=" +req.userID;
+    sql = "SELECT *FROM users WHERE userID=" + req.userID;
     res.send({ message: "Here is your data!", userID: req.userID });
 });
 

@@ -6,7 +6,7 @@ class Create extends React.Component {
     super(props);
     this.state = {
       isNewPet: false,
-      getAge: []
+      age: []
     };
   }
 
@@ -22,11 +22,32 @@ class Create extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          getAge: data
+          age: data
         });
       })
       .catch(error => {
         console.log(error);
+      });
+  }
+
+  getAge() {
+    fetch("/:petID/age", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ input: this.state.input })
+    })
+      // Continue fetch request here
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        alert("Error, baby. Try again");
       });
   }
 

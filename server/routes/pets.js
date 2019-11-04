@@ -52,6 +52,7 @@ router.get("/:petID/events", (req, res) => {
 LEFT JOIN pets AS p
 ON e.petID = p.petID
 WHERE p.petID=${req.params.petID}`).then(results => {
+
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -59,31 +60,31 @@ WHERE p.petID=${req.params.petID}`).then(results => {
   });
 });
 
-function getAge(req, res) {
-  db(
-    `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
-  ).then(results => {
-    if (results.error) {
-      res.error(results.error);
-    }
-    res.send(results.data);
-  });
-}
-
-/* GET all locations */
-router.get("/", getAge);
-
-// //gets the age
-// router.get("/:petID/age", (req, res) => {
+// function getAge(req, res) {
 //   db(
 //     `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
 //   ).then(results => {
 //     if (results.error) {
-//       res.status(500).send(results.error);
+//       res.error(results.error);
 //     }
 //     res.send(results.data);
 //   });
-// });
+// }
+
+// /* GET all locations */
+// router.get("/", getAge);
+
+// //gets the age
+router.get("pets/:petID/age", (req, res) => {
+  db(
+    `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
+  ).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    res.send(results.data);
+  });
+});
 
 //POST feeds a pet
 router.post("/pets/:petID/events", (req, res) => {

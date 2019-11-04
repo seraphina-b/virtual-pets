@@ -14,7 +14,7 @@ function userShouldBeLoggedIn(req, res, next) {
         req.userID = decoded.userID;
         next();
     });
-    //at this point, there is a token but it nneeds to be verified
+    //at this point, there is a token but it needs to be verified
     res.status(401).send({ message: "You're not authorized!" });
 
 }
