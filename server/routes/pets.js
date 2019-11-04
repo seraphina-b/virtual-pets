@@ -47,10 +47,7 @@ router.put("/:petID", (req, res) => {
 
 // GET lists name, activity and timeActioned by petID
 router.get("/pets/:petID/events", (req, res) => {
-  db(`SELECT p.name, e.activity, e.timeActioned FROM events AS e
-LEFT JOIN pets AS p
-ON e.petID = p.petID
-WHERE p.petID=${req.params.petID}`).then(results => {
+  db(`SELECT p.name, e.activity, e.timeActioned FROM events AS e LEFT JOIN pets AS p ON e.petID = p.petID WHERE p.petID=${req.params.petID}`).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -58,22 +55,22 @@ WHERE p.petID=${req.params.petID}`).then(results => {
   });
 });
 
-function getAge(req, res) {
-  db(
-    `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
-  ).then(results => {
-    if (results.error) {
-      res.error(results.error);
-    }
-    res.send(results.data);
-  });
-}
+// function getAge(req, res) {
+//   db(
+//     `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
+//   ).then(results => {
+//     if (results.error) {
+//       res.error(results.error);
+//     }
+//     res.send(results.data);
+//   });
+// }
 
-/* GET all locations */
-router.get("/", getAge);
+// /* GET all locations */
+// router.get("/", getAge);
 
 // //gets the age
-router.get("/:petID/age", (req, res) => {
+router.get("pets/:petID/age", (req, res) => {
   db(
     `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
   ).then(results => {

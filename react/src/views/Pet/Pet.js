@@ -8,8 +8,7 @@ class Pet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      satiety: 0,
-      age: 0
+      satiety: 0
     };
   }
 
@@ -58,21 +57,7 @@ class Pet extends React.Component {
     console.log(this.state.satiety);
   };
 
-  getOlder = () => {
-    fetch("/pets/:petID/age", {
-      method: "GET"
-    })
 
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          age: data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
 
   render() {
     let howFull = "nes-progress";
