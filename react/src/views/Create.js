@@ -57,7 +57,7 @@ class Create extends React.Component {
         </button>
         {this.state.isNewPet ? <NewPet {...this.props} /> : null}
         <div>
-          {this.state.getAge.map(age => {
+          {this.state.age.map(age => {
             return { age };
           })}
         </div>
