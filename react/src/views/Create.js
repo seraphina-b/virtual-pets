@@ -62,7 +62,7 @@ class Create extends React.Component {
         {/* Note: I'm trying to make it so that when the submit button is clicked it will display the age of the pet using the get request made in pets.js, but it ain't working. *shrugs* */}
 
         <div>
-          {this.state.getAge.map(age => {
+          {this.state.age.map(age => {
             return { age };
           })}
         </div>
