@@ -1,0 +1,19 @@
+{
+  "name": "virtualpet",
+  "version": "1.0.0",
+  "description": "Virtual pet game - final project for CodeOp",
+  "main": "myapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littlepawcoding/fs4-final-project-2.git"
+  },
+  "author": "Kat Creasy, Nicole Gathany & Serephina Botero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littlepawcoding/fs4-final-project-2/issues"
+  },
+  "homepage": "https://github.com/littlepawcoding/fs4-final-project-2#readme"
+}
