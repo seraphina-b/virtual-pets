@@ -21,12 +21,8 @@ class App extends React.Component {
           <Route path="/login">
             <LogIn />
           </Route>
-          <Route path="/pet/:id">
-            <Pet />
-          </Route>
-          <Route path="/">
-            <Create />
-          </Route>
+          <Route path="/pet/:id" component={Pet} />
+          <Route path="/" component={Create} />
         </Switch>
       </BrowserRouter>
     );

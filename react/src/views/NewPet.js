@@ -28,10 +28,11 @@ class NewPet extends React.Component {
       body: JSON.stringify({ name: this.state.name })
     })
       .then(res => res.json())
-      .then(json => {
+      .then(data => {
         console.log("Posted your pet, baby!");
+        console.log(data);
         //redirect the user to the new pet page
-        this.props.history.push("/pet");
+        this.props.history.push(`/pet/${data.insertId}`);
       })
       .catch(error => {
         console.log(error);
