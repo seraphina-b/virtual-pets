@@ -32,18 +32,12 @@ class Create extends React.Component {
 
   getAge() {
     fetch("/:petID/age", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ input: this.state.input })
+      method: "GET"
     })
       // Continue fetch request here
       .then(res => res.json())
       .then(data => {
-        this.setState({
-
-        });
+        this.setState({});
       })
       .catch(error => {
         console.log(error);
