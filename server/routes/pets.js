@@ -25,11 +25,12 @@ router.get("/:petID", (req, res) => {
   });
 });
 
-// not sure what this post is doing, but it works!
+// creates pet
 router.post("/", (req, res) => {
   db(
     `INSERT INTO pets (name, dateCreated) VALUES ("${req.body.name}", NOW());`
-  ).then(results => {
+  ).then(result
+    s => {
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -46,8 +47,12 @@ router.put("/:petID", (req, res) => {
 });
 
 // GET lists name, activity and timeActioned by petID
-router.get("/pets/:petID/events", (req, res) => {
-  db(`SELECT p.name, e.activity, e.timeActioned FROM events AS e LEFT JOIN pets AS p ON e.petID = p.petID WHERE p.petID=${req.params.petID}`).then(results => {
+router.get("/:petID/events", (req, res) => {
+  db(`SELECT p.name, e.activity, e.timeActioned FROM events AS e
+LEFT JOIN pets AS p
+ON e.petID = p.petID
+WHERE p.petID=${req.params.petID}`).then(results => {
+
     if (results.error) {
       res.status(500).send(results.error);
     }
