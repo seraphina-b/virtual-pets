@@ -68,7 +68,10 @@ class Pet extends React.Component {
     else howFull += " is-success";
     return (
       <div>
-        <h1>{this.state.pet.name}</h1>
+        <h1>Pet Name:</h1>
+        <h2>{this.state.pet.name}</h2>
+        <h3>Age</h3>
+        <h4>{this.state.pet.age}</h4>
         <h3>Hunger</h3>
         <progress className={howFull} max="15" value={this.state.pet.satiety} />
         <h1>Virtual Pet</h1>
@@ -81,7 +84,6 @@ class Pet extends React.Component {
           <i className="nes-icon heart is-large"></i>
           <i className="nes-icon heart is-large"></i>
 
-          <h3>Age</h3>
           {/* <progress max="15" value={this.state.age} /> */}
           <img src={baby} alt="Egg tamagotchi"></img>
         </section>
