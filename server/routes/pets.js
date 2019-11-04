@@ -21,7 +21,7 @@ router.get("/:petID", (req, res) => {
     if (results.error) {
       res.status(500).send(results.error);
     }
-    res.send(results.data);
+    res.send(results.data[0]);
   });
 });
 
@@ -29,12 +29,11 @@ router.get("/:petID", (req, res) => {
 router.post("/", (req, res) => {
   db(
     `INSERT INTO pets (name, dateCreated) VALUES ("${req.body.name}", NOW());`
-  ).then(result
-    s => {
+  ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
     }
-    res.send(results.data);
+    res.send(results.data[0]);
   });
 });
 

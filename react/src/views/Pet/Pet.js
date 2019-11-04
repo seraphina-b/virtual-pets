@@ -4,27 +4,31 @@ import Footer from "./Footer.js";
 import eggStage from "../.././images/lifeStages/eggStage.png";
 import baby from "../.././images/lifeStages/baby.png";
 
+import { Router, useParams } from "react-router-dom";
+
 class Pet extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.match);
     this.state = {
-      satiety: 0
+      pet: {}
     };
   }
 
-  componentDidMount = () => { };
-  //just writing a note so i'll understand
-  // i tag is an icon tag. didn't know that before
-  // render() {
-  //   return (
-  //     <body>
-  //       <h3>Hunger</h3>
-  //       <progress className="nes-progress is-success" max="15" value={this.state.satiety} />
-  //       <h1>Virtual Pet</h1>
-  //       <Header></Header>
+  componentDidMount = () => {
+    let id = this.props.match.params.id;
 
-  //   this.updateSatiety();
-  // };
+    fetch(`/pets/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          pet: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   updateSatiety = () => {
     fetch("/pets/1")
@@ -57,17 +61,16 @@ class Pet extends React.Component {
     console.log(this.state.satiety);
   };
 
-
-
   render() {
     let howFull = "nes-progress";
-    if (this.state.satiety < 6) howFull += " is-error";
-    else if (this.state.satiety < 11) howFull += " is-warning";
+    if (this.state.pet.satiety < 6) howFull += " is-error";
+    else if (this.state.pet.satiety < 11) howFull += " is-warning";
     else howFull += " is-success";
     return (
-      <body>
+      <div>
+        <h1>{this.state.pet.name}</h1>
         <h3>Hunger</h3>
-        <progress className={howFull} max="15" value={this.state.satiety} />
+        <progress className={howFull} max="15" value={this.state.pet.satiety} />
         <h1>Virtual Pet</h1>
         <Header handleFoodClick={this.handleFeeding}></Header>
 
@@ -82,7 +85,7 @@ class Pet extends React.Component {
           <progress max="15" value={this.state.age} />
           <img src={baby} alt="Egg tamagotchi"></img>
         </section>
-      </body>
+      </div>
     );
   }
 }
