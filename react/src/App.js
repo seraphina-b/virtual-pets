@@ -19,7 +19,12 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
+
           <Route path="/login" component={LogIn} />
+
+          
+          </Route>
+
 
           <Route path="/create">
             <Create />
@@ -28,6 +33,8 @@ class App extends React.Component {
           <Route path="/pets" component={Pets} />
 
           <Route path="/pet/:id" component={Pet} />
+
+
         </Switch>
       </BrowserRouter>
     );
