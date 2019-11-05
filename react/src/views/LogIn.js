@@ -8,7 +8,7 @@ class LogIn extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class="container">
         {/* Main section  - user can choose to login or create pet*/}
         <section className="nes-container with-title">
           <h1>Virtual Pets</h1>
