@@ -35,8 +35,8 @@ class App extends React.Component {
           <Route path="/pet/:id" component={Pet} />
 
 
-          {/* <Route path="/" component={Pets} />
-          <Route path="/create" component={Create} /> */}
+
+
         </Switch>
       </BrowserRouter>
     );
