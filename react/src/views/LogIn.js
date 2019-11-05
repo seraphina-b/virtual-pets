@@ -15,11 +15,12 @@ class LogIn extends React.Component {
           <button className="nes-btn is-primary">Create Pet</button>
           <button className="nes-btn is-primary">Login</button>
         </section>
-        {/* added a br for a bit of spacing between the sections - but not sure if this is best practice */}
+        {/* added a <br> for a bit of spacing between the sections - but not sure if this is best practice */}
         <br></br>
         {/* Login section - users with an account - takes them to pets page (list of pets) */}
         <section className="nes-container with-title">
           <h3 className="title">Log In</h3>
+          <p>Already have an account? Log in below!</p>
           <h4>Email</h4>
           <input className="nes-input"></input>
           <h4>Password</h4>
@@ -30,6 +31,7 @@ class LogIn extends React.Component {
         {/* Create pet section - users sign up to create a pet - takes them to create pet page*/}
         <section className="nes-container with-title">
           <h3 className="title">Create Pet</h3>
+          <p>Sign up to create a pet</p>
           <h4>Email</h4>
           <input className="nes-input"></input>
           <h4>Password</h4>
