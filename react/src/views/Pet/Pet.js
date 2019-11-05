@@ -64,11 +64,18 @@ class Pet extends React.Component {
     console.log(this.state.satiety);
   };
 
+
+  // let timeArray = this.state.age.split(":");
+  // console.log(timeArray);
+
   render() {
     let howFull = "nes-progress";
     if (this.state.pet.satiety < 6) howFull += " is-error";
     else if (this.state.pet.satiety < 11) howFull += " is-warning";
     else howFull += " is-success";
+
+
+
     return (
       <div>
         <h1>Pet Name:</h1>
@@ -88,7 +95,9 @@ class Pet extends React.Component {
           <i className="nes-icon heart is-large"></i>
 
           {/* <progress max="15" value={this.state.age} /> */}
+          {/* { this.state.pet.age==="00:00:02"? */}
           <img src={baby} alt="Egg tamagotchi"></img>
+        //}
         </section>
       </div>
     );
