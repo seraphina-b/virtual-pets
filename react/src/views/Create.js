@@ -1,6 +1,7 @@
 import React from "react";
 import NewPet from "./NewPet.js";
 
+//i think this is what we want the /pets to be in many ways
 class Create extends React.Component {
   constructor(props) {
     super(props);

@@ -2,6 +2,7 @@ import React from "react";
 import Pet from "./views/Pet/Pet.js";
 import LogIn from "./views/LogIn.js";
 import Create from "./views/Create.js";
+import Pets from "./views/Pets.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import "./App.css";
@@ -12,7 +13,7 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount = () => {};
+  componentDidMount = () => { };
 
   render() {
     return (
@@ -21,9 +22,21 @@ class App extends React.Component {
           <Route path="/login">
             <LogIn />
           </Route>
+
+          <Route path="/create">
+            <Create />
+          </Route>
+
+          <Route path="/pets">
+            <Pets />
+          </Route>
+
+
           <Route path="/pet/:id" component={Pet} />
 
-          <Route path="/" component={Create} />
+
+          {/* <Route path="/" component={Pets} />
+          <Route path="/create" component={Create} /> */}
         </Switch>
       </BrowserRouter>
     );
