@@ -6,9 +6,9 @@ class LogIn extends React.Component {
     this.state = {};
   }
 
-  //   clickToLogin() {
-  //     this.setState();
-  //   }
+  clickToLogin() {
+    this.setState();
+  }
 
   render() {
     return (
@@ -33,9 +33,10 @@ class LogIn extends React.Component {
           <input className="nes-input"></input>
           <h4>Password</h4>
           <input className="nes-input"></input>
-          <link to="/Pets.js">
-            <button className="nes-btn is-primary">Log In</button>
-          </link>
+
+          <button className="nes-btn is-primary" onClick={this.clickToLogin}>
+            Log In
+          </button>
         </section>
         <br></br>
         {/* Create pet section - users sign up to create a pet - takes them to create pet page*/}
