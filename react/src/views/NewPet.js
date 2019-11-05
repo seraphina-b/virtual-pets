@@ -41,7 +41,7 @@ class NewPet extends React.Component {
 
   render() {
     return (
-      <body>
+      <div>
         <input className="nes-input" onChange={this.handleChange} />
         <button
           type="button"
@@ -50,7 +50,7 @@ class NewPet extends React.Component {
         >
           Submit
         </button>
-      </body>
+      </div>
     );
   }
 }
