@@ -46,7 +46,7 @@ class Pets extends React.Component {
             (
                 <div>
 
-                    <Link to="/pet/:id">{pet.name}</Link>
+                    <Link to={`/pet/${pet.petID}`}>{pet.name}</Link>
 
                 </div>
 
@@ -64,10 +64,7 @@ class Pets extends React.Component {
 
                         </ul>
 
-                        <Switch>
-                            <Route path="/pet/:id" component={Pet}></Route>
 
-                        </Switch>
                     </div>
                 </Router>
 
