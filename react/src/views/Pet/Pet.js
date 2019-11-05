@@ -5,6 +5,7 @@ import eggStage from "../.././images/lifeStages/eggStage.png";
 import baby from "../.././images/lifeStages/baby.png";
 
 import { Router, useParams } from "react-router-dom";
+// let { id } = useParams();
 
 class Pet extends React.Component {
   constructor(props) {
@@ -31,7 +32,8 @@ class Pet extends React.Component {
   };
 
   updateSatiety = () => {
-    fetch("/pets/1")
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -45,7 +47,8 @@ class Pet extends React.Component {
 
   handleFeeding = () => {
     //sorry wouldn't this have a template literal?
-    fetch(`/pets/1/events`, {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}/events`, {
       method: "POST"
     })
       .then(res => res.json())

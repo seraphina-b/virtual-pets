@@ -6,10 +6,12 @@ import Pets from "./views/Pets.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import "./App.css";
+import { Router, useParams } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.match);
     this.state = {};
   }
 
@@ -19,15 +21,16 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={LogIn} />
+
 
           <Route path="/create">
             <Create />
           </Route>
-
+          <Route path="/pet/:id" component={Pet} />
           <Route path="/pets" component={Pets} />
 
-          <Route path="/pet/:id" component={Pet} />
+
+          <Route path="/" component={LogIn} />
         </Switch>
       </BrowserRouter>
     );
