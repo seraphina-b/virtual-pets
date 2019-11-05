@@ -1,8 +1,14 @@
 import React from "react";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
+import egg from "../.././images/lifeStages/egg.png";
 import eggStage from "../.././images/lifeStages/eggStage.png";
 import baby from "../.././images/lifeStages/baby.png";
+//because we're going to use these for animation
+import child from "../.././images/lifeStages/child.png";
+
+import teen from "../.././images/lifeStages/teen.png";
+import adult from "../.././images/lifeStages/adult.png";
 
 import { Router, useParams } from "react-router-dom";
 // let { id } = useParams();
@@ -74,8 +80,9 @@ class Pet extends React.Component {
     else if (this.state.pet.satiety < 11) howFull += " is-warning";
     else howFull += " is-success";
 
-
-
+    //i want to seperate the "age" in hours, minutes, and seconds in an arrayand convert them from strings into numbers. then say
+    // if(hours<0&&minutes<=2){src=egg} and shit like that. I think the way to do this is in my astrology app
+    //i also want to use this seperation to display the age more cleanly
     return (
       <div>
         <h1>Pet Name:</h1>
