@@ -13,28 +13,26 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount = () => { };
+  componentDidMount = () => {};
 
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/">
-            <LogIn />
+
+          <Route path="/login" component={LogIn} />
+
+          
           </Route>
+
 
           <Route path="/create">
             <Create />
           </Route>
 
-          <Route path="/pets">
-            <Pets />
-          </Route>
-
+          <Route path="/pets" component={Pets} />
 
           <Route path="/pet/:id" component={Pet} />
-
-
 
 
         </Switch>
