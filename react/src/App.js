@@ -13,13 +13,13 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount = () => {};
+  componentDidMount = () => { };
 
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/login" component={LogIn} />
+          <Route path="/" component={LogIn} />
 
           <Route path="/create">
             <Create />
