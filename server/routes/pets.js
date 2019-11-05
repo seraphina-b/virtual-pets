@@ -6,6 +6,7 @@ var db = require("../model/helper");
 router.use(bodyParser.json());
 
 // lists all pets
+//works as of 11/5/19 @12:16PM according to POSTMAN
 router.get("/", (req, res) => {
   db("SELECT * FROM pets").then(results => {
     if (results.error) {
@@ -16,6 +17,7 @@ router.get("/", (req, res) => {
 });
 
 // lists pet by id
+//works as of 11/5/19 @12:17PM according to POSTMAN
 router.get("/:petID", (req, res) => {
   db(
     `SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID=${req.params.petID};`
@@ -28,6 +30,7 @@ router.get("/:petID", (req, res) => {
 });
 
 // creates pet
+//works as of 11/5/19 @12:18PM according to POSTMAN
 router.post("/", (req, res) => {
   db(
     `INSERT INTO pets (name, dateCreated) VALUES ("${req.body.name}", NOW());`
@@ -39,8 +42,11 @@ router.post("/", (req, res) => {
   });
 });
 
+//from nicole: confusing because there isn't a satiety field in the //pets table. this gives us a 500 error. it would make more sense to
+//`SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM events WHERE petID=${req.params.petID} and activty='last fed';`; I think. Will work this out later? 
+//gives 500 error as of 11/5/19 @12:17PM according to POSTMAN
 router.put("/:petID", (req, res) => {
-  db(`UPDATE pets SET satiety = satiety+2 WHERE petID = 1;`).then(results => {
+  db(`UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -48,6 +54,7 @@ router.put("/:petID", (req, res) => {
 });
 
 // GET lists name, activity and timeActioned by petID
+//works as of 11/5/19 @12:19PM according to POSTMAN
 router.get("/:petID/events", (req, res) => {
   db(`SELECT p.name, e.activity, e.timeActioned FROM events AS e
 LEFT JOIN pets AS p
@@ -60,24 +67,12 @@ WHERE p.petID=${req.params.petID}`).then(results => {
   });
 });
 
-// function getAge(req, res) {
-//   db(
-//     `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
-//   ).then(results => {
-//     if (results.error) {
-//       res.error(results.error);
-//     }
-//     res.send(results.data);
-//   });
-// }
-
-// /* GET all locations */
-// router.get("/", getAge);
 
 // //gets the age
+//doesn't work (500 error) 11/5/19 @12:21PM but we don't need this
 router.get("/:petID/age", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
+    `SELECT TIMEDIFF(now(), timeActioned) as age from pets WHERE petID=${req.params.petID}`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -87,6 +82,7 @@ router.get("/:petID/age", (req, res) => {
 });
 
 //POST feeds a pet
+//works as of 11/5/19 @12:21PM according to POSTMAN
 router.post("/:petID/events", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastfed', NOW());`
@@ -94,7 +90,7 @@ router.post("/:petID/events", (req, res) => {
     if (results.error) {
       res.status(500).send(results.error);
     }
-    db(`UPDATE pets SET satiety = satiety+2 WHERE petID = 1;`).then(results => {
+    db(`UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
       }
