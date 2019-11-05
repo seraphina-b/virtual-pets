@@ -28,3 +28,7 @@ button img {
 i {
   float: right;
 }
+
+li {
+    list-style-type: none;
+}
