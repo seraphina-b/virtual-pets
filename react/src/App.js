@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/login">
+          <Route path="/">
             <LogIn />
           </Route>
 
