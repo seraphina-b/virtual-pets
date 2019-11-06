@@ -23,7 +23,6 @@ class Pet extends React.Component {
     };
   }
 
-
   componentDidMount = () => {
     let id = this.props.match.params.id;
 
@@ -108,11 +107,20 @@ class Pet extends React.Component {
     let lifeStagePic;
     if (this.state.pet.age <= "00:00:30") {
       lifeStagePic = <img src={egg} alt="Egg tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:00:30" && this.state.pet.age <= "00:01:00") {
+    } else if (
+      this.state.pet.age > "00:00:30" &&
+      this.state.pet.age <= "00:01:00"
+    ) {
       lifeStagePic = <img src={baby} alt="baby tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:01:00" && this.state.pet.age <= "00:01:30") {
+    } else if (
+      this.state.pet.age > "00:01:00" &&
+      this.state.pet.age <= "00:01:30"
+    ) {
       lifeStagePic = <img src={child} alt="child tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:01:30" && this.state.pet.age <= "00:02:00") {
+    } else if (
+      this.state.pet.age > "00:01:30" &&
+      this.state.pet.age <= "00:02:00"
+    ) {
       lifeStagePic = <img src={teen} alt="teen tamagotchi"></img>;
     } else if (this.state.pet.age > "00:02:00") {
       lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
@@ -141,9 +149,14 @@ class Pet extends React.Component {
         <br></br>
         <section className="nes-container with-title">
           <h3 className="title">Your Pet</h3>
+
           <div className="row">
             <div className="col">
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
               <h2>{this.state.pet.name}</h2>
+
               <h3>Age</h3>
               <h4>{this.state.pet.age}</h4>
               {lifeStagePic}
@@ -184,9 +197,7 @@ class Pet extends React.Component {
               ></progress>
 
               <h5>Health</h5>
-              <i className="nes-icon heart is-large"></i>
-              <i className="nes-icon heart is-large"></i>
-              <i className="nes-icon heart is-large"></i>
+
               {/* <progress max="15" value={this.state.age} /> */}
               {/* { this.state.pet.age==="00:00:02"? */}
             </div>
@@ -207,10 +218,7 @@ class Pet extends React.Component {
           {/* <progress max="15" value={this.state.age} /> */}
           {/* { this.state.pet.age==="00:00:02"? */}
 
-
           <h1></h1>
-
-
         </section>
 
         <br></br>
