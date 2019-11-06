@@ -10,7 +10,7 @@ import child from "../.././images/lifeStages/child.png";
 import teen from "../.././images/lifeStages/teen.png";
 import adult from "../.././images/lifeStages/adult.png";
 
-import { Router, useParams } from "react-router-dom";
+import { Router, useParams, Link } from "react-router-dom";
 import bread from "../.././images/bread.png";
 // let { id } = useParams();
 
@@ -38,8 +38,6 @@ class Pet extends React.Component {
       });
   };
 
-
-
   updateSatiety = () => {
     let id = this.props.match.params.id;
     fetch(`/pets/${id}`)
@@ -55,7 +53,6 @@ class Pet extends React.Component {
   };
 
   handleFeeding = () => {
-    //sorry wouldn't this have a template literal?
     let id = this.props.match.params.id;
     fetch(`/pets/${id}/events`, {
       method: "POST"
@@ -63,22 +60,21 @@ class Pet extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          satiety: data
+          pet: data
         });
       })
-      .then(this.updateSatiety())
+      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
     console.log(this.state.satiety);
   };
 
-
   // let timeArray = this.state.age.split(":");
   // console.log(timeArray);
 
   //handleAge just for testing right now
-  handleAge = (e) => {
+  handleAge = e => {
     e.preventDefault();
     let timeArray = this.state.pet.age.split(":");
     console.log(timeArray);
@@ -88,8 +84,7 @@ class Pet extends React.Component {
     console.log("It's " + hours + " hours");
     console.log(minutes + " minutes");
     console.log(seconds + " seconds");
-  }
-
+  };
 
   render() {
     let howFull = "nes-progress";
@@ -118,9 +113,10 @@ class Pet extends React.Component {
               <h1>Virtual Pet</h1>
             </div>
             <div className="col">
-              <button type="button" className="nes-btn is-primary">
+              {/* redirect users to Pets.js (list) */}
+              <Link to="/pets" className="nes-btn is-primary">
                 My Pets
-              </button>
+              </Link>
               <button type="button" className="nes-btn is-primary">
                 Log Out
               </button>
@@ -129,77 +125,77 @@ class Pet extends React.Component {
         </section>
 
         <br></br>
+        <section className="nes-container with-title">
+          <h3 className="title">Your Pet</h3>
+          <div className="row">
+            <div className="col">
+              <h2>{this.state.pet.name}</h2>
+              <h3>Age</h3>
+              <h4>{this.state.pet.age}</h4>
+              <img src={egg} alt="Egg tamagotchi" />
+            </div>
 
-        <div class="row">
-          <div class="col">
-            <h2>{this.state.pet.name}</h2>
-            <h3>Age</h3>
-            <h4>{this.state.pet.age}</h4>
-            <img src={egg} alt="Egg tamagotchi"></img>
-          </div>
-
-          <div class="col">
-            {/* <progress className={howFull} max="15" value={this.state.pet.satiety} />
+            <div className="col">
+              {/* <progress className={howFull} max="15" value={this.state.pet.satiety} />
         <Header handleFoodClick={this.handleFeeding}></Header> */}
-            <h5>Hunger</h5>
-            <progress class="nes-progress" value="90" max="100"></progress>
-            <h5>Cleanliness</h5>
-            <progress
-              class="nes-progress is-primary"
-              value="80"
-              max="100"
-            ></progress>
-            <h5>Playfulness</h5>
-            <progress
-              class="nes-progress is-success"
-              value="50"
-              max="100"
-            ></progress>
-            <h5>Attention</h5>
-            <progress
-              class="nes-progress is-warning"
-              value="30"
-              max="100"
-            ></progress>
-            <h5></h5>
-            <progress
-              class="nes-progress is-error"
-              value="10"
-              max="100"
-            ></progress>
+              <h5>Hunger</h5>
+              <progress
+                class="nes-progress"
+                value={this.state.pet.satiety}
+                max="100"
+              ></progress>
+              <h5>Cleanliness</h5>
+              <progress
+                class="nes-progress is-primary"
+                value="80"
+                max="100"
+              ></progress>
+              <h5>Playfulness</h5>
+              <progress
+                class="nes-progress is-success"
+                value="50"
+                max="100"
+              ></progress>
+              <h5>Attention</h5>
+              <progress
+                class="nes-progress is-warning"
+                value="30"
+                max="100"
+              ></progress>
+              <h5>Health</h5>
+              <progress
+                class="nes-progress is-error"
+                value="10"
+                max="100"
+              ></progress>
 
-            <h5>Health</h5>
-            <i className="nes-icon heart is-large"></i>
-            <i className="nes-icon heart is-large"></i>
-            <i className="nes-icon heart is-large"></i>
-            {/* <progress max="15" value={this.state.age} /> */}
-            {/* { this.state.pet.age==="00:00:02"? */}
+              <h5>Health</h5>
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
+              {/* <progress max="15" value={this.state.age} /> */}
+              {/* { this.state.pet.age==="00:00:02"? */}
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* added a <br> for a bit of spacing between the sections - but not sure if this is best practice */}
         <br></br>
         <section className="nes-container with-title">
-
           <h3 className="title">Actions</h3>
-          <button onClick={this.props.handleFoodClick} className="nes-btn">
-            {" "}
-            <img src={bread} alt="Bread icon" />
-          </button>
-
-          <h3 className="title">Your Pet</h3>
-          <i className="nes-icon heart is-large"></i>
-          <i className="nes-icon heart is-large"></i>
-          <i className="nes-icon heart is-large"></i>
+          {this.state.pet.age > "00:01:00" && (
+            <button onClick={this.handleFeeding} className="nes-btn">
+              {" "}
+              <img src={bread} alt="Bread icon" />
+            </button>
+          )}
 
           {/* <progress max="15" value={this.state.age} /> */}
           {/* { this.state.pet.age==="00:00:02"? */}
 
-          <img src={baby} alt="Egg tamagotchi"></img>
+          {/* <img src={baby} alt="Egg tamagotchi"></img>
           <button className="button" onClick={e => this.handleAge(e)}>Show Growth Stage</button>
-          <h1>{hours}</h1>
-
-
+          <h1>{hours}</h1> */}
         </section>
 
         <br></br>
