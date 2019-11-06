@@ -189,7 +189,7 @@ class Pet extends React.Component {
               <img src={bread} alt="Bread icon" />
             </button>
           )}
-
+          {/* Hello Nicole */}
           {/* <progress max="15" value={this.state.age} /> */}
           {/* { this.state.pet.age==="00:00:02"? */}
 
