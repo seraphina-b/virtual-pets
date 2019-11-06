@@ -14,6 +14,9 @@ import help from "../.././images/petAlerts/help.png";
 
 // action button images
 import bread from "../.././images/bread.png";
+import clean from "../.././images/clean.png";
+import play from "../.././images/ball.png";
+
 // let { id } = useParams();
 
 class Pet extends React.Component {
@@ -197,10 +200,25 @@ class Pet extends React.Component {
                 max="100"
               ></progress>
               <h3 className="title">Actions</h3>
+              {/* feed button */}
               {this.state.pet.age > "00:01:00" && (
                 <button onClick={this.handleFeeding} className="nes-btn">
                   {" "}
                   <img src={bread} alt="Bread icon" />
+                </button>
+              )}
+              {/* clean button */}
+              {this.state.pet.age > "00:01:00" && (
+                <button onClick={this.handleFeeding} className="nes-btn">
+                  {" "}
+                  <img src={clean} alt="Bath icon" />
+                </button>
+              )}
+              {/* play button */}
+              {this.state.pet.age > "00:01:00" && (
+                <button onClick={this.handleFeeding} className="nes-btn">
+                  {" "}
+                  <img src={play} alt="Tennis ball icon" />
                 </button>
               )}
             </div>
