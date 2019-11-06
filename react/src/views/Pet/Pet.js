@@ -152,7 +152,6 @@ class Pet extends React.Component {
           <h3 className="title">Your Pet</h3>
 
           <div className="row">
-            {/* col 1 */}
             <div className="col">
               {/* Kat note: h2 displays the pet name */}
               <h2>{this.state.pet.name}</h2>
@@ -172,7 +171,6 @@ class Pet extends React.Component {
               </button>
             </div>
 
-            {/* col 3 */}
             <div className="col">
               <h5>Hunger</h5>
               <progress
