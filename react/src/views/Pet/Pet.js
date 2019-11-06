@@ -208,9 +208,6 @@ class Pet extends React.Component {
             </div>
           </div>
         </section>
-
-        <br></br>
-        <section className="nes-container with-title"></section>
       </div>
     );
   }
