@@ -16,7 +16,7 @@ class Pets extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pet: []
+            pets: []
         };
 
     }
@@ -28,7 +28,7 @@ class Pets extends React.Component {
             .then(res => res.json())
             .then(data => {
                 this.setState({
-                    pet: data
+                    pets: data
                 });
             })
             .catch(error => {
@@ -42,11 +42,11 @@ class Pets extends React.Component {
     //it doesn't know which id we're talking about yet, shows up too literally
     render() {
         //i need a function that grabs the text
-        const names = this.state.pet.map(pet =>
+        const names = this.state.pets.map(pet =>
             (
                 <div>
 
-                    <Link to={`/pet/${pet.petID}`}>{pet.name}</Link>
+                    <Link to={`/pets/${pet.petID}`}>{pet.name}</Link>
 
                 </div>
 
@@ -55,18 +55,17 @@ class Pets extends React.Component {
 
             <div>
                 <h1>Pets Page</h1>
-                <Router>
-                    <div>
-                        <ul>
-                            <li>
-                                {names}
-                            </li>
 
-                        </ul>
+                <div>
+                    <ul>
+                        <li>
+                            {names}
+                        </li>
+
+                    </ul>
 
 
-                    </div>
-                </Router>
+                </div>
 
             </div>
         )
