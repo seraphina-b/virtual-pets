@@ -37,6 +37,8 @@ class Pet extends React.Component {
       });
   };
 
+
+
   updateSatiety = () => {
     let id = this.props.match.params.id;
     fetch(`/pets/${id}`)
@@ -70,9 +72,12 @@ class Pet extends React.Component {
     console.log(this.state.satiety);
   };
 
+  handleAge = (e) => {
+    e.preventDefault();
+    let timeArray = this.state.age.split(":");
+    console.log(timeArray);
+  }
 
-  // let timeArray = this.state.age.split(":");
-  // console.log(timeArray);
 
   render() {
     let howFull = "nes-progress";
@@ -83,12 +88,14 @@ class Pet extends React.Component {
     //i want to seperate the "age" in hours, minutes, and seconds in an arrayand convert them from strings into numbers. then say
     // if(hours<0&&minutes<=2){src=egg} and shit like that. I think the way to do this is in my astrology app
     //i also want to use this seperation to display the age more cleanly
+    //i don't want the button
     return (
       <div>
         <h1>Pet Name:</h1>
         <h2>{this.state.pet.name}</h2>
         <h3>Age</h3>
         <h4>{this.state.pet.age}</h4>
+        <button className="button" onClick={e => this.handleAge(e)}>Show Age</button>
         <h3>Hunger</h3>
         <progress className={howFull} max="15" value={this.state.pet.satiety} />
         <h1>Virtual Pet</h1>
@@ -103,6 +110,7 @@ class Pet extends React.Component {
 
           {/* <progress max="15" value={this.state.age} /> */}
           {/* { this.state.pet.age==="00:00:02"? */}
+
           <img src={baby} alt="Egg tamagotchi"></img>
         //}
         </section>
