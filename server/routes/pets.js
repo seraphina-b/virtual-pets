@@ -43,10 +43,12 @@ router.post("/", (req, res) => {
 });
 
 //from nicole: confusing because there isn't a satiety field in the //pets table. this gives us a 500 error. it would make more sense to
-//`SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM events WHERE petID=${req.params.petID} and activty='last fed';`; I think. Will work this out later? 
+//`SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM events WHERE petID=${req.params.petID} and activty='last fed';`; I think. Will work this out later?
 //gives 500 error as of 11/5/19 @12:17PM according to POSTMAN
 router.put("/:petID", (req, res) => {
-  db(`UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`).then(results => {
+  db(
+    `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`
+  ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
     }
@@ -66,7 +68,6 @@ WHERE p.petID=${req.params.petID}`).then(results => {
     res.send(results.data);
   });
 });
-
 
 // //gets the age
 //doesn't work (500 error) 11/5/19 @12:21PM but we don't need this
@@ -90,12 +91,23 @@ router.post("/:petID/events", (req, res) => {
     if (results.error) {
       res.status(500).send(results.error);
     }
-    db(`UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`).then(results => {
+    db(
+      `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`
+    ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
       }
+
+      db(
+        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+      ).then(results => {
+        if (results.error) {
+          res.status(500).send(results.error);
+        }
+        res.send(results.data[0]);
+      });
     });
-    res.send({ message: "baby was fed!" });
+    //res.send({ message: "baby was fed!" });
   });
 });
 
