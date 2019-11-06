@@ -72,10 +72,17 @@ class Pet extends React.Component {
     console.log(this.state.satiety);
   };
 
+  //handleAge just for testing right now
   handleAge = (e) => {
     e.preventDefault();
-    let timeArray = this.state.age.split(":");
+    let timeArray = this.state.pet.age.split(":");
     console.log(timeArray);
+    let hours = parseInt(timeArray[0], 10);
+    let minutes = parseInt(timeArray[1]);
+    let seconds = parseInt(timeArray[2]);
+    console.log("It's " + hours + " hours");
+    console.log(minutes + " minutes");
+    console.log(seconds + " seconds");
   }
 
 
@@ -84,7 +91,15 @@ class Pet extends React.Component {
     if (this.state.pet.satiety < 6) howFull += " is-error";
     else if (this.state.pet.satiety < 11) howFull += " is-warning";
     else howFull += " is-success";
-
+    //does not work here for some reason
+    // let timeArray = this.state.pet.age.split(":");
+    // console.log(timeArray);
+    // let hours = parseInt(timeArray[0], 10);
+    // let minutes = parseInt(timeArray[1]);
+    // let seconds = parseInt(timeArray[2]);
+    // console.log("It's " + hours + " hours");
+    // console.log(minutes + " minutes");
+    // console.log(seconds + " seconds");
     //i want to seperate the "age" in hours, minutes, and seconds in an arrayand convert them from strings into numbers. then say
     // if(hours<0&&minutes<=2){src=egg} and shit like that. I think the way to do this is in my astrology app
     //i also want to use this seperation to display the age more cleanly
@@ -95,7 +110,6 @@ class Pet extends React.Component {
         <h2>{this.state.pet.name}</h2>
         <h3>Age</h3>
         <h4>{this.state.pet.age}</h4>
-        <button className="button" onClick={e => this.handleAge(e)}>Show Age</button>
         <h3>Hunger</h3>
         <progress className={howFull} max="15" value={this.state.pet.satiety} />
         <h1>Virtual Pet</h1>
@@ -112,7 +126,9 @@ class Pet extends React.Component {
           {/* { this.state.pet.age==="00:00:02"? */}
 
           <img src={baby} alt="Egg tamagotchi"></img>
-        //}
+          <button className="button" onClick={e => this.handleAge(e)}>Show Growth Stage</button>
+          <h1>{hours}</h1>
+
         </section>
       </div>
     );
