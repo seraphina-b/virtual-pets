@@ -1,6 +1,6 @@
 import React from "react";
 import NewPet from "./NewPet.js";
-
+import { Link } from "react-router-dom";
 //i think this is what we want the /pets to be in many ways
 class Create extends React.Component {
   constructor(props) {
@@ -48,19 +48,40 @@ class Create extends React.Component {
 
   render() {
     return (
-      <div>
-        <button
-          type="button"
-          onClick={this.handleClick}
-          className="nes-btn is-primary"
-        >
-          Create New Pet
-        </button>
-        {this.state.isNewPet ? <NewPet {...this.props} /> : null}
-        <div>
-          {this.state.age.map(age => {
-            return { age };
-          })}
+      <div className="container">
+        <nav className="nes-container with-title">
+          <div className="row">
+            <div className="col">
+              <h1>Virtual Pet</h1>
+            </div>
+            <div className="col">
+              {/* Kat note: a button that directs users to Pets.js (list) */}
+              <Link to="/pets" className="nes-btn is-primary">
+                My Pets
+              </Link>
+              <button type="button" className="nes-btn is-primary">
+                Log Out
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <br></br>
+        <div className="nes-container with-title">
+          <h3 className="title">Create new pet</h3>
+          <button
+            type="button"
+            onClick={this.handleClick}
+            className="nes-btn is-primary"
+          >
+            Create New Pet
+          </button>
+          {this.state.isNewPet ? <NewPet {...this.props} /> : null}
+          <div>
+            {this.state.age.map(age => {
+              return { age };
+            })}
+          </div>
         </div>
       </div>
     );

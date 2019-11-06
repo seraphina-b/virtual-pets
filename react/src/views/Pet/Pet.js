@@ -1,17 +1,22 @@
 import React from "react";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
+import { Router, useParams, Link } from "react-router-dom";
+// life stage images
 import egg from "../.././images/lifeStages/egg.png";
-import eggStage from "../.././images/lifeStages/eggStage.png";
 import baby from "../.././images/lifeStages/baby.png";
-//because we're going to use these for animation
 import child from "../.././images/lifeStages/child.png";
-
 import teen from "../.././images/lifeStages/teen.png";
 import adult from "../.././images/lifeStages/adult.png";
 
-import { Router, useParams, Link } from "react-router-dom";
+// pet alert images
+import help from "../.././images/petAlerts/help.png";
+
+// action button images
 import bread from "../.././images/bread.png";
+import clean from "../.././images/clean.png";
+import play from "../.././images/ball.png";
+
 // let { id } = useParams();
 
 class Pet extends React.Component {
@@ -22,7 +27,6 @@ class Pet extends React.Component {
       pet: {}
     };
   }
-
 
   componentDidMount = () => {
     let id = this.props.match.params.id;
@@ -108,11 +112,20 @@ class Pet extends React.Component {
     let lifeStagePic;
     if (this.state.pet.age <= "00:00:30") {
       lifeStagePic = <img src={egg} alt="Egg tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:00:30" && this.state.pet.age <= "00:01:00") {
+    } else if (
+      this.state.pet.age > "00:00:30" &&
+      this.state.pet.age <= "00:01:00"
+    ) {
       lifeStagePic = <img src={baby} alt="baby tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:01:00" && this.state.pet.age <= "00:01:30") {
+    } else if (
+      this.state.pet.age > "00:01:00" &&
+      this.state.pet.age <= "00:01:30"
+    ) {
       lifeStagePic = <img src={child} alt="child tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:01:30" && this.state.pet.age <= "00:02:00") {
+    } else if (
+      this.state.pet.age > "00:01:30" &&
+      this.state.pet.age <= "00:02:00"
+    ) {
       lifeStagePic = <img src={teen} alt="teen tamagotchi"></img>;
     } else if (this.state.pet.age > "00:02:00") {
       lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
@@ -120,14 +133,13 @@ class Pet extends React.Component {
 
     return (
       <div className="container">
-        {/* Need to re organise the naming I think - header? nav bar? and footer at the bottom */}
-        <section className="nes-container with-title">
+        <nav className="nes-container with-title">
           <div className="row">
             <div className="col">
               <h1>Virtual Pet</h1>
             </div>
             <div className="col">
-              {/* redirect users to Pets.js (list) */}
+              {/* Kat note: a button that directs users to Pets.js (list) */}
               <Link to="/pets" className="nes-btn is-primary">
                 My Pets
               </Link>
@@ -136,25 +148,36 @@ class Pet extends React.Component {
               </button>
             </div>
           </div>
-        </section>
+        </nav>
 
         <br></br>
         <section className="nes-container with-title">
           <h3 className="title">Your Pet</h3>
+
           <div className="row">
             <div className="col">
+              {/* Kat note: h2 displays the pet name */}
               <h2>{this.state.pet.name}</h2>
+              {/* Kat note: what do we want these hearts to do? */}
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
+
               <h3>Age</h3>
+              {/* Kat note: do we want to display age? */}
               <h4>{this.state.pet.age}</h4>
               {lifeStagePic}
+
+              {/* Kat note: thumbnail for pet alerts */}
+              <button className="nes-btn">
+                <img src={help} alt="Pet needs help" />
+              </button>
             </div>
 
             <div className="col">
-              {/* <progress className={howFull} max="15" value={this.state.pet.satiety} />
-        <Header handleFoodClick={this.handleFeeding}></Header> */}
               <h5>Hunger</h5>
               <progress
-                class="nes-progress"
+                class="nes-progress is-success"
                 value={this.state.pet.satiety}
                 max="100"
               ></progress>
@@ -176,45 +199,31 @@ class Pet extends React.Component {
                 value="30"
                 max="100"
               ></progress>
-              <h5>Health</h5>
-              <progress
-                class="nes-progress is-error"
-                value="10"
-                max="100"
-              ></progress>
-
-              <h5>Health</h5>
-              <i className="nes-icon heart is-large"></i>
-              <i className="nes-icon heart is-large"></i>
-              <i className="nes-icon heart is-large"></i>
-              {/* <progress max="15" value={this.state.age} /> */}
-              {/* { this.state.pet.age==="00:00:02"? */}
+              <h3 className="title">Actions</h3>
+              {/* feed button */}
+              {this.state.pet.age > "00:01:00" && (
+                <button onClick={this.handleFeeding} className="nes-btn">
+                  {" "}
+                  <img src={bread} alt="Bread icon" />
+                </button>
+              )}
+              {/* clean button */}
+              {this.state.pet.age > "00:01:00" && (
+                <button onClick={this.handleFeeding} className="nes-btn">
+                  {" "}
+                  <img src={clean} alt="Bath icon" />
+                </button>
+              )}
+              {/* play button */}
+              {this.state.pet.age > "00:01:00" && (
+                <button onClick={this.handleFeeding} className="nes-btn">
+                  {" "}
+                  <img src={play} alt="Tennis ball icon" />
+                </button>
+              )}
             </div>
           </div>
         </section>
-
-        {/* added a <br> for a bit of spacing between the sections - but not sure if this is best practice */}
-        <br></br>
-        <section className="nes-container with-title">
-          <h3 className="title">Actions</h3>
-          {this.state.pet.age > "00:01:00" && (
-            <button onClick={this.handleFeeding} className="nes-btn">
-              {" "}
-              <img src={bread} alt="Bread icon" />
-            </button>
-          )}
-          {/* Hello Nicole */}
-          {/* <progress max="15" value={this.state.age} /> */}
-          {/* { this.state.pet.age==="00:00:02"? */}
-
-
-          <h1></h1>
-
-
-        </section>
-
-        <br></br>
-        <section className="nes-container with-title"></section>
       </div>
     );
   }
