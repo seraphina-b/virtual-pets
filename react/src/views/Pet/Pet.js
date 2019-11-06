@@ -104,6 +104,19 @@ class Pet extends React.Component {
     // if(hours<0&&minutes<=2){src=egg} and shit like that. I think the way to do this is in my astrology app
     //i also want to use this seperation to display the age more cleanly
     //i don't want the button
+    let lifeStagePic;
+    if (this.state.pet.age <= "00:00:30") {
+      lifeStagePic = <img src={egg} alt="Egg tamagotchi"></img>;
+    } else if (this.state.pet.age > "00:00:30" && this.state.pet.age <= "00:01:00") {
+      lifeStagePic = <img src={baby} alt="baby tamagotchi"></img>;
+    } else if (this.state.pet.age > "00:01:00" && this.state.pet.age <= "00:01:30") {
+      lifeStagePic = <img src={child} alt="child tamagotchi"></img>;
+    } else if (this.state.pet.age > "00:01:30" && this.state.pet.age <= "00:02:00") {
+      lifeStagePic = <img src={teen} alt="teen tamagotchi"></img>;
+    } else if (this.state.pet.age > "00:02:00") {
+      lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
+    }
+
     return (
       <div className="container">
         {/* Need to re organise the naming I think - header? nav bar? and footer at the bottom */}
@@ -132,7 +145,7 @@ class Pet extends React.Component {
               <h2>{this.state.pet.name}</h2>
               <h3>Age</h3>
               <h4>{this.state.pet.age}</h4>
-              <img src={egg} alt="Egg tamagotchi" />
+              {lifeStagePic}
             </div>
 
             <div className="col">
@@ -193,9 +206,10 @@ class Pet extends React.Component {
           {/* <progress max="15" value={this.state.age} /> */}
           {/* { this.state.pet.age==="00:00:02"? */}
 
-          {/* <img src={baby} alt="Egg tamagotchi"></img>
-          <button className="button" onClick={e => this.handleAge(e)}>Show Growth Stage</button>
-          <h1>{hours}</h1> */}
+
+          <h1></h1>
+
+
         </section>
 
         <br></br>
