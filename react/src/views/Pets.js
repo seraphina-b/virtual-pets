@@ -51,6 +51,7 @@ class Pets extends React.Component {
                 </div>
 
             ));
+        //figure out how to make link button
         return (
 
             <div>
@@ -63,7 +64,7 @@ class Pets extends React.Component {
                         </li>
 
                     </ul>
-
+                    <Link to="/create" className="secondary">Create New Pet</Link>
 
                 </div>
 

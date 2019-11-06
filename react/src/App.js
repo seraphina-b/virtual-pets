@@ -23,9 +23,7 @@ class App extends React.Component {
         <Switch>
 
 
-          <Route path="/create">
-            <Create />
-          </Route>
+          <Route path="/create" component={Create} />
           <Route path="/pets/:id" component={Pet} />
           <Route path="/pets" component={Pets} />
 
