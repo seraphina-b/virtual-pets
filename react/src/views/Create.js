@@ -1,12 +1,13 @@
 import React from "react";
 import NewPet from "./NewPet.js";
 
+//i think this is what we want the /pets to be in many ways
 class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isNewPet: false,
-      getAge: []
+      age: []
     };
   }
 
@@ -22,7 +23,7 @@ class Create extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          getAge: data
+          age: data
         });
       })
       .catch(error => {
@@ -30,9 +31,24 @@ class Create extends React.Component {
       });
   }
 
+  getAge() {
+    fetch("/:petID/age", {
+      method: "GET"
+    })
+      // Continue fetch request here
+      .then(res => res.json())
+      .then(data => {
+        this.setState({});
+      })
+      .catch(error => {
+        console.log(error);
+        alert("Error, baby. Try again");
+      });
+  }
+
   render() {
     return (
-      <body>
+      <div>
         <button
           type="button"
           onClick={this.handleClick}
@@ -40,14 +56,13 @@ class Create extends React.Component {
         >
           Create New Pet
         </button>
-        {this.state.isNewPet ? <NewPet /> : null}
-        {/* Note: I'm trying to make it so that when the submit button is clicked it will display the age of the pet using the get request made in pets.js, but it ain't working. *shrugs* */}
+        {this.state.isNewPet ? <NewPet {...this.props} /> : null}
         <div>
-          {this.state.getAge.map(age => {
+          {this.state.age.map(age => {
             return { age };
           })}
         </div>
-      </body>
+      </div>
     );
   }
 }

@@ -1,34 +1,46 @@
 import React from "react";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
+import egg from "../.././images/lifeStages/egg.png";
 import eggStage from "../.././images/lifeStages/eggStage.png";
 import baby from "../.././images/lifeStages/baby.png";
+//because we're going to use these for animation
+import child from "../.././images/lifeStages/child.png";
+
+import teen from "../.././images/lifeStages/teen.png";
+import adult from "../.././images/lifeStages/adult.png";
+
+import { Router, useParams, Link } from "react-router-dom";
+import bread from "../.././images/bread.png";
+// let { id } = useParams();
 
 class Pet extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.match);
     this.state = {
-      satiety: 0,
-      age: 0
+      pet: {}
     };
   }
 
-  componentDidMount = () => { };
-  //just writing a note so i'll understand
-  // i tag is an icon tag. didn't know that before
-  // render() {
-  //   return (
-  //     <body>
-  //       <h3>Hunger</h3>
-  //       <progress className="nes-progress is-success" max="15" value={this.state.satiety} />
-  //       <h1>Virtual Pet</h1>
-  //       <Header></Header>
+  componentDidMount = () => {
+    let id = this.props.match.params.id;
 
-  //   this.updateSatiety();
-  // };
+    fetch(`/pets/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          pet: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   updateSatiety = () => {
-    fetch("/pets/1")
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -41,63 +53,154 @@ class Pet extends React.Component {
   };
 
   handleFeeding = () => {
-    //sorry wouldn't this have a template literal?
-    fetch(`/pets/1/events`, {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}/events`, {
       method: "POST"
     })
       .then(res => res.json())
       .then(data => {
         this.setState({
-          satiety: data
+          pet: data
         });
       })
-      .then(this.updateSatiety())
+      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
     console.log(this.state.satiety);
   };
 
-  getOlder = () => {
-    fetch("/pets/:petID/age", {
-      method: "GET"
-    })
+  // let timeArray = this.state.age.split(":");
+  // console.log(timeArray);
 
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          age: data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  //handleAge just for testing right now
+  handleAge = e => {
+    e.preventDefault();
+    let timeArray = this.state.pet.age.split(":");
+    console.log(timeArray);
+    let hours = parseInt(timeArray[0], 10);
+    let minutes = parseInt(timeArray[1]);
+    let seconds = parseInt(timeArray[2]);
+    console.log("It's " + hours + " hours");
+    console.log(minutes + " minutes");
+    console.log(seconds + " seconds");
   };
 
   render() {
     let howFull = "nes-progress";
-    if (this.state.satiety < 6) howFull += " is-error";
-    else if (this.state.satiety < 11) howFull += " is-warning";
+    if (this.state.pet.satiety < 6) howFull += " is-error";
+    else if (this.state.pet.satiety < 11) howFull += " is-warning";
     else howFull += " is-success";
+    //does not work here for some reason
+    // let timeArray = this.state.pet.age.split(":");
+    // console.log(timeArray);
+    // let hours = parseInt(timeArray[0], 10);
+    // let minutes = parseInt(timeArray[1]);
+    // let seconds = parseInt(timeArray[2]);
+    // console.log("It's " + hours + " hours");
+    // console.log(minutes + " minutes");
+    // console.log(seconds + " seconds");
+    //i want to seperate the "age" in hours, minutes, and seconds in an arrayand convert them from strings into numbers. then say
+    // if(hours<0&&minutes<=2){src=egg} and shit like that. I think the way to do this is in my astrology app
+    //i also want to use this seperation to display the age more cleanly
+    //i don't want the button
     return (
-      <body>
-        <h3>Hunger</h3>
-        <progress className={howFull} max="15" value={this.state.satiety} />
-        <h1>Virtual Pet</h1>
-        <Header handleFoodClick={this.handleFeeding}></Header>
+      <div className="container">
+        {/* Need to re organise the naming I think - header? nav bar? and footer at the bottom */}
+        <section className="nes-container with-title">
+          <div className="row">
+            <div className="col">
+              <h1>Virtual Pet</h1>
+            </div>
+            <div className="col">
+              {/* redirect users to Pets.js (list) */}
+              <Link to="/pets" className="nes-btn is-primary">
+                My Pets
+              </Link>
+              <button type="button" className="nes-btn is-primary">
+                Log Out
+              </button>
+            </div>
+          </div>
+        </section>
 
         <br></br>
         <section className="nes-container with-title">
           <h3 className="title">Your Pet</h3>
-          <i className="nes-icon heart is-large"></i>
-          <i className="nes-icon heart is-large"></i>
-          <i className="nes-icon heart is-large"></i>
+          <div className="row">
+            <div className="col">
+              <h2>{this.state.pet.name}</h2>
+              <h3>Age</h3>
+              <h4>{this.state.pet.age}</h4>
+              <img src={egg} alt="Egg tamagotchi" />
+            </div>
 
-          <h3>Age</h3>
-          <progress max="15" value={this.state.age} />
-          <img src={baby} alt="Egg tamagotchi"></img>
+            <div className="col">
+              {/* <progress className={howFull} max="15" value={this.state.pet.satiety} />
+        <Header handleFoodClick={this.handleFeeding}></Header> */}
+              <h5>Hunger</h5>
+              <progress
+                class="nes-progress"
+                value={this.state.pet.satiety}
+                max="100"
+              ></progress>
+              <h5>Cleanliness</h5>
+              <progress
+                class="nes-progress is-primary"
+                value="80"
+                max="100"
+              ></progress>
+              <h5>Playfulness</h5>
+              <progress
+                class="nes-progress is-success"
+                value="50"
+                max="100"
+              ></progress>
+              <h5>Attention</h5>
+              <progress
+                class="nes-progress is-warning"
+                value="30"
+                max="100"
+              ></progress>
+              <h5>Health</h5>
+              <progress
+                class="nes-progress is-error"
+                value="10"
+                max="100"
+              ></progress>
+
+              <h5>Health</h5>
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-large"></i>
+              {/* <progress max="15" value={this.state.age} /> */}
+              {/* { this.state.pet.age==="00:00:02"? */}
+            </div>
+          </div>
         </section>
-      </body>
+
+        {/* added a <br> for a bit of spacing between the sections - but not sure if this is best practice */}
+        <br></br>
+        <section className="nes-container with-title">
+          <h3 className="title">Actions</h3>
+          {this.state.pet.age > "00:01:00" && (
+            <button onClick={this.handleFeeding} className="nes-btn">
+              {" "}
+              <img src={bread} alt="Bread icon" />
+            </button>
+          )}
+
+          {/* <progress max="15" value={this.state.age} /> */}
+          {/* { this.state.pet.age==="00:00:02"? */}
+
+          {/* <img src={baby} alt="Egg tamagotchi"></img>
+          <button className="button" onClick={e => this.handleAge(e)}>Show Growth Stage</button>
+          <h1>{hours}</h1> */}
+        </section>
+
+        <br></br>
+        <section className="nes-container with-title"></section>
+      </div>
     );
   }
 }
