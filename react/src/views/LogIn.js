@@ -33,7 +33,7 @@ class LogIn extends React.Component {
 
   render() {
     return (
-      <div class="container">
+      <div className="container">
         {/* Main section  - user can choose to login or create pet*/}
         <section className="nes-container with-title">
           <h1>Virtual Pets</h1>
@@ -41,7 +41,7 @@ class LogIn extends React.Component {
         {/* added a <br> for a bit of spacing between the sections - but not sure if this is best practice */}
         <br></br>
         {/* Login section - users with an account - takes them to pets page (list of pets) */}
-        <section className="nes-container with-title" id="login">
+        <section className="nes-container with-title">
           <h3 className="title">Log In</h3>
           <p>Already have an account? Log in below!</p>
           <h4>Email</h4>
@@ -66,7 +66,6 @@ class LogIn extends React.Component {
             Log In
           </button>
         </section>
-        <br></br>
         {/* Create pet section - users sign up to create a pet - redirects them to create pet page*/}
         {/* <section className="nes-container with-title" id="createPet">
           <h3 className="title">Sign Up</h3>
