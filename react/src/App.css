@@ -31,5 +31,13 @@ i {
 }
 
 li {
-  list-style-type: none;
+
+    list-style-type: none;
 }
+
+.secondary {
+    color: rgb(145, 255, 0);
+    
+}
+
+  

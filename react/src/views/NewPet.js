@@ -32,7 +32,7 @@ class NewPet extends React.Component {
         console.log("Posted your pet, baby!");
         console.log(data);
         //redirect the user to the new pet page
-        this.props.history.push(`/pet/${data.insertId}`);
+        this.props.history.push(`/pets/${data.insertId}`);
       })
       .catch(error => {
         console.log(error);
