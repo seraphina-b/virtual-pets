@@ -167,7 +167,7 @@ class Pet extends React.Component {
         <Header handleFoodClick={this.handleFeeding}></Header> */}
               <h5>Hunger</h5>
               <progress
-                class="nes-progress"
+                class="nes-progress is-success"
                 value={this.state.pet.satiety}
                 max="100"
               ></progress>
@@ -189,36 +189,15 @@ class Pet extends React.Component {
                 value="30"
                 max="100"
               ></progress>
-              <h5>Health</h5>
-              <progress
-                class="nes-progress is-error"
-                value="10"
-                max="100"
-              ></progress>
-
-              <h5>Health</h5>
-
-              {/* <progress max="15" value={this.state.age} /> */}
-              {/* { this.state.pet.age==="00:00:02"? */}
+              <h3 className="title">Actions</h3>
+              {this.state.pet.age > "00:01:00" && (
+                <button onClick={this.handleFeeding} className="nes-btn">
+                  {" "}
+                  <img src={bread} alt="Bread icon" />
+                </button>
+              )}
             </div>
           </div>
-        </section>
-
-        {/* added a <br> for a bit of spacing between the sections - but not sure if this is best practice */}
-        <br></br>
-        <section className="nes-container with-title">
-          <h3 className="title">Actions</h3>
-          {this.state.pet.age > "00:01:00" && (
-            <button onClick={this.handleFeeding} className="nes-btn">
-              {" "}
-              <img src={bread} alt="Bread icon" />
-            </button>
-          )}
-          {/* Hello Nicole */}
-          {/* <progress max="15" value={this.state.age} /> */}
-          {/* { this.state.pet.age==="00:00:02"? */}
-
-          <h1></h1>
         </section>
 
         <br></br>
