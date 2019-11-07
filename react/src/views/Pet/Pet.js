@@ -179,7 +179,7 @@ class Pet extends React.Component {
               <progress
                 class="nes-progress is-success"
                 value={this.state.pet.satiety}
-                max="100"
+                max="16"
               ></progress>
               <h5>Cleanliness</h5>
               <progress
