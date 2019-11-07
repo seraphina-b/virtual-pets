@@ -177,7 +177,7 @@ class Pet extends React.Component {
             <div className="col">
               <h5>Hunger</h5>
               <progress
-                class="nes-progress is-success"
+                className="nes-progress is-success"
                 value={this.state.pet.satiety}
                 max="16"
               ></progress>

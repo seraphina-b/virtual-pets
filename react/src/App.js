@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import "./App.css";
 import { Router, useParams } from "react-router-dom";
+import Pusher from "pusher-js";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,18 +16,15 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount = () => { };
+  componentDidMount = () => {};
 
   render() {
     return (
       <BrowserRouter>
         <Switch>
-
-
           <Route path="/create" component={Create} />
           <Route path="/pets/:id" component={Pet} />
           <Route path="/pets" component={Pets} />
-
 
           <Route path="/" component={LogIn} />
         </Switch>
