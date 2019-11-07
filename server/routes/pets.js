@@ -83,7 +83,7 @@ router.get("/:petID/age", (req, res) => {
 
 //POST feeds a pet
 //works as of 11/5/19 @12:21PM according to POSTMAN
-router.post("/:petID/events", (req, res) => {
+router.post("/:petID/events/:activity", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastfed', NOW());`
   ).then(results => {
