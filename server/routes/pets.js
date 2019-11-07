@@ -106,10 +106,34 @@ router.post("/:petID/events", (req, res) => {
         res.send(results.data[0]);
       });
     });
-    //res.send({ message: "baby was fed!" });
   });
 });
 
-//PUT? reduce pet hunger
+//POST makes pet happy
+router.post("/:petID/events", (req, res) => {
+  db(
+    `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'madeHappy', NOW());`
+  ).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    db(
+      `UPDATE pets SET happy = happy+2 WHERE petID = ${req.params.petID};`
+    ).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+
+      db(
+        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+      ).then(results => {
+        if (results.error) {
+          res.status(500).send(results.error);
+        }
+        res.send(results.data[0]);
+      });
+    });
+  });
+});
 
 module.exports = router;
