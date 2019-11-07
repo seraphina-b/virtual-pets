@@ -16,12 +16,9 @@ import help from "../.././images/petAlerts/help.png";
 
 // action button images
 import bread from "../.././images/bread.png";
+import happy from "../.././images/happy.png";
 import clean from "../.././images/clean.png";
 import play from "../.././images/ball.png";
-
-// Enable pusher logging - don't include this in production
-// Pusher.logToConsole = true;
-// let { id } = useParams();
 
 class Pet extends React.Component {
   constructor(props) {
@@ -43,14 +40,12 @@ class Pet extends React.Component {
     channel.bind("my-event", data => {
       console.log(data);
       this.getData();
-      //this.reduceHunger();
     });
   };
 
   componentDidMount = () => {
     this.connectToPusher();
     this.getData();
-    //this.reduceHunger();
   };
 
   // getData captures the pet data and displays it on the screen
@@ -69,23 +64,7 @@ class Pet extends React.Component {
       });
   };
 
-  // reduce hunger
-  reduceHunger = () => {
-    let id = this.props.match.params.id;
-    fetch(`/pets/${id}`, {
-      method: "PUT"
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          pet: data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
+  // updates the pets hunger levels and used with hunger button
   updateSatiety = () => {
     let id = this.props.match.params.id;
     fetch(`/pets/${id}`)
@@ -93,6 +72,20 @@ class Pet extends React.Component {
       .then(data => {
         this.setState({
           satiety: data[0].satiety
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  updateHappy = () => {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          happy: data[0].happy
         });
       })
       .catch(error => {
@@ -229,7 +222,7 @@ class Pet extends React.Component {
               <h5>Happiness</h5>
               <progress
                 class="nes-progress is-warning"
-                value="2"
+                value={this.state.pet.happy}
                 max="15"
               ></progress>
               {/* Cleanliness bar | min = 0 max = 15 */}
@@ -249,21 +242,28 @@ class Pet extends React.Component {
 
               <h3 className="title">Actions</h3>
               {/* feed button */}
-              {this.state.pet.age > "00:01:00" && (
+              {this.state.pet.age > "00:00:00" && (
                 <button onClick={this.handleFeeding} className="nes-btn">
                   {" "}
                   <img src={bread} alt="Bread icon" />
                 </button>
               )}
+              {/* happy button */}
+              {this.state.pet.age > "00:00:00" && (
+                <button onClick={this.handleFeeding} className="nes-btn">
+                  {" "}
+                  <img src={happy} alt="Happy icon" />
+                </button>
+              )}
               {/* clean button */}
-              {this.state.pet.age > "00:01:00" && (
+              {this.state.pet.age > "00:00:00" && (
                 <button onClick={this.handleFeeding} className="nes-btn">
                   {" "}
                   <img src={clean} alt="Bath icon" />
                 </button>
               )}
               {/* play button */}
-              {this.state.pet.age > "00:01:00" && (
+              {this.state.pet.age > "00:00:00" && (
                 <button onClick={this.handleFeeding} className="nes-btn">
                   {" "}
                   <img src={play} alt="Tennis ball icon" />
