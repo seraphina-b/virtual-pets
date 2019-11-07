@@ -3,12 +3,13 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var cron = require("node-cron");
 
 var petsRouter = require("./routes/pets");
 var eventsRouter = require("./routes/events");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
-var sendNotificationRouter = require("./jobs/sendNotification");
+var sendNotification = require("./jobs/sendNotification");
 
 var app = express();
 
@@ -40,9 +41,10 @@ app.use(function(err, req, res, next) {
   res.send("error");
 });
 
-// cron.schedule("* * * * *", function() {
-//   console.log("running a task every minute");
-//   //sendNotification();
-// });
+// cron jobs
+cron.schedule("* * * * *", function() {
+  console.log("running a task every minute");
+  sendNotification();
+});
 
 module.exports = app;
