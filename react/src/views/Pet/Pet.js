@@ -42,12 +42,14 @@ class Pet extends React.Component {
     channel.bind("my-event", data => {
       console.log(data);
       this.getData();
+      this.reduceHunger();
     });
   };
 
   componentDidMount = () => {
     this.connectToPusher();
     this.getData();
+    this.reduceHunger();
   };
 
   // getData captures the pet data and displays it on the screen
@@ -69,12 +71,13 @@ class Pet extends React.Component {
   // reduce hunger
   reduceHunger = () => {
     let id = this.props.match.params.id;
-    fetch(`/pets/${id}`)
+    fetch(`/pets/${id}`, {
+      method: "PUT"
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({
-          pet: data,
-          satiety: data[0].satiety--
+          pet: data
         });
       })
       .catch(error => {
