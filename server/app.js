@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var cron = require("node-cron");
 
 var petsRouter = require("./routes/pets");
 var eventsRouter = require("./routes/events");
@@ -40,6 +41,7 @@ app.use(function(err, req, res, next) {
   res.send("error");
 });
 
+// cron jobs
 // cron.schedule("* * * * *", function() {
 //   console.log("running a task every minute");
 //   //sendNotification();
