@@ -36,30 +36,8 @@
       crossorigin="anonymous"
     />
     <title>React App</title>
-
-    <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
-    <script>
-      // Enable pusher logging - don't include this in production
-      Pusher.logToConsole = true;
-
-      var pusher = new Pusher("a6e425669a496f8c754a", {
-        cluster: "eu",
-        forceTLS: true
-      });
-
-      var channel = pusher.subscribe("my-channel");
-      channel.bind("my-event", function(data) {
-        alert(JSON.stringify(data));
-      });
-    </script>
   </head>
   <body>
-    <h1>Pusher Test</h1>
-    <p>
-      Try publishing an event to channel <code>my-channel</code> with event name
-      <code>my-event</code>.
-    </p>
-
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

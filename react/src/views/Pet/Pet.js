@@ -16,7 +16,10 @@ import help from "../.././images/petAlerts/help.png";
 import bread from "../.././images/bread.png";
 import clean from "../.././images/clean.png";
 import play from "../.././images/ball.png";
+import Pusher from "pusher-js";
 
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
 // let { id } = useParams();
 
 class Pet extends React.Component {
@@ -28,7 +31,25 @@ class Pet extends React.Component {
     };
   }
 
+  connectToPusher = () => {
+    var pusher = new Pusher("a6e425669a496f8c754a", {
+      cluster: "eu",
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe("my-channel");
+    channel.bind("my-event", data => {
+      console.log(data);
+      this.getData();
+    });
+  };
+
   componentDidMount = () => {
+    this.connectToPusher();
+    this.getData();
+  };
+
+  getData = () => {
     let id = this.props.match.params.id;
 
     fetch(`/pets/${id}`)

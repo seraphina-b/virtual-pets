@@ -7,7 +7,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import "./App.css";
 import { Router, useParams } from "react-router-dom";
-import Pusher from "pusher-js";
 
 class App extends React.Component {
   constructor(props) {

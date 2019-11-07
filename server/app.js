@@ -9,7 +9,7 @@ var petsRouter = require("./routes/pets");
 var eventsRouter = require("./routes/events");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
-var sendNotificationRouter = require("./jobs/sendNotification");
+var sendNotification = require("./jobs/sendNotification");
 
 var app = express();
 
@@ -42,9 +42,9 @@ app.use(function(err, req, res, next) {
 });
 
 // cron jobs
-// cron.schedule("* * * * *", function() {
-//   console.log("running a task every minute");
-//   //sendNotification();
-// });
+cron.schedule("* * * * *", function() {
+  console.log("running a task every minute");
+  sendNotification();
+});
 
 module.exports = app;
