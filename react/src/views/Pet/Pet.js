@@ -2,6 +2,8 @@ import React from "react";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import { Router, useParams, Link } from "react-router-dom";
+import Pusher from "pusher-js";
+
 // life stage images
 import egg from "../.././images/lifeStages/egg.png";
 import baby from "../.././images/lifeStages/baby.png";
@@ -16,7 +18,6 @@ import help from "../.././images/petAlerts/help.png";
 import bread from "../.././images/bread.png";
 import clean from "../.././images/clean.png";
 import play from "../.././images/ball.png";
-import Pusher from "pusher-js";
 
 // Enable pusher logging - don't include this in production
 // Pusher.logToConsole = true;
