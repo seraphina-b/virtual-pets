@@ -19,7 +19,7 @@ import play from "../.././images/ball.png";
 import Pusher from "pusher-js";
 
 // Enable pusher logging - don't include this in production
-Pusher.logToConsole = true;
+// Pusher.logToConsole = true;
 // let { id } = useParams();
 
 class Pet extends React.Component {
@@ -31,6 +31,7 @@ class Pet extends React.Component {
     };
   }
 
+  // function to connect to pusher
   connectToPusher = () => {
     var pusher = new Pusher("a6e425669a496f8c754a", {
       cluster: "eu",
@@ -49,14 +50,31 @@ class Pet extends React.Component {
     this.getData();
   };
 
+  // getData captures the pet data and displays it on the screen
+  // this basically refreshed the page and updates the pet info
   getData = () => {
     let id = this.props.match.params.id;
-
     fetch(`/pets/${id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           pet: data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  // reduce hunger
+  reduceHunger = () => {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          pet: data,
+          satiety: data[0].satiety--
         });
       })
       .catch(error => {
@@ -200,7 +218,7 @@ class Pet extends React.Component {
               <progress
                 className="nes-progress is-success"
                 value={this.state.pet.satiety}
-                max="16"
+                max="100"
               ></progress>
               <h5>Cleanliness</h5>
               <progress
