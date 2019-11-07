@@ -42,14 +42,14 @@ class Pet extends React.Component {
     channel.bind("my-event", data => {
       console.log(data);
       this.getData();
-      this.reduceHunger();
+      //this.reduceHunger();
     });
   };
 
   componentDidMount = () => {
     this.connectToPusher();
     this.getData();
-    this.reduceHunger();
+    //this.reduceHunger();
   };
 
   // getData captures the pet data and displays it on the screen

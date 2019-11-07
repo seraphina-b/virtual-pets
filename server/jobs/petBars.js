@@ -1,4 +1,5 @@
 var Pusher = require("pusher");
+var db = require("../model/helper");
 
 var channels_client = new Pusher({
   appId: "890410",
@@ -9,6 +10,8 @@ var channels_client = new Pusher({
 });
 
 function petBars() {
+  db(`UPDATE pets SET satiety = satiety-5 WHERE petID = ${req.params.petID};`);
+
   channels_client.trigger("my-channel", "my-event", {
     message: "hello world"
   });

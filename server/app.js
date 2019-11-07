@@ -49,7 +49,7 @@ cron.schedule("* * * * *", function() {
 });
 
 // cron job - reduce the pet bars
-cron.schedule("* * * * *", function() {
+cron.schedule("*/2 * * * *", function() {
   console.log("running a task every another minute");
   petBars();
 });
