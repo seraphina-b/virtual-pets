@@ -10,7 +10,7 @@ var channels_client = new Pusher({
 });
 
 function petBars() {
-  db(`UPDATE pets SET satiety = satiety-5 WHERE petID = ${req.params.petID};`);
+  db(`UPDATE pets SET satiety = satiety-5;`);
 
   channels_client.trigger("my-channel", "my-event", {
     //hi this is nicole. i changed the message to "hi world" to see if it's working and it's not
