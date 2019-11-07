@@ -218,30 +218,35 @@ class Pet extends React.Component {
             </div>
 
             <div className="col">
+              {/* Hunger bar | min = 0 max = 15 | reduces by 2 every 5 mins | if hunger = 0 or > 25 - pet dies | if hunger = 20 - pet sick */}
               <h5>Hunger</h5>
               <progress
                 className="nes-progress is-success"
                 value={this.state.pet.satiety}
-                max="100"
+                max="15"
               ></progress>
+              {/* Happiness bar | min = 0 max = 15 */}
+              <h5>Happiness</h5>
+              <progress
+                class="nes-progress is-warning"
+                value="2"
+                max="15"
+              ></progress>
+              {/* Cleanliness bar | min = 0 max = 15 */}
               <h5>Cleanliness</h5>
               <progress
                 class="nes-progress is-primary"
-                value="80"
-                max="100"
+                value="2"
+                max="15"
               ></progress>
+              {/* Playfulness bar | min = 0 max = 15 */}
               <h5>Playfulness</h5>
               <progress
-                class="nes-progress is-success"
-                value="50"
-                max="100"
+                class="nes-progress is-error"
+                value="2"
+                max="15"
               ></progress>
-              <h5>Attention</h5>
-              <progress
-                class="nes-progress is-warning"
-                value="30"
-                max="100"
-              ></progress>
+
               <h3 className="title">Actions</h3>
               {/* feed button */}
               {this.state.pet.age > "00:01:00" && (
