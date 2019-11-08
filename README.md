@@ -126,10 +126,11 @@ Other:
 | /pets               |        POST |                       Creates one pet                       |
 | /pets/:petID        |         GET |                        Gets one pet                         |                |                                                           |
 | /pets/:petID/events |         GET |                 gets all events for one pet                 |
-| /pet/:petID/events  |        POST |                        feeds one pet                        |                |                                                           |
+| /pet/:petID/satiety  |        POST |                        feeds one pet                        |                |                                                           |
 | /login              |        POST | should generate a new tocken if user and password are valid |
 | /login/account      |         GET |              go to accounts page if authorized              |
 | /pets/:petID/age    |         GET |                          gets age                           |
+| /pets/:petID/happy | POST| | makes pet happy|
 
 ## Frontend Routes
 
