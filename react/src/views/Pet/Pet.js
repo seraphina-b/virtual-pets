@@ -30,6 +30,7 @@ class Pet extends React.Component {
   }
 
   // function to connect to pusher
+  //this is a cron job controlled in petBars and sendNotifications
   connectToPusher = () => {
     var pusher = new Pusher("a6e425669a496f8c754a", {
       cluster: "eu",
@@ -91,6 +92,24 @@ class Pet extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  };
+
+  makeHappy = () => {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}/events`, {
+      method: "PUT"
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          pet: data[0].happy
+        });
+      })
+      //.then(this.updateSatiety())
+      .catch(error => {
+        console.log(error);
+      });
+    console.log(this.state.pet.happy);
   };
 
   handleFeeding = () => {
@@ -250,7 +269,7 @@ class Pet extends React.Component {
               )}
               {/* happy button */}
               {this.state.pet.age > "00:00:00" && (
-                <button onClick={this.handleFeeding} className="nes-btn">
+                <button onClick={this.makeHappy} className="nes-btn">
                   {" "}
                   <img src={happy} alt="Happy icon" />
                 </button>
