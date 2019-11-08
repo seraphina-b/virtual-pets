@@ -1,9 +1,7 @@
 //make poop a component
 import React from "react";
-import Header from "./Header.js";
-import Footer from "./Footer.js";
-import { Router, useParams, Link } from "react-router-dom";
 import Pusher from "pusher-js";
+import { Router, useParams, Link } from "react-router-dom";
 
 // life stage images
 import born from "../.././images/lifeStages/born.png";
