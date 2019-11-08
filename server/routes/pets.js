@@ -37,8 +37,17 @@ router.post("/", (req, res) => {
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
+
     }
-    res.send(results.data[0]);
+    //have to figure out how to feed need pets
+    db(
+      `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'madeHappy', NOW());`
+    ).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+      res.send(results.data[0]);
+    });
   });
 });
 
@@ -60,7 +69,7 @@ WHERE p.petID=${req.params.petID}`).then(results => {
 //doesn't work (500 error) 11/5/19 @12:21PM but we don't need this
 router.get("/:petID/age", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), timeActioned) as age from pets WHERE petID=${req.params.petID}`
+    `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -69,14 +78,37 @@ router.get("/:petID/age", (req, res) => {
   });
 });
 
+//sees if it 
+router.get("/:petID/poop", (req, res) => {
+  db(
+    `SELECT *, TIMEDIFF(now(), timeActioned) FROM events WHERE petID =${req.params.petID} and activity="lastFed"`
+  ).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    res.send(results.data);
+  });
+});
+
+//shows difference between current time and the last time the pet was fed
+router.get("/:petID/age", (req, res) => {
+  db(
+    `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
+  ).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    res.send(results.data);
+  });
+});
 //POST feeds a pet
 //works as of 11/5/19 @12:21PM according to POSTMAN
 //just changed route to /:petID/satiety, don't forget to change the Pet js frontend fetch request that 
 //corresponds to this and the README if it works
 //it works
 router.post("/:petID/satiety", (req, res) => {
-  db(
-    `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastfed', NOW());`
+  db(`INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastFed', NOW()) ON DUPLICATE KEY UPDATE events SET timeActioned=NOW() WHERE petID=${req.params.petID} and activity='lastFed  ';`
+    //had the idea to  "ON DUPLICATE KEY UPDATE timeActioned=NOW();" but that doesn't exactly work"
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -136,7 +168,7 @@ router.post("/:petID/clean", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET clean = clean+2 WHERE petID = ${req.params.petID} and clean<=30;`
+      `UPDATE pets SET clean = clean+2 WHERE petID = ${req.params.petID} and clean<=15;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
