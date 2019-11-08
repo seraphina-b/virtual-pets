@@ -30,6 +30,7 @@ class Pet extends React.Component {
   }
 
   // function to connect to pusher
+  //this is a cron job controlled in petBars and sendNotifications
   connectToPusher = () => {
     var pusher = new Pusher("a6e425669a496f8c754a", {
       cluster: "eu",

@@ -42,18 +42,6 @@ router.post("/", (req, res) => {
   });
 });
 
-//`SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM events WHERE petID=${req.params.petID} and activty='last fed';`; I think. Will work this out later?
-//gives 500 error as of 11/5/19 @12:17PM according to POSTMAN
-router.put("/:petID", (req, res) => {
-  db(
-    `UPDATE pets SET satiety = satiety-5 WHERE petID = ${req.params.petID};`
-  ).then(results => {
-    if (results.error) {
-      res.status(500).send(results.error);
-    }
-  });
-});
-
 // GET lists name, activity and timeActioned by petID
 //works as of 11/5/19 @12:19PM according to POSTMAN
 router.get("/:petID/events", (req, res) => {
@@ -91,7 +79,7 @@ router.post("/:petID/events/", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`
+      `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID}, satiety<=30;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
@@ -109,7 +97,7 @@ router.post("/:petID/events/", (req, res) => {
   });
 });
 
-//POST makes pet happy
+//PUT makes pet happy
 router.put("/:petID/events", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'madeHappy', NOW());`
@@ -118,7 +106,7 @@ router.put("/:petID/events", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET happy = happy+2 WHERE petID = ${req.params.petID};`
+      `UPDATE pets SET happy = happy+2 WHERE petID = ${req.params.petID}, happy<=30;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
