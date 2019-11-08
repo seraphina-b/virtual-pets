@@ -151,42 +151,26 @@ class Pet extends React.Component {
   };
 
   render() {
-    // let howFull = "nes-progress";
-    // if (this.state.pet.satiety < 6) howFull += " is-error";
-    // else if (this.state.pet.satiety < 11) howFull += " is-warning";
-    // else howFull += " is-success";
-    //does not work here for some reason
-    // let timeArray = this.state.pet.age.split(":");
-    // console.log(timeArray);
-    // let hours = parseInt(timeArray[0], 10);
-    // let minutes = parseInt(timeArray[1]);
-    // let seconds = parseInt(timeArray[2]);
-    // console.log("It's " + hours + " hours");
-    // console.log(minutes + " minutes");
-    // console.log(seconds + " seconds");
-    //i want to seperate the "age" in hours, minutes, and seconds in an arrayand convert them from strings into numbers. then say
-    // if(hours<0&&minutes<=2){src=egg} and shit like that. I think the way to do this is in my astrology app
-    //i also want to use this seperation to display the age more cleanly
-    //i don't want the button
+    // making the pet 'grow' - changing the lifeStage images depending on time
     let lifeStagePic;
-    if (this.state.pet.age <= "00:00:30") {
-      lifeStagePic = <img src={born} alt="Pet born"></img>;
+    if (this.state.pet.age <= "00:05:00") {
+      lifeStagePic = <img src={born} alt="born tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:00:30" &&
-      this.state.pet.age <= "00:01:00"
+      this.state.pet.age > "00:05:00" &&
+      this.state.pet.age <= "00:10:00"
     ) {
       lifeStagePic = <img src={baby} alt="baby tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:01:00" &&
-      this.state.pet.age <= "00:01:30"
+      this.state.pet.age > "00:10:00" &&
+      this.state.pet.age <= "00:10:30"
     ) {
       lifeStagePic = <img src={child} alt="child tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:01:30" &&
-      this.state.pet.age <= "00:02:00"
+      this.state.pet.age > "00:10:30" &&
+      this.state.pet.age <= "00:15:00"
     ) {
       lifeStagePic = <img src={teen} alt="teen tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:02:00") {
+    } else if (this.state.pet.age > "00:15:00") {
       lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
     }
 
