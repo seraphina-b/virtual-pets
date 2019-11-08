@@ -66,33 +66,35 @@ class Pet extends React.Component {
   };
 
   // updates the pets hunger levels and used with hunger button
-  updateSatiety = () => {
-    let id = this.props.match.params.id;
-    fetch(`/pets/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          satiety: data[0].satiety
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  //commented out because we're not using it and it makes things confusing
+  // updateSatiety = () => {
+  //   let id = this.props.match.params.id;
+  //   fetch(`/pets/${id}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       this.setState({
+  //         satiety: data[0].satiety
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
-  updateHappy = () => {
-    let id = this.props.match.params.id;
-    fetch(`/pets/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          happy: data[0].happy
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  //commented out because we're not using it and it makes things confusing
+  // updateHappy = () => {
+  //   let id = this.props.match.params.id;
+  //   fetch(`/pets/${id}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       this.setState({
+  //         happy: data[0].happy
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
   makeHappy = () => {
     let id = this.props.match.params.id;
@@ -130,8 +132,43 @@ class Pet extends React.Component {
     console.log(this.state.satiety);
   };
 
+  handleCleaning = () => {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}/clean`, {
+      method: "POST"
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          pet: data
+        });
+      })
+      //.then(this.updateSatiety())
+      .catch(error => {
+        console.log(error);
+      });
+    console.log(this.state.clean);
+  };
   // let timeArray = this.state.age.split(":");
   // console.log(timeArray);
+
+  handlePlaying = () => {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}/play`, {
+      method: "POST"
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          pet: data
+        });
+      })
+      //.then(this.updateSatiety())
+      .catch(error => {
+        console.log(error);
+      });
+    console.log(this.state.play);
+  };
 
   //handleAge just for testing right now
   handleAge = e => {
@@ -248,14 +285,14 @@ class Pet extends React.Component {
               <h5>Cleanliness</h5>
               <progress
                 class="nes-progress is-primary"
-                value="2"
+                value={this.state.pet.clean}
                 max="15"
               ></progress>
               {/* Playfulness bar | min = 0 max = 15 */}
               <h5>Playfulness</h5>
               <progress
                 class="nes-progress is-error"
-                value="2"
+                value={this.state.pet.play}
                 max="15"
               ></progress>
 
@@ -274,16 +311,16 @@ class Pet extends React.Component {
                   <img src={happy} alt="Happy icon" />
                 </button>
               )}
-              {/* clean button */}
+              {/* clean button, should also get rid of poop when we need it */}
               {this.state.pet.age > "00:00:00" && (
-                <button onClick={this.handleFeeding} className="nes-btn">
+                <button onClick={this.handleCleaning} className="nes-btn">
                   {" "}
                   <img src={clean} alt="Bath icon" />
                 </button>
               )}
               {/* play button */}
               {this.state.pet.age > "00:00:00" && (
-                <button onClick={this.handleFeeding} className="nes-btn">
+                <button onClick={this.handlePlaying} className="nes-btn">
                   {" "}
                   <img src={play} alt="Tennis ball icon" />
                 </button>

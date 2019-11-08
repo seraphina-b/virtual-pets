@@ -100,7 +100,7 @@ router.post("/:petID/satiety", (req, res) => {
   });
 });
 
-//PUT makes pet happy
+//POST makes pet happy
 router.post("/:petID/happy", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'madeHappy', NOW());`
@@ -127,4 +127,56 @@ router.post("/:petID/happy", (req, res) => {
   });
 });
 
+//POST cleans pet
+router.post("/:petID/clean", (req, res) => {
+  db(
+    `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'cleanedPoop', NOW());`
+  ).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    db(
+      `UPDATE pets SET clean = clean+2 WHERE petID = ${req.params.petID} and clean<=30;`
+    ).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+
+      db(
+        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+      ).then(results => {
+        if (results.error) {
+          res.status(500).send(results.error);
+        }
+        res.send(results.data[0]);
+      });
+    });
+  });
+});
+
+router.post("/:petID/play", (req, res) => {
+  db(
+    `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'playedWith', NOW());`
+  ).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    db(
+      `UPDATE pets SET play = play+2 WHERE petID = ${req.params.petID} and play<=30;`
+    ).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+
+      db(
+        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+      ).then(results => {
+        if (results.error) {
+          res.status(500).send(results.error);
+        }
+        res.send(results.data[0]);
+      });
+    });
+  });
+});
 module.exports = router;
