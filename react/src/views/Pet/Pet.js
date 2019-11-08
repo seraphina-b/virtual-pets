@@ -96,8 +96,8 @@ class Pet extends React.Component {
 
   makeHappy = () => {
     let id = this.props.match.params.id;
-    fetch(`/pets/${id}/events`, {
-      method: "PUT"
+    fetch(`/pets/${id}/happy`, {
+      method: "POST"
     })
       .then(res => res.json())
       .then(data => {
@@ -114,7 +114,7 @@ class Pet extends React.Component {
 
   handleFeeding = () => {
     let id = this.props.match.params.id;
-    fetch(`/pets/${id}/events`, {
+    fetch(`/pets/${id}/satiety`, {
       method: "POST"
     })
       .then(res => res.json())

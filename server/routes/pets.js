@@ -71,7 +71,10 @@ router.get("/:petID/age", (req, res) => {
 
 //POST feeds a pet
 //works as of 11/5/19 @12:21PM according to POSTMAN
-router.post("/:petID/events/", (req, res) => {
+//just changed route to /:petID/satiety, don't forget to change the Pet js frontend fetch request that 
+//corresponds to this and the README if it works
+//it works
+router.post("/:petID/satiety", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastfed', NOW());`
   ).then(results => {
@@ -98,7 +101,7 @@ router.post("/:petID/events/", (req, res) => {
 });
 
 //PUT makes pet happy
-router.put("/:petID/events", (req, res) => {
+router.post("/:petID/happy", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'madeHappy', NOW());`
   ).then(results => {
