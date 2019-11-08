@@ -69,7 +69,7 @@ WHERE p.petID=${req.params.petID}`).then(results => {
 //doesn't work (500 error) 11/5/19 @12:21PM but we don't need this
 router.get("/:petID/age", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), dateCreated) as age from pets WHERE petID=${req.params.petID}`
+    `SELECT TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID=${req.params.petID}`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -81,7 +81,7 @@ router.get("/:petID/age", (req, res) => {
 //sees the amount of time since it ate so it can poop
 router.get("/:petID/poop", (req, res) => {
   db(
-    `SELECT *, TIMEDIFF(now(), timeActioned) FROM events WHERE petID =${req.params.petID} and activity="lastFed"`
+    `SELECT *, TIMEDIFF(now(), timeActioned) as foodTime FROM events WHERE petID =${req.params.petID} and activity="lastFed"`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
