@@ -42,19 +42,6 @@ router.post("/", (req, res) => {
   });
 });
 
-//from nicole: confusing because there isn't a satiety field in the //pets table. this gives us a 500 error. it would make more sense to
-//`SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM events WHERE petID=${req.params.petID} and activty='last fed';`; I think. Will work this out later?
-//gives 500 error as of 11/5/19 @12:17PM according to POSTMAN
-router.put("/:petID", (req, res) => {
-  db(
-    `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`
-  ).then(results => {
-    if (results.error) {
-      res.status(500).send(results.error);
-    }
-  });
-});
-
 // GET lists name, activity and timeActioned by petID
 //works as of 11/5/19 @12:19PM according to POSTMAN
 router.get("/:petID/events", (req, res) => {
@@ -84,7 +71,7 @@ router.get("/:petID/age", (req, res) => {
 
 //POST feeds a pet
 //works as of 11/5/19 @12:21PM according to POSTMAN
-router.post("/:petID/events", (req, res) => {
+router.post("/:petID/events/", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastfed', NOW());`
   ).then(results => {
@@ -92,7 +79,7 @@ router.post("/:petID/events", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID};`
+      `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID}, satiety<=30;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
@@ -107,7 +94,33 @@ router.post("/:petID/events", (req, res) => {
         res.send(results.data[0]);
       });
     });
-    //res.send({ message: "baby was fed!" });
+  });
+});
+
+//PUT makes pet happy
+router.put("/:petID/events", (req, res) => {
+  db(
+    `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'madeHappy', NOW());`
+  ).then(results => {
+    if (results.error) {
+      res.status(500).send(results.error);
+    }
+    db(
+      `UPDATE pets SET happy = happy+2 WHERE petID = ${req.params.petID}, happy<=30;`
+    ).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+
+      db(
+        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+      ).then(results => {
+        if (results.error) {
+          res.status(500).send(results.error);
+        }
+        res.send(results.data[0]);
+      });
+    });
   });
 });
 
