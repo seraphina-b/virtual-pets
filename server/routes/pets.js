@@ -133,7 +133,7 @@ router.post("/:petID/happy", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET happy = happy+2 WHERE petID = ${req.params.petID} and happy<=30;`
+      `UPDATE pets SET happy = happy+2 WHERE petID=${req.params.petID} AND happy<=30;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);

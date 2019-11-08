@@ -10,7 +10,7 @@ var channels_client = new Pusher({
 });
 
 function petBars() {
-  db(`UPDATE pets SET satiety = satiety-5 WHERE satiety>=0;`);
+  db(`UPDATE pets SET satiety = satiety-5;`);
   db(`UPDATE pets SET happy = happy-5 WHERE happy>=0;`);
   db(`UPDATE pets SET clean = clean-5 WHERE clean>=0;`);
   db(`UPDATE pets SET play = happy-5 WHERE play>=0;`);
@@ -22,3 +22,5 @@ function petBars() {
 }
 
 module.exports = petBars;
+
+// UPDATE pets SET satiety = satiety-5 WHERE satiety>=0
