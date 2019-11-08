@@ -102,7 +102,7 @@ class Pet extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          pet: data[0].happy
+          pet: data
         });
       })
       //.then(this.updateSatiety())
