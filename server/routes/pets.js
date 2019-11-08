@@ -18,9 +18,11 @@ router.get("/", (req, res) => {
 
 // lists pet by id
 //works as of 11/5/19 @12:17PM according to POSTMAN
+// SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = 1;
+
 router.get("/:petID", (req, res) => {
   db(
-    `SELECT *,  TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID=${req.params.petID};`
+    `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID=${req.params.petID};`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -37,7 +39,6 @@ router.post("/", (req, res) => {
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
-
     }
     //have to figure out how to feed need pets
     db(
@@ -69,7 +70,7 @@ WHERE p.petID=${req.params.petID}`).then(results => {
 //doesn't work (500 error) 11/5/19 @12:21PM but we don't need this
 router.get("/:petID/age", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID=${req.params.petID}`
+    `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID=${req.params.petID}`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -81,7 +82,7 @@ router.get("/:petID/age", (req, res) => {
 //sees the amount of time since it ate so it can poop
 router.get("/:petID/poop", (req, res) => {
   db(
-    `SELECT *, TIMEDIFF(now(), timeActioned) as foodTime FROM events WHERE petID =${req.params.petID} and activity="lastFed"`
+    `SELECT TIMEDIFF(now(), timeActioned) AS foodTime FROM events WHERE petID=${req.params.petID} AND activity="lastFed"`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -90,14 +91,14 @@ router.get("/:petID/poop", (req, res) => {
   });
 });
 
-
 //POST feeds a pet
 //works as of 11/5/19 @12:21PM according to POSTMAN
-//just changed route to /:petID/satiety, don't forget to change the Pet js frontend fetch request that 
+//just changed route to /:petID/satiety, don't forget to change the Pet js frontend fetch request that
 //corresponds to this and the README if it works
 //it works
 router.post("/:petID/satiety", (req, res) => {
-  db(`INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastFed', NOW());`
+  db(
+    `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastFed', NOW());`
     // ON DUPLICATE KEY UPDATE events SET timeActioned=NOW() WHERE petID=${req.params.petID} and activity='lastFed  ';
     //had the idea to  "ON DUPLICATE KEY UPDATE timeActioned=NOW();" but that doesn't exactly work"
   ).then(results => {
@@ -112,7 +113,7 @@ router.post("/:petID/satiety", (req, res) => {
       }
 
       db(
-        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
@@ -139,7 +140,7 @@ router.post("/:petID/happy", (req, res) => {
       }
 
       db(
-        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
@@ -166,7 +167,7 @@ router.post("/:petID/clean", (req, res) => {
       }
 
       db(
-        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
@@ -192,7 +193,7 @@ router.post("/:petID/play", (req, res) => {
       }
 
       db(
-        `SELECT *, TIMEDIFF(now(), dateCreated) as age FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);

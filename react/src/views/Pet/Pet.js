@@ -1,12 +1,10 @@
 //make poop a component
 import React from "react";
-import Header from "./Header.js";
-import Footer from "./Footer.js";
-import { Router, useParams, Link } from "react-router-dom";
 import Pusher from "pusher-js";
+import { Router, useParams, Link } from "react-router-dom";
 
 // life stage images
-import egg from "../.././images/lifeStages/egg.png";
+import born from "../.././images/lifeStages/born.png";
 import baby from "../.././images/lifeStages/baby.png";
 import child from "../.././images/lifeStages/child.png";
 import teen from "../.././images/lifeStages/teen.png";
@@ -31,7 +29,7 @@ class Pet extends React.Component {
   }
 
   // function to connect to pusher
-  //this is a cron job controlled in petBars and sendNotifications
+  // this is a cron job controlled in petBars and sendNotifications
   connectToPusher = () => {
     var pusher = new Pusher("a6e425669a496f8c754a", {
       cluster: "eu",
@@ -66,37 +64,6 @@ class Pet extends React.Component {
       });
   };
 
-  // updates the pets hunger levels and used with hunger button
-  //commented out because we're not using it and it makes things confusing
-  // updateSatiety = () => {
-  //   let id = this.props.match.params.id;
-  //   fetch(`/pets/${id}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       this.setState({
-  //         satiety: data[0].satiety
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
-  //commented out because we're not using it and it makes things confusing
-  // updateHappy = () => {
-  //   let id = this.props.match.params.id;
-  //   fetch(`/pets/${id}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       this.setState({
-  //         happy: data[0].happy
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
   makeHappy = () => {
     let id = this.props.match.params.id;
     fetch(`/pets/${id}/happy`, {
@@ -108,7 +75,6 @@ class Pet extends React.Component {
           pet: data
         });
       })
-      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
@@ -185,42 +151,26 @@ class Pet extends React.Component {
   };
 
   render() {
-    let howFull = "nes-progress";
-    if (this.state.pet.satiety < 6) howFull += " is-error";
-    else if (this.state.pet.satiety < 11) howFull += " is-warning";
-    else howFull += " is-success";
-    //does not work here for some reason
-    // let timeArray = this.state.pet.age.split(":");
-    // console.log(timeArray);
-    // let hours = parseInt(timeArray[0], 10);
-    // let minutes = parseInt(timeArray[1]);
-    // let seconds = parseInt(timeArray[2]);
-    // console.log("It's " + hours + " hours");
-    // console.log(minutes + " minutes");
-    // console.log(seconds + " seconds");
-    //i want to seperate the "age" in hours, minutes, and seconds in an arrayand convert them from strings into numbers. then say
-    // if(hours<0&&minutes<=2){src=egg} and shit like that. I think the way to do this is in my astrology app
-    //i also want to use this seperation to display the age more cleanly
-    //i don't want the button
+    // making the pet 'grow' - changing the lifeStage images depending on time
     let lifeStagePic;
-    if (this.state.pet.age <= "00:00:30") {
-      lifeStagePic = <img src={egg} alt="Egg tamagotchi"></img>;
+    if (this.state.pet.age <= "00:05:00") {
+      lifeStagePic = <img src={born} alt="born tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:00:30" &&
-      this.state.pet.age <= "00:01:00"
+      this.state.pet.age > "00:05:00" &&
+      this.state.pet.age <= "00:10:00"
     ) {
       lifeStagePic = <img src={baby} alt="baby tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:01:00" &&
-      this.state.pet.age <= "00:01:30"
+      this.state.pet.age > "00:10:00" &&
+      this.state.pet.age <= "00:10:30"
     ) {
       lifeStagePic = <img src={child} alt="child tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:01:30" &&
-      this.state.pet.age <= "00:02:00"
+      this.state.pet.age > "00:10:30" &&
+      this.state.pet.age <= "00:15:00"
     ) {
       lifeStagePic = <img src={teen} alt="teen tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:02:00") {
+    } else if (this.state.pet.age > "00:15:00") {
       lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
     }
 
