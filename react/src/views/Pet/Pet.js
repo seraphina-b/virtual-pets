@@ -93,6 +93,24 @@ class Pet extends React.Component {
       });
   };
 
+  makeHappy = () => {
+    let id = this.props.match.params.id;
+    fetch(`/pets/${id}/events`, {
+      method: "PUT"
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          pet: data[0].happy
+        });
+      })
+      //.then(this.updateSatiety())
+      .catch(error => {
+        console.log(error);
+      });
+    console.log(this.state.pet.happy);
+  };
+
   handleFeeding = () => {
     let id = this.props.match.params.id;
     fetch(`/pets/${id}/events`, {
@@ -250,7 +268,7 @@ class Pet extends React.Component {
               )}
               {/* happy button */}
               {this.state.pet.age > "00:00:00" && (
-                <button onClick={this.handleFeeding} className="nes-btn">
+                <button onClick={this.makeHappy} className="nes-btn">
                   {" "}
                   <img src={happy} alt="Happy icon" />
                 </button>
