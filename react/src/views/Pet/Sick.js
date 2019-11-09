@@ -18,7 +18,7 @@ class Sick extends React.Component {
   render() {
     // making the pet 'grow' - changing the lifeStage images depending on time
     let sickPic;
-    if (this.state.pet.poopPic <= "00:0:30") {
+    if (this.state.pet.foodTime <= "00:0:30") {
       sickPic = <img src={sick} alt="sick image"></img>;
     }
 

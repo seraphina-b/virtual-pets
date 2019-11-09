@@ -17,14 +17,15 @@ import Poop from "./Poop.js";
 import poop from "../.././images/petAlerts/poop.png";
 
 // pet sickness component & image
-// import Sick from "./Sick.js";
-// import sick from "../.././images/petAlerts/sick.png";
+import Sick from "./Sick.js";
+import sick from "../.././images/petAlerts/sick.png";
 
 // action button images
 import bread from "../.././images/bread.png";
 import happy from "../.././images/happy.png";
 import bath from "../.././images/bath.png";
 import play from "../.././images/ball.png";
+import doctor from "../.././images/doctor.png";
 
 class Pet extends React.Component {
   constructor(props) {
@@ -190,9 +191,12 @@ class Pet extends React.Component {
 
     // makes sick image appear
     let sickPic;
-    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.poopPic <= 14) {
-      console.log("poop should be there");
-      poopPic = <img src={poop} alt="poop"></img>;
+    if (
+      this.state.pet.foodTime >= "00:00:30" &&
+      this.state.pet.poopPic > "00:00:30"
+    ) {
+      console.log("sick img should be there");
+      sickPic = <img src={sick} alt="sick"></img>;
     }
 
     return (
@@ -275,7 +279,7 @@ class Pet extends React.Component {
                 max="15"
               ></progress>
 
-              {/* Action buttons */}
+              {/* ACTION buttons */}
               <h3 className="title">Actions</h3>
               {/* feed button */}
               {this.state.pet.age > "00:00:00" && (
@@ -303,6 +307,13 @@ class Pet extends React.Component {
                 <button onClick={this.handlePlaying} className="nes-btn">
                   {" "}
                   <img src={play} alt="Tennis ball icon" />
+                </button>
+              )}
+              {/* doctor button */}
+              {this.state.pet.age > "00:00:00" && (
+                <button onClick={this.handleSickness} className="nes-btn">
+                  {" "}
+                  <img src={doctor} alt="Doctor icon" />
                 </button>
               )}
             </div>
