@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 
 router.get("/:petID", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID=${req.params.petID};`
+    `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID=${req.params.petID};`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -82,7 +82,7 @@ router.get("/:petID/age", (req, res) => {
 //sees the amount of time since it ate so it can poop
 router.get("/:petID/poop", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID=${req.params.petID};`
+    `SELECT TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID=${req.params.petID};"`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -117,7 +117,7 @@ router.post("/:petID/satiety", (req, res) => {
         }
 
         db(
-          `SELECT * and TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
+          `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
         ).then(results => {
           if (results.error) {
             res.status(500).send(results.error);
@@ -146,7 +146,7 @@ router.post("/:petID/happy", (req, res) => {
 
 
       db(
-        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
@@ -173,7 +173,7 @@ router.post("/:petID/clean", (req, res) => {
       }
 
       db(
-        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};;`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
@@ -199,7 +199,7 @@ router.post("/:petID/play", (req, res) => {
       }
 
       db(
-        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
