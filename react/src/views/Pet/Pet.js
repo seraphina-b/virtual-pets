@@ -44,7 +44,7 @@ class Pet extends React.Component {
     });
 
     var channel = pusher.subscribe("my-channel");
-    channel.bind("my-event", data => {
+    channel.bind("updatePet", data => {
       console.log(data);
       this.getData();
     });
@@ -189,11 +189,11 @@ class Pet extends React.Component {
     }
 
     // makes sick image appear
-    // let sickPic;
-    // if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 0) {
-    //   console.log("poop should be there");
-    //   poopPic = <img src={poop} alt="poop"></img>;
-    // }
+    let sickPic;
+    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.poopPic <= 14) {
+      console.log("poop should be there");
+      poopPic = <img src={poop} alt="poop"></img>;
+    }
 
     return (
       <div className="container">
@@ -240,7 +240,8 @@ class Pet extends React.Component {
 
               {/* displays the poop image */}
               {poopPic}
-              {/* {sickPic} */}
+              {/* displays the sick image */}
+              {sickPic}
             </div>
             <div> </div>
 

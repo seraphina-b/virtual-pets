@@ -9,7 +9,7 @@ var channels_client = new Pusher({
 });
 
 function sendNotification() {
-  channels_client.trigger("my-channel", "my-event", {
+  channels_client.trigger("my-channel", "updatePet", {
     message: "hello world"
   });
 }
