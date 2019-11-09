@@ -144,13 +144,11 @@ class Pet extends React.Component {
     console.log(this.state.play);
   };
 
-  handleSickness = () => {};
-
-  toggleHidden() {
+  handleSickness = () => {
     this.setState({
       isHidden: !this.state.isHidden
     });
-  }
+  };
 
   //handleAge just for testing right now
   handleAge = e => {
@@ -247,12 +245,11 @@ class Pet extends React.Component {
               {/* <button className="nes-btn">
                 <img src={help} alt="Pet needs help" />
               </button> */}
-              <div>
-                {/* displays the poop image */}
-                {poopPic}
-                {/* displays the sick image */}
-                {sickPic}
-              </div>
+
+              {/* displays the poop image */}
+              {poopPic}
+              {/* displays the sick image */}
+              {sickPic}
             </div>
 
             <div className="col">
@@ -317,13 +314,11 @@ class Pet extends React.Component {
               )}
               {/* doctor button */}
               {this.state.pet.age > "00:00:00" && (
-                <button
-                  onClick={this.toggleHidden.bind(this)}
-                  className="nes-btn"
-                >
+                <button onClick={this.handleSickness} className="nes-btn">
                   <img src={doctor} alt="Doctor icon" />
                 </button>
               )}
+              {!this.state.isHidden && sickPic}
             </div>
           </div>
         </section>
