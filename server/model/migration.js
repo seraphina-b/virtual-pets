@@ -20,7 +20,7 @@ con.connect(function(err) {
 
   // creates PETS table
   let sql =
-    "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, satiety INT NOT NULL DEFAULT 0, happy INT NOT NULL DEFAULT 0, clean INT NOT NULL DEFAULT 0, play INT NOT NULL DEFAULT 0, PRIMARY KEY (petID));";
+    "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, satiety INT NOT NULL DEFAULT 0, happy INT NOT NULL DEFAULT 0, clean INT NOT NULL DEFAULT 0, play INT NOT NULL DEFAULT 0, timeFed DATETIME, PRIMARY KEY (petID));";
   con.query(sql, function(err, result) {
     if (err) throw err;
 
