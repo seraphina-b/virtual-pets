@@ -155,7 +155,6 @@ router.post("/:petID/happy", (req, res) => {
         res.status(500).send(results.error);
       }
 
-
       db(
         //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
         `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`

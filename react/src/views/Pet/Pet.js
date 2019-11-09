@@ -32,8 +32,7 @@ class Pet extends React.Component {
     super(props);
     console.log(props.match);
     this.state = {
-      pet: {},
-      isHidden: true
+      pet: {}
     };
   }
 
@@ -84,7 +83,6 @@ class Pet extends React.Component {
           pet: data
         });
       })
-      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
@@ -146,12 +144,6 @@ class Pet extends React.Component {
 
   handleSickness = () => {};
 
-  toggleHidden() {
-    this.setState({
-      isHidden: !this.state.isHidden
-    });
-  }
-
   //handleAge just for testing right now
   handleAge = e => {
     e.preventDefault();
@@ -201,7 +193,10 @@ class Pet extends React.Component {
 
     // makes sick image appear
     let sickPic;
-    sickPic = <img src={sick} alt="sick"></img>;
+    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 13) {
+      sickPic = <img src={sick} alt="sick"></img>;
+    }
+
     // removing this for the moment, want to get button to remove the image first then add if statement
     // if (this.state.poopPic > "00:01:00") {}
 
@@ -247,12 +242,11 @@ class Pet extends React.Component {
               {/* <button className="nes-btn">
                 <img src={help} alt="Pet needs help" />
               </button> */}
-              <div>
-                {/* displays the poop image */}
-                {poopPic}
-                {/* displays the sick image */}
-                {sickPic}
-              </div>
+
+              {/* displays the poop image */}
+              {poopPic}
+              {/* displays the sick image */}
+              {sickPic}
             </div>
 
             <div className="col">
@@ -317,10 +311,7 @@ class Pet extends React.Component {
               )}
               {/* doctor button */}
               {this.state.pet.age > "00:00:00" && (
-                <button
-                  onClick={this.toggleHidden.bind(this)}
-                  className="nes-btn"
-                >
+                <button onClick={this.handleSickness} className="nes-btn">
                   <img src={doctor} alt="Doctor icon" />
                 </button>
               )}
