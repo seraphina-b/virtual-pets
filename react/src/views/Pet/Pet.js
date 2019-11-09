@@ -32,8 +32,7 @@ class Pet extends React.Component {
     super(props);
     console.log(props.match);
     this.state = {
-      pet: {},
-      isHidden: true
+      pet: {}
     };
   }
 
@@ -84,7 +83,6 @@ class Pet extends React.Component {
           pet: data
         });
       })
-      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
@@ -144,11 +142,7 @@ class Pet extends React.Component {
     console.log(this.state.play);
   };
 
-  handleSickness = () => {
-    this.setState({
-      isHidden: !this.state.isHidden
-    });
-  };
+  handleSickness = () => {};
 
   //handleAge just for testing right now
   handleAge = e => {
@@ -199,7 +193,10 @@ class Pet extends React.Component {
 
     // makes sick image appear
     let sickPic;
-    sickPic = <img src={sick} alt="sick"></img>;
+    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 13) {
+      sickPic = <img src={sick} alt="sick"></img>;
+    }
+
     // removing this for the moment, want to get button to remove the image first then add if statement
     // if (this.state.poopPic > "00:01:00") {}
 
@@ -318,7 +315,6 @@ class Pet extends React.Component {
                   <img src={doctor} alt="Doctor icon" />
                 </button>
               )}
-              {!this.state.isHidden && sickPic}
             </div>
           </div>
         </section>
