@@ -1,8 +1,6 @@
-//make poop a component
 import React from "react";
 import Pusher from "pusher-js";
 import { Router, useParams, Link } from "react-router-dom";
-import Poop from "./Poop.js";
 
 // life stage images
 import born from "../.././images/lifeStages/born.png";
@@ -11,17 +9,22 @@ import child from "../.././images/lifeStages/child.png";
 import teen from "../.././images/lifeStages/teen.png";
 import adult from "../.././images/lifeStages/adult.png";
 
-// pet alert images
+// pet alert image
 import help from "../.././images/petAlerts/help.png";
+
+// pet poops component & image
+import Poop from "./Poop.js";
+import poop from "../.././images/petAlerts/poop.png";
+
+// pet sickness component & image
+import Sick from "./Sick.js";
+import sick from "../.././images/petAlerts/sick.png";
 
 // action button images
 import bread from "../.././images/bread.png";
 import happy from "../.././images/happy.png";
 import bath from "../.././images/bath.png";
 import play from "../.././images/ball.png";
-
-//poop image
-import poop from "../.././images/petAlerts/poop.png";
 
 class Pet extends React.Component {
   constructor(props) {
@@ -114,7 +117,6 @@ class Pet extends React.Component {
           pet: data
         });
       })
-      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
@@ -134,7 +136,6 @@ class Pet extends React.Component {
           pet: data
         });
       })
-      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });

@@ -10,17 +10,14 @@ var channels_client = new Pusher({
 });
 
 function petBars() {
-  db(`UPDATE pets SET satiety = satiety-5 WHERE satiety>=0;`);
-  db(`UPDATE pets SET happy = happy-5 WHERE happy>=0;`);
-  db(`UPDATE pets SET clean = clean-5 WHERE clean>=0;`);
-  db(`UPDATE pets SET play = happy-5 WHERE play>=0;`);
+  db(`UPDATE pets SET satiety = satiety-1 WHERE satiety>=0;`);
+  db(`UPDATE pets SET happy = happy-1 WHERE happy>=0;`);
+  db(`UPDATE pets SET clean = clean-1 WHERE clean>=0;`);
+  db(`UPDATE pets SET play = happy-1 WHERE play>=0;`);
 
   channels_client.trigger("my-channel", "my-event", {
-    //hi this is nicole. i changed the message to "hi world" to see if it's working and it's not
     message: "hi world"
   });
 }
 
 module.exports = petBars;
-
-// UPDATE pets SET satiety = satiety-5 WHERE satiety>=0
