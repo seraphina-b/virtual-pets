@@ -2,6 +2,7 @@
 import React from "react";
 import Pusher from "pusher-js";
 import { Router, useParams, Link } from "react-router-dom";
+import Poop from "./Poop.js";
 
 // life stage images
 import born from "../.././images/lifeStages/born.png";
@@ -216,6 +217,7 @@ class Pet extends React.Component {
                 <img src={help} alt="Pet needs help" />
               </button>
             </div>
+            <Poop></Poop>
 
             <div className="col">
               {/* Hunger bar | min = 0 max = 15 | reduces by 2 every 5 mins | if hunger = 0 or > 25 - pet dies | if hunger = 20 - pet sick */}
