@@ -49,6 +49,14 @@ router.post("/", (req, res) => {
       }
       res.send(results.data[0]);
     });
+    db(
+      `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets;`
+    ).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+      res.send(results.data[0]);
+    });
   });
 });
 
