@@ -182,7 +182,8 @@ class Pet extends React.Component {
 
     //makes poop appear but also lets us clean the poop
     //might be a better way to do this on the frontend AND the backend this is what I have for now
-    // this is good Nicole :)
+    //adding comment because git is acting weird
+
     let poopPic;
     if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 13) {
       console.log("poop should be there");
