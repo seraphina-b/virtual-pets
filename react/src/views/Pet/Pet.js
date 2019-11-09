@@ -20,6 +20,9 @@ import happy from "../.././images/happy.png";
 import clean from "../.././images/clean.png";
 import play from "../.././images/ball.png";
 
+//poop image
+import poop from "../.././images/petAlerts/poop.png";
+
 class Pet extends React.Component {
   constructor(props) {
     super(props);
@@ -175,6 +178,11 @@ class Pet extends React.Component {
       lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
     }
 
+    let poopPic;
+    if (this.state.pet.foodTime <= "00:0:30") {
+      poopPic = <img src={poop} alt="poop"></img>;
+    }
+
     return (
       <div className="container">
         <nav className="nes-container with-title">
@@ -216,8 +224,10 @@ class Pet extends React.Component {
               <button className="nes-btn">
                 <img src={help} alt="Pet needs help" />
               </button>
+
+              {poopPic}
             </div>
-            <Poop></Poop>
+            <div> </div>
 
             <div className="col">
               {/* Hunger bar | min = 0 max = 15 | reduces by 2 every 5 mins | if hunger = 0 or > 25 - pet dies | if hunger = 20 - pet sick */}

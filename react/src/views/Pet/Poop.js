@@ -15,8 +15,18 @@ class Poop extends React.Component {
             pet: {}
         };
     }
-
-
+    // componentDidMount = () => {
+    //     fetch(`/pets/${id}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             this.setState({
+    //                 pets: data
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
 
 
     render() {
