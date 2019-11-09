@@ -32,7 +32,8 @@ class Pet extends React.Component {
     super(props);
     console.log(props.match);
     this.state = {
-      pet: {}
+      pet: {},
+      isHidden: true
     };
   }
 
@@ -143,6 +144,14 @@ class Pet extends React.Component {
     console.log(this.state.play);
   };
 
+  handleSickness = () => {};
+
+  toggleHidden() {
+    this.setState({
+      isHidden: !this.state.isHidden
+    });
+  }
+
   //handleAge just for testing right now
   handleAge = e => {
     e.preventDefault();
@@ -192,13 +201,9 @@ class Pet extends React.Component {
 
     // makes sick image appear
     let sickPic;
-    if (
-      this.state.pet.foodTime >= "00:00:30" &&
-      this.state.pet.poopPic > "00:00:30"
-    ) {
-      console.log("sick img should be there");
-      sickPic = <img src={sick} alt="sick"></img>;
-    }
+    sickPic = <img src={sick} alt="sick"></img>;
+    // removing this for the moment, want to get button to remove the image first then add if statement
+    // if (this.state.poopPic > "00:01:00") {}
 
     return (
       <div className="container">
@@ -242,13 +247,13 @@ class Pet extends React.Component {
               {/* <button className="nes-btn">
                 <img src={help} alt="Pet needs help" />
               </button> */}
-
-              {/* displays the poop image */}
-              {poopPic}
-              {/* displays the sick image */}
-              {sickPic}
+              <div>
+                {/* displays the poop image */}
+                {poopPic}
+                {/* displays the sick image */}
+                {sickPic}
+              </div>
             </div>
-            <div> </div>
 
             <div className="col">
               {/* Hunger bar | min = 0 max = 15 | reduces by 2 every 5 mins | if hunger = 0 or > 25 - pet dies | if hunger = 20 - pet sick */}
@@ -312,8 +317,10 @@ class Pet extends React.Component {
               )}
               {/* doctor button */}
               {this.state.pet.age > "00:00:00" && (
-                <button onClick={this.handleSickness} className="nes-btn">
-                  {" "}
+                <button
+                  onClick={this.toggleHidden.bind(this)}
+                  className="nes-btn"
+                >
                   <img src={doctor} alt="Doctor icon" />
                 </button>
               )}
@@ -324,4 +331,5 @@ class Pet extends React.Component {
     );
   }
 }
+
 export default Pet;
