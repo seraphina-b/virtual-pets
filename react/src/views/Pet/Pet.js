@@ -1,8 +1,6 @@
-//make poop a component
 import React from "react";
 import Pusher from "pusher-js";
 import { Router, useParams, Link } from "react-router-dom";
-import Poop from "./Poop.js";
 
 // life stage images
 import born from "../.././images/lifeStages/born.png";
@@ -11,17 +9,23 @@ import child from "../.././images/lifeStages/child.png";
 import teen from "../.././images/lifeStages/teen.png";
 import adult from "../.././images/lifeStages/adult.png";
 
-// pet alert images
+// pet alert image
 import help from "../.././images/petAlerts/help.png";
+
+// pet poops component & image
+import Poop from "./Poop.js";
+import poop from "../.././images/petAlerts/poop.png";
+
+// pet sickness component & image
+import Sick from "./Sick.js";
+import sick from "../.././images/petAlerts/sick.png";
 
 // action button images
 import bread from "../.././images/bread.png";
 import happy from "../.././images/happy.png";
-import clean from "../.././images/clean.png";
+import bath from "../.././images/bath.png";
 import play from "../.././images/ball.png";
-
-//poop image
-import poop from "../.././images/petAlerts/poop.png";
+import doctor from "../.././images/doctor.png";
 
 class Pet extends React.Component {
   constructor(props) {
@@ -41,7 +45,7 @@ class Pet extends React.Component {
     });
 
     var channel = pusher.subscribe("my-channel");
-    channel.bind("my-event", data => {
+    channel.bind("updatePet", data => {
       console.log(data);
       this.getData();
     });
@@ -114,7 +118,6 @@ class Pet extends React.Component {
           pet: data
         });
       })
-      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
@@ -134,7 +137,6 @@ class Pet extends React.Component {
           pet: data
         });
       })
-      //.then(this.updateSatiety())
       .catch(error => {
         console.log(error);
       });
@@ -181,10 +183,21 @@ class Pet extends React.Component {
     //makes poop appear but also lets us clean the poop
     //might be a better way to do this on the frontend AND the backend this is what I have for now
     //adding comment because git is acting weird
+
     let poopPic;
-    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 0) {
-      console.log("poop should be there")
+    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 13) {
+      console.log("poop should be there");
       poopPic = <img src={poop} alt="poop"></img>;
+    }
+
+    // makes sick image appear
+    let sickPic;
+    if (
+      this.state.pet.foodTime >= "00:00:30" &&
+      this.state.pet.poopPic > "00:00:30"
+    ) {
+      console.log("sick img should be there");
+      sickPic = <img src={sick} alt="sick"></img>;
     }
 
     return (
@@ -224,12 +237,16 @@ class Pet extends React.Component {
               <h4>{this.state.pet.age}</h4>
               {lifeStagePic}
 
+              {/* Not sure if we will have time to make the alert image to work, so will commet in out for now */}
               {/* Kat note: thumbnail for pet alerts */}
-              <button className="nes-btn">
+              {/* <button className="nes-btn">
                 <img src={help} alt="Pet needs help" />
-              </button>
+              </button> */}
 
+              {/* displays the poop image */}
               {poopPic}
+              {/* displays the sick image */}
+              {sickPic}
             </div>
             <div> </div>
 
@@ -263,7 +280,7 @@ class Pet extends React.Component {
                 max="15"
               ></progress>
 
-              {/* Action buttons */}
+              {/* ACTION buttons */}
               <h3 className="title">Actions</h3>
               {/* feed button */}
               {this.state.pet.age > "00:00:00" && (
@@ -283,7 +300,7 @@ class Pet extends React.Component {
               {this.state.pet.age > "00:00:00" && (
                 <button onClick={this.handleCleaning} className="nes-btn">
                   {" "}
-                  <img src={clean} alt="Bath icon" />
+                  <img src={bath} alt="Bath icon" />
                 </button>
               )}
               {/* play button */}
@@ -291,6 +308,13 @@ class Pet extends React.Component {
                 <button onClick={this.handlePlaying} className="nes-btn">
                   {" "}
                   <img src={play} alt="Tennis ball icon" />
+                </button>
+              )}
+              {/* doctor button */}
+              {this.state.pet.age > "00:00:00" && (
+                <button onClick={this.handleSickness} className="nes-btn">
+                  {" "}
+                  <img src={doctor} alt="Doctor icon" />
                 </button>
               )}
             </div>
