@@ -17,7 +17,7 @@ import help from "../.././images/petAlerts/help.png";
 // action button images
 import bread from "../.././images/bread.png";
 import happy from "../.././images/happy.png";
-import clean from "../.././images/clean.png";
+import bath from "../.././images/bath.png";
 import play from "../.././images/ball.png";
 
 //poop image
@@ -182,7 +182,7 @@ class Pet extends React.Component {
     //might be a better way to do this on the frontend AND the backend this is what I have for now
     let poopPic;
     if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 0) {
-      console.log("poop should be there")
+      console.log("poop should be there");
       poopPic = <img src={poop} alt="poop"></img>;
     }
 
@@ -282,7 +282,7 @@ class Pet extends React.Component {
               {this.state.pet.age > "00:00:00" && (
                 <button onClick={this.handleCleaning} className="nes-btn">
                   {" "}
-                  <img src={clean} alt="Bath icon" />
+                  <img src={bath} alt="Bath icon" />
                 </button>
               )}
               {/* play button */}
