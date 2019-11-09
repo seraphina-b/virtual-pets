@@ -17,8 +17,8 @@ import Poop from "./Poop.js";
 import poop from "../.././images/petAlerts/poop.png";
 
 // pet sickness component & image
-import Sick from "./Sick.js";
-import sick from "../.././images/petAlerts/sick.png";
+// import Sick from "./Sick.js";
+// import sick from "../.././images/petAlerts/sick.png";
 
 // action button images
 import bread from "../.././images/bread.png";
@@ -181,11 +181,19 @@ class Pet extends React.Component {
 
     //makes poop appear but also lets us clean the poop
     //might be a better way to do this on the frontend AND the backend this is what I have for now
+    // this is good Nicole :)
     let poopPic;
-    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 0) {
+    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 13) {
       console.log("poop should be there");
       poopPic = <img src={poop} alt="poop"></img>;
     }
+
+    // makes sick image appear
+    // let sickPic;
+    // if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 0) {
+    //   console.log("poop should be there");
+    //   poopPic = <img src={poop} alt="poop"></img>;
+    // }
 
     return (
       <div className="container">
@@ -224,12 +232,15 @@ class Pet extends React.Component {
               <h4>{this.state.pet.age}</h4>
               {lifeStagePic}
 
+              {/* Not sure if we will have time to make the alert image to work, so will commet in out for now */}
               {/* Kat note: thumbnail for pet alerts */}
-              <button className="nes-btn">
+              {/* <button className="nes-btn">
                 <img src={help} alt="Pet needs help" />
-              </button>
+              </button> */}
 
+              {/* displays the poop image */}
               {poopPic}
+              {/* {sickPic} */}
             </div>
             <div> </div>
 

@@ -30,7 +30,7 @@ class Poop extends React.Component {
   render() {
     // making the pet 'grow' - changing the lifeStage images depending on time
     let poopPic;
-    if (this.state.pet.foodTime <= "00:00:30") {
+    if (this.state.pet.foodTime <= "00:0:30") {
       poopPic = <img src={poop} alt="poop"></img>;
     }
 
