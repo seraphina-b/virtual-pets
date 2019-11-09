@@ -82,7 +82,7 @@ router.get("/:petID/age", (req, res) => {
 //sees the amount of time since it ate so it can poop
 router.get("/:petID/poop", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), timeActioned) AS foodTime FROM events WHERE petID=${req.params.petID} AND activity="lastFed"`
+    `SELECT TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID=${req.params.petID};`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -92,10 +92,7 @@ router.get("/:petID/poop", (req, res) => {
 });
 
 //POST feeds a pet
-//works as of 11/5/19 @12:21PM according to POSTMAN
-//just changed route to /:petID/satiety, don't forget to change the Pet js frontend fetch request that
-//corresponds to this and the README if it works
-//it works
+//updated this to tell us last time the pet was fed so we can get info about poop
 router.post("/:petID/satiety", (req, res) => {
   db(
     `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastFed', NOW());`
@@ -113,12 +110,20 @@ router.post("/:petID/satiety", (req, res) => {
       }
 
       db(
-        `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
+        `UPDATE pets SET timeFed = now() WHERE petID=${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
         }
-        res.send(results.data[0]);
+
+        db(
+          `SELECT * and TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
+        ).then(results => {
+          if (results.error) {
+            res.status(500).send(results.error);
+          }
+          res.send(results.data[0]);
+        });
       });
     });
   });
@@ -138,6 +143,7 @@ router.post("/:petID/happy", (req, res) => {
       if (results.error) {
         res.status(500).send(results.error);
       }
+
 
       db(
         `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = ${req.params.petID};`
