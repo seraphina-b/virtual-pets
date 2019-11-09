@@ -178,6 +178,8 @@ class Pet extends React.Component {
       lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
     }
 
+    //makes poop appear but also lets us clean the poop
+    //might be a better way to do this on the frontend AND the backend this is what I have for now
     let poopPic;
     if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 0) {
       console.log("poop should be there")
