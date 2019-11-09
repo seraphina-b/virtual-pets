@@ -179,7 +179,8 @@ class Pet extends React.Component {
     }
 
     let poopPic;
-    if (this.state.pet.foodTime <= "00:0:30") {
+    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 0) {
+      console.log("poop should be there")
       poopPic = <img src={poop} alt="poop"></img>;
     }
 
