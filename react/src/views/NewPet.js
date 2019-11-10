@@ -48,7 +48,9 @@ class NewPet extends React.Component {
         console.log("data is " + data);
         //redirect the user to the new pet page
         //well it's going to undefined right now
-        this.props.history.push(`/pets/${data.petId}`);
+        // in a previous commit this line was..
+        // this.props.history.push("/pet")
+        this.props.history.push(`/pet/${data.petId}`);
         // this.props.location.pathname.push(`/pets/${data.petId}`);
       })
       .catch(error => {
@@ -64,7 +66,7 @@ class NewPet extends React.Component {
           type="button"
           onClick={this.handleClick}
           className="nes-btn is-success"
-        // to={`/pets/${data.insertID}`}
+          // to={`/pets/${data.insertID}`}
         >
           Submit
         </button>
