@@ -39,6 +39,7 @@ class NewPet extends React.Component {
       headers: {
         "Content-Type": "application/json"
       },
+      //we're not getting the id and this that's a problem
       body: JSON.stringify({ name: this.state.name })
     })
       .then(res => res.json())
