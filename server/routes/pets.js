@@ -7,6 +7,7 @@ router.use(bodyParser.json());
 
 // lists all pets
 //works as of 11/5/19 @12:16PM according to POSTMAN
+//works as of 11/10/19 at 3:30PM
 router.get("/", (req, res) => {
   db("SELECT * FROM pets").then(results => {
     if (results.error) {
@@ -19,7 +20,7 @@ router.get("/", (req, res) => {
 // lists pet by id
 //works as of 11/5/19 @12:17PM according to POSTMAN
 // SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID = 1;
-
+//works as of 11/10/19 at 3:31PM
 router.get("/:petID", (req, res) => {
   db(
     //this gets all the pet data, please do not delete the *
@@ -28,7 +29,9 @@ router.get("/:petID", (req, res) => {
     if (results.error) {
       res.status(500).send(results.error);
     }
-    res.send(results.data[0]);
+    //what would happen if I took the zero out?
+    //it works the same way for some reason
+    res.send(results.data);
   });
 });
 
@@ -48,8 +51,23 @@ router.post("/", (req, res) => {
       if (results.error) {
         res.status(500).send(results.error);
       }
+      //took the zero out and it said bad request 
+      //and i'm not sure if that's because it
+      // didn't know which one we were inserting into because
+      //it's a post request
       res.send(results.data[0]);
     });
+    db(
+      `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastFed', NOW());`
+      // ON DUPLICATE KEY UPDATE events SET timeActioned=NOW() WHERE petID=${req.params.petID} and activity='lastFed  ';
+      //had the idea to  "ON DUPLICATE KEY UPDATE timeActioned=NOW();" but that doesn't exactly work"
+    ).then(results => {
+      if (results.error) {
+        res.status(500).send(results.error);
+      }
+      res.send(results.data[0]);
+    });
+
     db(
       //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
       `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets;`
