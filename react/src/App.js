@@ -30,7 +30,7 @@ class App extends React.Component {
 
           <Route path="/pets" component={Pets} />
 
-          <Route path="/" component={LogIn} />
+          {/*<Route path="/" component={LogIn} />*/}
         </Switch>
       </BrowserRouter>
     );

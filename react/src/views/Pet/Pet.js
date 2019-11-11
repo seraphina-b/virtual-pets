@@ -55,7 +55,9 @@ class Pet extends React.Component {
   // this basically refreshed the page and updates the pet info
   getData = () => {
     let id = this.props.match.params.id;
-    fetch(`/pets/${id}`)
+    fetch(`/pets/${id}`, {
+      method: "GET"
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({

@@ -28,10 +28,10 @@ router.get("/:petID", (req, res) => {
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
-    }
+    } 
     //what would happen if I took the zero out?
     //it works the same way for some reason
-    res.send(results.data);
+    res.send(results.data[0]);
   });
 });
 
@@ -44,33 +44,48 @@ router.post("/", (req, res) => {
     if (results.error) {
       res.status(500).send(results.error);
     }
+
+    // db("SELECT * FROM pets ORDER BY petID DESC LIMIT 1;").then(results => {
+    //   if (results.error) {
+    //     res.status(500).send(results.error);
+    //   }
+    //   res.send(results.data);
+    // })
+
+    console.log(results);
+
+    let petID = results.data[0].insertId;
+
+
     //have to figure out how to feed need pets
-    db(
-      `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'madeHappy', NOW());`
-    ).then(results => {
-      if (results.error) {
-        res.status(500).send(results.error);
-      }
-      //took the zero out and it said bad request 
-      //and i'm not sure if that's because it
-      // didn't know which one we were inserting into because
-      //it's a post request
-      res.send(results.data[0]);
-    });
-    db(
-      `INSERT INTO events (petID, activity, timeActioned) VALUES (${req.params.petID}, 'lastFed', NOW());`
-      // ON DUPLICATE KEY UPDATE events SET timeActioned=NOW() WHERE petID=${req.params.petID} and activity='lastFed  ';
-      //had the idea to  "ON DUPLICATE KEY UPDATE timeActioned=NOW();" but that doesn't exactly work"
-    ).then(results => {
-      if (results.error) {
-        res.status(500).send(results.error);
-      }
-      res.send(results.data[0]);
-    });
+    // db(
+    //   `INSERT INTO events (petID, activity, timeActioned) VALUES (${petID}, 'madeHappy', NOW());`
+    // ).then(results => {
+    //   if (results.error) {
+    //     res.status(500).send(results.error);
+    //   }
+    //   //took the zero out and it said bad request 
+    //   //and i'm not sure if that's because it
+    //   // didn't know which one we were inserting into because
+    //   //it's a post request
+    //   //res.send(results.data[0]);
+    // });
+    // db(
+    //   `INSERT INTO events (petID, activity, timeActioned) VALUES (${petID}, 'lastFed', NOW());`
+    //   // ON DUPLICATE KEY UPDATE events SET timeActioned=NOW() WHERE petID=${req.params.petID} and activity='lastFed  ';
+    //   //had the idea to  "ON DUPLICATE KEY UPDATE timeActioned=NOW();" but that doesn't exactly work"
+    // ).then(results => {
+    //   if (results.error) {
+    //     res.status(500).send(results.error);
+    //   }
+    //   //res.send(results.data[0]);
+    // });
+
+    // res.send(petID);
 
     db(
       //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
-      `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets;`
+      `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${petID};`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);

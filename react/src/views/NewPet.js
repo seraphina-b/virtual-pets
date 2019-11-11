@@ -45,12 +45,12 @@ class NewPet extends React.Component {
       .then(res => res.json())
       .then(data => {
         console.log("Posted your pet, baby!");
-        console.log("data is " + data);
+        console.log("data is " + JSON.stringify(data));
         //redirect the user to the new pet page
         //well it's going to undefined right now
         // in a previous commit this line was..
         // this.props.history.push("/pet")
-        this.props.history.push(`/pet/${data.petId}`);
+        this.props.history.push(`/pets/${data.petID}`);
         // this.props.location.pathname.push(`/pets/${data.petId}`);
       })
       .catch(error => {
