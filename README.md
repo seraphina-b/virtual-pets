@@ -4,19 +4,22 @@ Our project to create a virtual pet application that allows you to create and ca
 
 ## Table of contents:
 
+<!-- 1. [Example](#example)
+## Example -->
+
 1. Project planning
    - Pet information
    - API route plan
    - Full stack architecture drawing
    - Database schema
-2. Prerequisites
-3. Installation requirements
-4. How to use app once installed
-5. How to contribute
-6. Contributors
-7. Acknowledgements
-8. Contact information??
-9. Add licence information??
+1. Prerequisites
+1. Installation requirements
+1. How to use app once installed
+1. How to contribute
+1. Contributors
+1. Acknowledgements
+1. Contact information??
+1. Add licence information??
 
 Useful links (for Developers):
 
@@ -126,10 +129,11 @@ Other:
 | /pets               |        POST |                       Creates one pet                       |
 | /pets/:petID        |         GET |                        Gets one pet                         |                |                                                           |
 | /pets/:petID/events |         GET |                 gets all events for one pet                 |
-| /pet/:petID/events  |        POST |                        feeds one pet                        |                |                                                           |
+| /pet/:petID/satiety  |        POST |                        feeds one pet                        |                |                                                           |
 | /login              |        POST | should generate a new tocken if user and password are valid |
 | /login/account      |         GET |              go to accounts page if authorized              |
 | /pets/:petID/age    |         GET |                          gets age                           |
+| /pets/:petID/happy | POST| | makes pet happy|
 
 ## Frontend Routes
 

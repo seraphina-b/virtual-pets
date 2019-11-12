@@ -34,6 +34,10 @@ class Create extends React.Component {
   getAge() {
     fetch("/:petID/age", {
       method: "GET"
+      // headers: {
+      //   "Content-Type": "application/json"
+      // },
+      // body: JSON.stringify({ input: this.state.input })
     })
       // Continue fetch request here
       .then(res => res.json())

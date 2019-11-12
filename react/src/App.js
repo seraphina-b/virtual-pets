@@ -22,10 +22,15 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route path="/create" component={Create} />
+
+          {/* the below is meant to be /pet/:id not pets/:id */}
           <Route path="/pets/:id" component={Pet} />
+          {/* but changing it makes the create new pet button go to the pets page??? */}
+          {/* <Route path="/pet/:id" component={Pet} /> */}
+
           <Route path="/pets" component={Pets} />
 
-          <Route path="/" component={LogIn} />
+          <Route path="/" component={Pets} />
         </Switch>
       </BrowserRouter>
     );

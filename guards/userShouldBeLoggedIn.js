@@ -1,5 +1,5 @@
 var jwt = require("jsonwebtoken");
-var secret = "Big ballin' is my hobby";
+var secret = "you'll be so goddamn pretty like the stars";
 
 function userShouldBeLoggedIn(req, res, next) {
     let token = req.headers["x-access-token"];
