@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var jwt = require("jsonwebtoken");
 //it's .. because it's going one file back
-var userShouldBeLoggedIn = require("../guards/usershouldBeLoggedIn");
+var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 var secret = "Big ballin' is my hobby";
 
 /* goes to login page */
