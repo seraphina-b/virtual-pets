@@ -40,4 +40,8 @@ li {
     
 }
 
+::-webkit-progress-value {
+  transition: width 0.5s;
+}
+
   
