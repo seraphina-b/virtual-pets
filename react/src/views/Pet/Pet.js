@@ -22,6 +22,7 @@ import happy from "../.././images/happy.png";
 import bath from "../.././images/bath.png";
 import play from "../.././images/ball.png";
 
+
 class Pet extends React.Component {
   constructor(props) {
     super(props);
@@ -63,6 +64,9 @@ class Pet extends React.Component {
         this.setState({
           pet: data
         });
+      })
+      .then((data) => {
+        console.log(this.state.pet)
       })
       .catch(error => {
         console.log(error);
@@ -218,9 +222,6 @@ class Pet extends React.Component {
               <i className="nes-icon heart is-large"></i>
               <i className="nes-icon heart is-large"></i>
 
-              <h3>Age</h3>
-              {/* Kat note: do we want to display age? */}
-              <h4>{this.state.pet.age}</h4>
               {lifeStagePic}
 
               {/* Not sure if we will have time to make the alert image to work, so will commet in out for now */}
@@ -235,7 +236,7 @@ class Pet extends React.Component {
 
             <div className="col">
               {/* Hunger bar | min = 0 max = 15 | reduces by 2 every 5 mins | if hunger = 0 or > 25 - pet dies | if hunger = 20 - pet sick */}
-              <h5>Hunger</h5>
+              <h5>Hunger</h5> 
               <progress
                 className="nes-progress is-success"
                 value={this.state.pet.satiety}
