@@ -87,7 +87,7 @@ class Pet extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    console.log(this.state.satiety);
+    console.log(this.state.pet.satiety);
   };
 
   handleHappy = () => {
@@ -121,7 +121,7 @@ class Pet extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    console.log(this.state.clean);
+    console.log(this.state.pet.clean);
   };
   // let timeArray = this.state.age.split(":");
   // console.log(timeArray);
@@ -140,43 +140,45 @@ class Pet extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    console.log(this.state.play);
+    console.log(this.state.pet.play);
   };
 
   //handleAge just for testing right now
-  handleAge = e => {
-    e.preventDefault();
-    let timeArray = this.state.pet.age.split(":");
+  handleAge = () => {
+    console.log(this.state.pet.age);
+    let timeArray = "10:10:10".split(":")
     console.log(timeArray);
-    let hours = parseInt(timeArray[0], 10);
-    let minutes = parseInt(timeArray[1]);
-    let seconds = parseInt(timeArray[2]);
-    console.log("It's " + hours + " hours");
-    console.log(minutes + " minutes");
-    console.log(seconds + " seconds");
+    // let hours = parseInt(timeArray[0], 10);
+    // let minutes = parseInt(timeArray[1], 10);
+    // let seconds = parseInt(timeArray[2], 10);
+    // console.log("It's " + hours + " hours");
+    // console.log(minutes + " minutes");
+    // console.log(seconds + " seconds");
+    // console.log((hours*360) + (minutes*60) + seconds);
+    // return (hours*360) + (minutes*60) + seconds;
   };
 
   render() {
     // making the pet 'grow' - changing the lifeStage images depending on time
     let lifeStagePic;
-    if (this.state.pet.age <= "00:05:00") {
+    if (this.state.pet.age <= 1800) {
       lifeStagePic = <img src={born} alt="born tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:05:00" &&
-      this.state.pet.age <= "00:10:00"
+      this.state.pet.age > 1800 &&
+      this.state.pet.age <= 12600
     ) {
       lifeStagePic = <img src={baby} alt="baby tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:10:00" &&
-      this.state.pet.age <= "00:10:30"
+      this.state.pet.age > 12600 &&
+      this.state.pet.age <= 172800
     ) {
       lifeStagePic = <img src={child} alt="child tamagotchi"></img>;
     } else if (
-      this.state.pet.age > "00:10:30" &&
-      this.state.pet.age <= "00:15:00"
+      this.state.pet.age > 172800 &&
+      this.state.pet.age <= 345600
     ) {
       lifeStagePic = <img src={teen} alt="teen tamagotchi"></img>;
-    } else if (this.state.pet.age > "00:15:00") {
+    } else if (this.state.pet.age > 345600) {
       lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
     }
 
@@ -185,7 +187,7 @@ class Pet extends React.Component {
     //adding comment because git is acting weird
 
     let poopPic;
-    if (this.state.pet.foodTime >= "00:00:30" && this.state.pet.clean <= 13) {
+    if (this.state.pet.foodTime >= 30 && this.state.pet.clean <= 13) {
       console.log("poop should be there");
       poopPic = <img src={poop} alt="poop"></img>;
     }
@@ -267,28 +269,28 @@ class Pet extends React.Component {
               {/* ACTION buttons */}
               <h3 className="title">Actions</h3>
               {/* feed button */}
-              {this.state.pet.age > "00:00:00" && (
+              {(
                 <button onClick={this.handleFeeding} className="nes-btn">
                   {" "}
                   <img src={bread} alt="Bread icon" />
                 </button>
               )}
               {/* happy button */}
-              {this.state.pet.age > "00:00:00" && (
+              {(
                 <button onClick={this.handleHappy} className="nes-btn">
                   {" "}
                   <img src={happy} alt="Happy icon" />
                 </button>
               )}
               {/* clean button, should also get rid of poop when we need it */}
-              {this.state.pet.age > "00:00:00" && (
+              {(
                 <button onClick={this.handleCleaning} className="nes-btn">
                   {" "}
                   <img src={bath} alt="Bath icon" />
                 </button>
               )}
               {/* play button */}
-              {this.state.pet.age > "00:00:00" && (
+              {(
                 <button onClick={this.handlePlaying} className="nes-btn">
                   {" "}
                   <img src={play} alt="Tennis ball icon" />

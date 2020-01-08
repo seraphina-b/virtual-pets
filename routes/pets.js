@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 router.get("/:petID", (req, res) => {
   db(
     //this gets all the pet data, please do not delete the *
-    `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID=${req.params.petID};`
+    `SELECT *, TIME_TO_SEC(TIMEDIFF(now(), dateCreated)) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID=${req.params.petID};`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -85,7 +85,7 @@ router.post("/", (req, res) => {
 
     db(
       //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
-      `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${petID};`
+      `SELECT *, TIME_TO_SEC(TIMEDIFF(now(), dateCreated)) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${petID};`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
@@ -113,7 +113,7 @@ WHERE p.petID=${req.params.petID}`).then(results => {
 //doesn't work (500 error) 11/5/19 @12:21PM but we don't need this
 router.get("/:petID/age", (req, res) => {
   db(
-    `SELECT TIMEDIFF(now(), dateCreated) AS age FROM pets WHERE petID=${req.params.petID}`
+    `SELECT TIME_TO_SEC(TIMEDIFF(now(), dateCreated)) AS age FROM pets WHERE petID=${req.params.petID}`
   ).then(results => {
     if (results.error) {
       res.status(500).send(results.error);
@@ -161,7 +161,7 @@ router.post("/:petID/satiety", (req, res) => {
 
         db(
           //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
-          `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
+          `SELECT *, TIME_TO_SEC(TIMEDIFF(now(), dateCreated)) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
         ).then(results => {
           if (results.error) {
             res.status(500).send(results.error);
@@ -190,7 +190,7 @@ router.post("/:petID/happy", (req, res) => {
 
       db(
         //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
-        `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT *, TIME_TO_SEC(TIMEDIFF(now(), dateCreated)) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
@@ -218,7 +218,7 @@ router.post("/:petID/clean", (req, res) => {
 
       db(
         //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
-        `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};;`
+        `SELECT *, TIME_TO_SEC(TIMEDIFF(now(), dateCreated)) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};;`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
@@ -245,7 +245,7 @@ router.post("/:petID/play", (req, res) => {
 
       db(
         //this gets all the pet data, please do not delete the * we need it for the bars or they won't work
-        `SELECT *, TIMEDIFF(now(), dateCreated) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
+        `SELECT *, TIME_TO_SEC(TIMEDIFF(now(), dateCreated)) AS age, TIMEDIFF(now(), timeFed) AS foodTime FROM pets WHERE petID = ${req.params.petID};`
       ).then(results => {
         if (results.error) {
           res.status(500).send(results.error);
