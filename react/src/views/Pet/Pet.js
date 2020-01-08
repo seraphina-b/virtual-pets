@@ -143,21 +143,6 @@ class Pet extends React.Component {
     console.log(this.state.pet.play);
   };
 
-  //handleAge just for testing right now
-  handleAge = () => {
-    console.log(this.state.pet.age);
-    let timeArray = "10:10:10".split(":")
-    console.log(timeArray);
-    // let hours = parseInt(timeArray[0], 10);
-    // let minutes = parseInt(timeArray[1], 10);
-    // let seconds = parseInt(timeArray[2], 10);
-    // console.log("It's " + hours + " hours");
-    // console.log(minutes + " minutes");
-    // console.log(seconds + " seconds");
-    // console.log((hours*360) + (minutes*60) + seconds);
-    // return (hours*360) + (minutes*60) + seconds;
-  };
-
   render() {
     // making the pet 'grow' - changing the lifeStage images depending on time
     let lifeStagePic;
@@ -220,9 +205,9 @@ class Pet extends React.Component {
               {/* Kat note: h2 displays the pet name */}
               <h2>{this.state.pet.name}</h2>
               {/* Kat note: what do we want these hearts to do? */}
-              <i className="nes-icon heart is-large"></i>
-              <i className="nes-icon heart is-large"></i>
-              <i className="nes-icon heart is-large"></i>
+              <i className="nes-icon heart is-medium"></i>
+              <i className="nes-icon heart is-medium"></i>
+              <i className="nes-icon heart is-medium"></i>
 
               {lifeStagePic}
 
@@ -240,28 +225,40 @@ class Pet extends React.Component {
               {/* Hunger bar | min = 0 max = 15 | reduces by 2 every 5 mins | if hunger = 0 or > 25 - pet dies | if hunger = 20 - pet sick */}
               <h5>Hunger</h5> 
               <progress
-                className="nes-progress is-success"
+                className={"nes-progress " + (
+                  this.state.pet.satiety > 10 ? "is-success" : 
+                  this.state.pet.satiety <= 10 && this.state.pet.satiety > 5 ? "is-warning" : 
+                  "is-error")}
                 value={this.state.pet.satiety}
                 max="15"
               ></progress>
               {/* Happiness bar | min = 0 max = 15 */}
               <h5>Happiness</h5>
               <progress
-                class="nes-progress is-warning"
+                className={"nes-progress " + (
+                  this.state.pet.happy > 10 ? "is-success" : 
+                  this.state.pet.happy <= 10 && this.state.pet.happy > 5 ? "is-warning" : 
+                  "is-error")}
                 value={this.state.pet.happy}
                 max="15"
               ></progress>
               {/* Cleanliness bar | min = 0 max = 15 */}
               <h5>Cleanliness</h5>
               <progress
-                class="nes-progress is-primary"
+                className={"nes-progress " + (
+                  this.state.pet.clean > 10 ? "is-success" : 
+                  this.state.pet.clean <= 10 && this.state.pet.clean > 5 ? "is-warning" : 
+                  "is-error")}
                 value={this.state.pet.clean}
                 max="15"
               ></progress>
               {/* Playfulness bar | min = 0 max = 15 */}
               <h5>Playfulness</h5>
               <progress
-                class="nes-progress is-error"
+                className={"nes-progress " + (
+                  this.state.pet.play > 10 ? "is-success" : 
+                  this.state.pet.play <= 10 && this.state.pet.play > 5 ? "is-warning" : 
+                  "is-error")}
                 value={this.state.pet.play}
                 max="15"
               ></progress>
