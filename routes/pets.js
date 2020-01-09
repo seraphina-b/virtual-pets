@@ -146,7 +146,7 @@ router.post("/:petID/satiety", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET satiety = satiety+2 WHERE petID = ${req.params.petID} and satiety<=30;`
+      `UPDATE pets SET satiety = satiety+5 WHERE petID = ${req.params.petID} and satiety<=30;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
@@ -182,7 +182,7 @@ router.post("/:petID/happy", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET happy = happy+2 WHERE petID=${req.params.petID} AND happy<=30;`
+      `UPDATE pets SET happy = happy+5 WHERE petID=${req.params.petID} AND happy<=30;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
@@ -210,7 +210,7 @@ router.post("/:petID/clean", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET clean = clean+2 WHERE petID = ${req.params.petID} and clean<=15;`
+      `UPDATE pets SET clean = clean+5 WHERE petID = ${req.params.petID} and clean<=15;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
@@ -237,7 +237,7 @@ router.post("/:petID/play", (req, res) => {
       res.status(500).send(results.error);
     }
     db(
-      `UPDATE pets SET play = play+2 WHERE petID = ${req.params.petID} and play<=30;`
+      `UPDATE pets SET play = play+5 WHERE petID = ${req.params.petID} and play<=30;`
     ).then(results => {
       if (results.error) {
         res.status(500).send(results.error);
