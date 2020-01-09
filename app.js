@@ -9,7 +9,6 @@ var petsRouter = require("./routes/pets");
 var eventsRouter = require("./routes/events");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
-var sendNotification = require("./jobs/sendNotification");
 var petBars = require("./jobs/petBars");
 
 var app = express();
@@ -42,15 +41,9 @@ app.use(function(err, req, res, next) {
   res.send("error");
 });
 
-// cron job - running every minute
-cron.schedule("* * * * *", function() {
-  console.log("running a task every minute");
-  sendNotification();
-});
-
 // cron job - reduce the pet bars
-cron.schedule("* * * * *", function() {
-  console.log("running a task every another minute");
+cron.schedule("0 * * * *", function() {
+  console.log("running a task every hour!");
   petBars();
 });
 
