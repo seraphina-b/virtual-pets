@@ -6,6 +6,8 @@ router.get('/', function(req, res) {
   res.send('respond with a resource');
 });
 
-router.get('/ ')
+router.post('/signup', (req, res, next) => {
+
+});
 
 module.exports = router;

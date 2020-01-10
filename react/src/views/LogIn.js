@@ -1,4 +1,5 @@
 import React from "react";
+import LogInBox from "../components/LogInBox";
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -61,11 +62,11 @@ class LogIn extends React.Component {
           <button
             type="button"
             onClick={this.attemptLogin}
-            className="nes-btn is-primary"
-          >
+            className="nes-btn is-primary">
             Log In
           </button>
         </section>
+        <LogInBox></LogInBox>
         {/* Create pet section - users sign up to create a pet - redirects them to create pet page*/}
         {/* <section className="nes-container with-title" id="createPet">
           <h3 className="title">Sign Up</h3>

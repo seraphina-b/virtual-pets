@@ -202,13 +202,14 @@ class Pet extends React.Component {
 
           <div className="row">
             <div className="col">
+              <div className="row">
               {/* Kat note: h2 displays the pet name */}
               <h2>{this.state.pet.name}</h2>
               {/* Kat note: what do we want these hearts to do? */}
               <i className="nes-icon heart is-medium"></i>
               <i className="nes-icon heart is-medium"></i>
               <i className="nes-icon heart is-medium"></i>
-
+              </div>
               {lifeStagePic}
 
               {/* Not sure if we will have time to make the alert image to work, so will commet in out for now */}
