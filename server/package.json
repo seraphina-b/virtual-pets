@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "migrate": "node model/migration.js"
+    "migrate": "node model/migration.js",
+    "heroku-postbuild": "cd react && npm i && npm run build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
