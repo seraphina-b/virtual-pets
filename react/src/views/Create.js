@@ -1,54 +1,42 @@
 import React from "react";
-import NewPet from "./NewPet.js";
 import { Link } from "react-router-dom";
 //i think this is what we want the /pets to be in many ways
 class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNewPet: false,
-      age: []
+      name: ""
     };
-  }
-
-  handleClick = () => {
-    this.setState(prevState => ({
-      isNewPet: !prevState.isNewPet
-    }));
-    console.log(this.state.isNewPet);
   };
 
-  componentDidMount() {
-    fetch("/:petID/age")
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          age: data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  handleChange = e => {
+    this.setState({ name: e.target.value });
+  };
 
-  getAge() {
-    fetch("/:petID/age", {
-      method: "GET"
-      // headers: {
-      //   "Content-Type": "application/json"
-      // },
-      // body: JSON.stringify({ input: this.state.input })
+  handleClick = () => {
+    fetch("/pets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      //we're not getting the id and this that's a problem
+      body: JSON.stringify({ name: this.state.name })
     })
-      // Continue fetch request here
       .then(res => res.json())
       .then(data => {
-        this.setState({});
+        console.log("Posted your pet, baby!");
+        console.log("data is " + JSON.stringify(data));
+        //redirect the user to the new pet page
+        //well it's going to undefined right now
+        // in a previous commit this line was..
+        // this.props.history.push("/pet")
+        this.props.history.push(`/pets/${data.petID}`);
+        // this.props.location.pathname.push(`/pets/${data.petId}`);
       })
       .catch(error => {
         console.log(error);
-        alert("Error, baby. Try again");
       });
-  }
+  };
 
   render() {
     return (
@@ -71,21 +59,18 @@ class Create extends React.Component {
         </nav>
 
         <br></br>
+
         <div className="nes-container with-title">
           <h3 className="title">Create new pet</h3>
+          <input className="nes-input" onChange={this.handleChange} />
           <button
             type="button"
             onClick={this.handleClick}
-            className="nes-btn is-primary"
+            className="nes-btn is-success"
+            // to={`/pets/${data.insertID}`}
           >
-            Create New Pet
+            Submit
           </button>
-          {this.state.isNewPet ? <NewPet {...this.props} /> : null}
-          <div>
-            {this.state.age.map(age => {
-              return { age };
-            })}
-          </div>
         </div>
       </div>
     );

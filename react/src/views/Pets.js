@@ -48,9 +48,8 @@ class Pets extends React.Component {
         <nav className="nes-container with-title">
           <div className="row">
             <div className="col">
-              <h1>Virtual Pet</h1>
+              <h1>Virtual Pets</h1>
             </div>
-
             <button type="button" className="nes-btn is-primary">
               Log Out
             </button>
