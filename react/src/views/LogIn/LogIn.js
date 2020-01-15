@@ -1,18 +1,26 @@
 import React from "react";
-import LogInBox from "../components/LogInBox";
+import SignUp from "./SignUp";
 
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      isLogin: true
     };
   }
 
   handleChange = e => {
     this.setState({ name: e.target.value });
   };
+
+  handleMode = () => {
+    this.setState((prev) => {
+      return {isLogin: !prev.isLogin};
+    });
+    console.log(this.state.isLogin);
+  }
 
   attemptLogin = () => {
     fetch("/login", {
@@ -36,8 +44,14 @@ class LogIn extends React.Component {
     return (
       <div className="container">
         {/* Main section  - user can choose to login or create pet*/}
-        <section className="nes-container with-title">
-          <h1>Virtual Pets</h1>
+        <section className="nes-container">
+          <div className="row">
+            <div className="col">
+              <h1>Virtual Pets</h1>
+            </div>
+              <button className="nes-btn is-primary"
+              onClick={this.handleMode}>Sign Up</button>
+          </div>
         </section>
         {/* added a <br> for a bit of spacing between the sections - but not sure if this is best practice */}
         <br></br>
@@ -66,7 +80,6 @@ class LogIn extends React.Component {
             Log In
           </button>
         </section>
-        <LogInBox></LogInBox>
         {/* Create pet section - users sign up to create a pet - redirects them to create pet page*/}
         {/* <section className="nes-container with-title" id="createPet">
           <h3 className="title">Sign Up</h3>

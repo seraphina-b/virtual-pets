@@ -1,6 +1,7 @@
 import React from "react";
 import Pet from "./views/Pet/Pet.js";
-import LogIn from "./views/LogIn.js";
+import LogIn from "./views/LogIn/LogIn.js";
+import SignUp from "./views/LogIn/SignUp.js";
 import Create from "./views/Create.js";
 import Pets from "./views/Pets.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -29,6 +30,8 @@ class App extends React.Component {
           {/* <Route path="/pet/:id" component={Pet} /> */}
 
           <Route path="/pets" component={Pets} />
+
+          <Route path="/signup" component={SignUp} />
 
           <Route path="/" component={LogIn} />
         </Switch>
