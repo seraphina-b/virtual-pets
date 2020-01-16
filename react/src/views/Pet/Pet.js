@@ -294,6 +294,11 @@ class Pet extends React.Component {
                   <img src={play} alt="Tennis ball icon" />
                 </button>
               )}
+              {(
+                <button className="nes-btn">
+                  <img src={require("../.././images/rocket.png")} alt="Rocket ship icon" />
+                </button>
+              )}
             </div>
           </div>
         </section>
