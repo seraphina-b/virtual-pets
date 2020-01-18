@@ -21,7 +21,7 @@ con.connect(function(err) {
   // creates PETS table
   //added column called timeFed to calculate if pet pooped
   let sql =
-    "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, satiety INT NOT NULL DEFAULT 0, happy INT NOT NULL DEFAULT 0, clean INT NOT NULL DEFAULT 0, play INT NOT NULL DEFAULT 0, timeFed DATETIME, PRIMARY KEY (petID));";
+    "DROP TABLE if exists pets; CREATE TABLE pets(petID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), dateCreated DATETIME, satiety INT NOT NULL DEFAULT 15, happy INT NOT NULL DEFAULT 15, clean INT NOT NULL DEFAULT 15, play INT NOT NULL DEFAULT 15, timeFed DATETIME, PRIMARY KEY (petID));";
   con.query(sql, function(err, result) {
     if (err) throw err;
 
