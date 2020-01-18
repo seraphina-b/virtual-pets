@@ -5,7 +5,8 @@ class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ""
+      name: "",
+      isError: false
     };
   };
 
@@ -13,7 +14,8 @@ class Create extends React.Component {
     this.setState({ name: e.target.value });
   };
 
-  handleClick = () => {
+  handleClick = () => { 
+    if (this.state.name != "") {
     fetch("/pets", {
       method: "POST",
       headers: {
@@ -36,6 +38,11 @@ class Create extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    } else {
+      this.setState(
+        { isError: true }
+      );
+    }
   };
 
   render() {
@@ -62,12 +69,12 @@ class Create extends React.Component {
 
         <div className="nes-container with-title">
           <h3 className="title">Create new pet</h3>
+          <p class="nes-text is-error"> {this.state.isError ? "Please enter a name." : ""} </p>
           <input className="nes-input" onChange={this.handleChange} />
           <button
             type="button"
             onClick={this.handleClick}
             className="nes-btn is-success"
-            // to={`/pets/${data.insertID}`}
           >
             Submit
           </button>

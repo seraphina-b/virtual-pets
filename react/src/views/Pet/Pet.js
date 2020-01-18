@@ -2,13 +2,6 @@ import React from "react";
 import Pusher from "pusher-js";
 import { Router, useParams, Link } from "react-router-dom";
 
-// life stage images
-import born from "../.././images/lifeStages/born.png";
-import baby from "../.././images/lifeStages/baby.png";
-import child from "../.././images/lifeStages/child.png";
-import teen from "../.././images/lifeStages/teen.png";
-import adult from "../.././images/lifeStages/adult.png";
-
 // pet alert image
 import help from "../.././images/petAlerts/help.png";
 
@@ -147,24 +140,24 @@ class Pet extends React.Component {
     // making the pet 'grow' - changing the lifeStage images depending on time
     let lifeStagePic;
     if (this.state.pet.age <= 1800) {
-      lifeStagePic = <img src={born} alt="born tamagotchi"></img>;
+      lifeStagePic = <img src={require("../.././images/lifeStages/born.png")} alt="born tamagotchi"></img>;
     } else if (
       this.state.pet.age > 1800 &&
       this.state.pet.age <= 12600
     ) {
-      lifeStagePic = <img src={baby} alt="baby tamagotchi"></img>;
+      lifeStagePic = <img src={require("../.././images/lifeStages/baby.png")} alt="baby tamagotchi"></img>;
     } else if (
       this.state.pet.age > 12600 &&
       this.state.pet.age <= 172800
     ) {
-      lifeStagePic = <img src={child} alt="child tamagotchi"></img>;
+      lifeStagePic = <img src={require("../.././images/lifeStages/child.png")} alt="child tamagotchi"></img>;
     } else if (
       this.state.pet.age > 172800 &&
       this.state.pet.age <= 345600
     ) {
-      lifeStagePic = <img src={teen} alt="teen tamagotchi"></img>;
+      lifeStagePic = <img src={require("../.././images/lifeStages/teen.png")} alt="teen tamagotchi"></img>;
     } else if (this.state.pet.age > 345600) {
-      lifeStagePic = <img src={adult} alt="adult tamagotchi"></img>;
+      lifeStagePic = <img src={require("../.././images/lifeStages/adult.png")} alt="adult tamagotchi"></img>;
     }
 
     //makes poop appear but also lets us clean the poop
@@ -295,7 +288,7 @@ class Pet extends React.Component {
                 </button>
               )}
               {(
-                <button className="nes-btn">
+                <button className="nes-btn" data-toggle="modal" data-target="#abandonModal">
                   <img src={require("../.././images/rocket.png")} alt="Rocket ship icon" />
                 </button>
               )}
