@@ -10,10 +10,10 @@ var channels_client = new Pusher({
 });
 
 function petBars() {
-  db(`UPDATE pets SET satiety = satiety-2 WHERE satiety>0;`);
-  db(`UPDATE pets SET happy = happy-2 WHERE happy>0;`);
-  db(`UPDATE pets SET clean = clean-2 WHERE clean>0;`);
-  db(`UPDATE pets SET play = happy-2 WHERE play>0;`);
+  db(`UPDATE pets SET satiety = satiety-2 WHERE satiety>1;`);
+  db(`UPDATE pets SET happy = happy-2 WHERE happy>1;`);
+  db(`UPDATE pets SET clean = clean-2 WHERE clean>1;`);
+  db(`UPDATE pets SET play = happy-2 WHERE play>1;`);
 
   channels_client.trigger("my-channel", "my-event", {
     message: "hi world"
