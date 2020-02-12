@@ -7,14 +7,6 @@ import help from "../.././images/petAlerts/help.png";
 
 // pet poops component & image
 import Poop from "./Poop.js";
-import poop from "../.././images/petAlerts/poop.png";
-
-// action button images
-import bread from "../.././images/bread.png";
-import happy from "../.././images/happy.png";
-import bath from "../.././images/bath.png";
-import play from "../.././images/ball.png";
-
 
 class Pet extends React.Component {
   constructor(props) {
@@ -167,7 +159,7 @@ class Pet extends React.Component {
     let poopPic;
     if (this.state.pet.foodTime >= 30 && this.state.pet.clean <= 13) {
       console.log("poop should be there");
-      poopPic = <img src={poop} alt="poop"></img>;
+      poopPic = <img src={"../.././images/petAlerts/poop.png"} alt="poop"></img>;
     }
 
     return (
@@ -263,28 +255,28 @@ class Pet extends React.Component {
               {(
                 <button onClick={this.handleFeeding} className="nes-btn">
                   {" "}
-                  <img src={bread} alt="Bread icon" />
+                  <img src={"../.././images/bread.png"} alt="Bread icon" />
                 </button>
               )}
               {/* happy button */}
               {(
                 <button onClick={this.handleHappy} className="nes-btn">
                   {" "}
-                  <img src={happy} alt="Happy icon" />
+                  <img src={"../.././images/happy.png"} alt="Happy icon" />
                 </button>
               )}
               {/* clean button, should also get rid of poop when we need it */}
               {(
                 <button onClick={this.handleCleaning} className="nes-btn">
                   {" "}
-                  <img src={bath} alt="Bath icon" />
+                  <img src={"../.././images/bath.png"} alt="Bath icon" />
                 </button>
               )}
               {/* play button */}
               {(
                 <button onClick={this.handlePlaying} className="nes-btn">
                   {" "}
-                  <img src={play} alt="Tennis ball icon" />
+                  <img src={"../.././images/ball.png"} alt="Tennis ball icon" />
                 </button>
               )}
               {(
